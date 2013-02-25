@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{667CFD64-41C5-450E-935C-83A0CC6BD74E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TCESS.ESales.PersistenceLayer</RootNamespace>
+    <AssemblyName>TCESS.ESales.PersistenceLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="Entity\affidavitdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\agentdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\agentmaterialpercentage.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\allotedquantity.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ameblock.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\authrepdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\authrepdocdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\authrepdocument.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\bank.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\batchtransfer.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\booking.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\bookingandsettlement.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\bookingmode.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\bookingmodedetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\businesstype.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\counter.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\counterdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\custauthorizationdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customer.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customerdetailsforcodealloc.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customerdocdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customerdocument.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customerdocumentsview.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customermaterialmap.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customerpartner.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\customer_history.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\dcamaterialallocation.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\dformreport.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\dispatchreport.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\district.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\doctype.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\eSalesEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\form27c.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\form27cperiodtype.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\form27cview.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\form27c_history.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\liftinginterval.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\liftinglimit.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\liftinglimit_history.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\loadingadivcerpt.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\materialtype.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\materialtype_history.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\moneyreceipt.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\month.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\my_ameblocks.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\my_aspnet_applications.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\my_aspnet_membership.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\my_aspnet_roles.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\my_aspnet_users.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\my_aspnet_usersinroles.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ownershipstatu.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\pageinfo.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\pagesinrole.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\paymentcollection.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\paymentmode.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\paymentrefund.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\paymenttransit.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\periodtype.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\pervioussettlement.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\rejectionreason.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\roadpermitreport.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\settlementofaccount.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\smsbookinglimit.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\smsexecutivelist.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\smsregistration.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\standalonetruck.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\standalonetruckdocdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\state.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckcarrycapacity.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckdocdetail.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckdocument.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckmake.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckregtype.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckverification.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\truckwheeler.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\useragentmapping.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\userpaymentmodemapping.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\vwchequepayment.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\vwcollectionsummary.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\vwnonchequepayment.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IBookingModeRepository.cs" />
+    <Compile Include="Interfaces\ICounterRepository.cs" />
+    <Compile Include="Interfaces\ICustomerMaterialMapRepository.cs" />
+    <Compile Include="Interfaces\ICustomerRepository.cs" />
+    <Compile Include="Interfaces\IGenericRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entity\eSalesEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>eSalesEntities.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

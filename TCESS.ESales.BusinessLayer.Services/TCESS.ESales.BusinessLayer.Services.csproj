@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A782AFF6-FA4B-499D-8C4F-77BB245DC00A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TCESS.ESales.BusinessLayer.Services</RootNamespace>
+    <AssemblyName>TCESS.ESales.BusinessLayer.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\Binaries\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AffidavitDetailsService.cs" />
+    <Compile Include="AgentMaterialPercentageService.cs" />
+    <Compile Include="AgentService.cs" />
+    <Compile Include="AmeBlockService.cs" />
+    <Compile Include="AuthRepService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="BookingService.cs" />
+    <Compile Include="BookingModeService.cs" />
+    <Compile Include="Users\Customer\CustomerBaseService.cs" />
+    <Compile Include="Documents\DocumentsBaseService.cs" />
+    <Compile Include="Form27CService.cs" />
+    <Compile Include="Form27C_HistoryService.cs" />
+    <Compile Include="GhatoCollection\GhatoCollectionBaseService.cs" />
+    <Compile Include="GhatoCollection\PaymentService.cs" />
+    <Compile Include="LiftingLimitService.cs" />
+    <Compile Include="Masters\MasterBaseService.cs" />
+    <Compile Include="Masters\MasterService.cs" />
+    <Compile Include="ReportService.cs" />
+    <Compile Include="SMSLimitService.cs" />
+    <Compile Include="CounterService.cs" />
+    <Compile Include="CustAuthorizationService.cs" />
+    <Compile Include="CustomerDocService.cs" />
+    <Compile Include="CustomerMaterialService.cs" />
+    <Compile Include="DcaMaterialAllocationService.cs" />
+    <Compile Include="DocumentTypeService.cs" />
+    <Compile Include="CustomerService.cs" />
+    <Compile Include="CustomerMastersService.cs" />
+    <Compile Include="MaterialTypeService.cs" />
+    <Compile Include="MembershipService.cs" />
+    <Compile Include="MoneyReceiptService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LocationService.cs" />
+    <Compile Include="CautionListService.cs" />
+    <Compile Include="SettlementOfAccountsService.cs" />
+    <Compile Include="SMSService.cs" />
+    <Compile Include="StandaloneTruckService.cs" />
+    <Compile Include="TruckDocService.cs" />
+    <Compile Include="TruckMakeService.cs" />
+    <Compile Include="TruckService.cs" />
+    <Compile Include="Users\UserAgentService.cs" />
+    <Compile Include="Users\UserBaseService.cs" />
+    <Compile Include="Users\UserPaymentModeService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TCESS.ESales.BusinessLayer.Interfaces\TCESS.ESales.BusinessLayer.Interfaces.csproj">
+      <Project>{AD432118-3592-439D-9D31-15ABE9C743F7}</Project>
+      <Name>TCESS.ESales.BusinessLayer.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TCESS.ESales.CommonLayer.CommonLibrary\TCESS.ESales.CommonLayer.CommonLibrary.csproj">
+      <Project>{41B64DE9-8EDD-4F50-8455-F54461644E83}</Project>
+      <Name>TCESS.ESales.CommonLayer.CommonLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TCESS.ESales.CommonLayer.Unity\TCESS.ESales.CommonLayer.Unity.csproj">
+      <Project>{AF44808C-3DBC-4635-9A5A-F82D208655AF}</Project>
+      <Name>TCESS.ESales.CommonLayer.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TCESS.ESales.DataTransferObjects\TCESS.ESales.DataTransferObjects.csproj">
+      <Project>{74977846-B0F4-4627-A989-26155DC919BF}</Project>
+      <Name>TCESS.ESales.DataTransferObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TCESS.ESales.PersistenceLayer\TCESS.ESales.PersistenceLayer.csproj">
+      <Project>{667CFD64-41C5-450E-935C-83A0CC6BD74E}</Project>
+      <Name>TCESS.ESales.PersistenceLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

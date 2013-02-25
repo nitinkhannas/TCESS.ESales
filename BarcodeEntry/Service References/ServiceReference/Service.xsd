@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TCESS.ESales.DataTransferObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TCESS.ESales.DataTransferObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="BookingDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Booking_AccountSettled" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_Account_InvoiceNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Account_Quantity" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_AdvanceAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_Agent_AgentName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Agent_AgentShortName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Agent_Id" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_CounterId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_CounterName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Booking_Cust_AMEVisitDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Booking_Cust_Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Cust_District_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Cust_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_Cust_Mat_AnnualRequirement" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_Cust_State_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Cust_TradeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Cust_UnitAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Cust_UnitName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Booking_DriverName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_IsAdvanced" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_IsFullAmount" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_CFormRate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_CSTRate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_EducationCess" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_HandlingRate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_HigherEducationCess" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_MaterialName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_ServiceTax" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_MaterialType_TiscoRate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Booking_Mode" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_MoneyReceiptIssued" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_Qty" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_RejectionReson" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_StandAlone_Truck_Id" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_StandaloneTruck_DriverName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_StandaloneTruck_DriverShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_StandaloneTruck_OwnerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_StandaloneTruck_OwnerShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_StandaloneTruck_RegNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Status" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_TotalIssuedQty" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_TruckIn" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_TruckInTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Booking_TruckMatLifted" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_TruckMatLiftedTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Booking_TruckType" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Booking_Truck_DriverName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Truck_DriverShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Truck_Id" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Booking_Truck_OwnerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Truck_OwnerShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Booking_Truck_RegNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="agentdetail" nillable="true" type="tns:AgentDTO" />
+          <xs:element minOccurs="0" name="counter" nillable="true" type="tns:CounterDTO" />
+          <xs:element minOccurs="0" name="customer" nillable="true" type="tns:CustomerDTO" />
+          <xs:element minOccurs="0" name="materialtype" nillable="true" type="tns:MaterialTypeDTO" />
+          <xs:element minOccurs="0" name="standalonetruck" nillable="true" type="tns:StandaloneTrucksDTO" />
+          <xs:element minOccurs="0" name="truckdetail" nillable="true" type="tns:TruckDetailsDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BookingDTO" nillable="true" type="tns:BookingDTO" />
+  <xs:complexType name="BaseDTO">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="BaseDTO" nillable="true" type="tns:BaseDTO" />
+  <xs:complexType name="AgentDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Agent_ClosureDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Agent_ComAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_ComContactPerson" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_ComDistrict" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_ComEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_ComMobileNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_ComPhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_ComPinCode" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_ComState" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Agent_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Agent_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Agent_LocalAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_LocalContactPerson" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_LocalDistrict" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_LocalEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_LocalMobileNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_LocalPhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_LocalPinCode" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_LocalState" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_PanNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_RegAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_RegContactPerson" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_RegDistrict" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_RegEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_RegMobileNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_RegPhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_RegPinCode" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_RegState" type="xs:int" />
+          <xs:element minOccurs="0" name="Agent_SalesTaxNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_ShortName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Agent_StartDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Agent_TSLCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentDTO" nillable="true" type="tns:AgentDTO" />
+  <xs:complexType name="CounterDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Counter_Agent_Id" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Counter_Agent_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Counter_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Counter_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Counter_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Counter_IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Counter_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Counter_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Counter_MAC_Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Counter_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Counter_User_Id" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="agentdetail" nillable="true" type="tns:AgentDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CounterDTO" nillable="true" type="tns:CounterDTO" />
+  <xs:complexType name="CustomerDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AMEBlockOffice" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_AMEBlockId" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_AMEVisitDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_AgentId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_AgentName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_BlacklistedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_BrickCapacity" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_BusinessType" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Business_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_District" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_District_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Excise_Comm" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Excise_Div" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Excise_Range" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_FathersName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_FirmName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_FolderName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_IsBlacklisted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cust_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cust_Landmark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_Mat_AnnualRequirement" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_MobileNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_NoOfChimneys" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_OwnerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_OwnershipName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_OwnershipStatus" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_PartnerPhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_PhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Pincode" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Post" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_RegCustType" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cust_RegisteredAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_SalesType" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_SmsSent" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cust_State" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_State_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Status" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cust_TinSubmitted" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_TradeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_TruckList" nillable="true" type="tns:ArrayOfTruckDetailsDTO" />
+          <xs:element minOccurs="0" name="Cust_UnitAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="agentdetail" nillable="true" type="tns:AgentDTO" />
+          <xs:element minOccurs="0" name="ameblock" nillable="true" type="tns:AmeBlockDTO" />
+          <xs:element minOccurs="0" name="businesstype" nillable="true" type="tns:BusinessTypeDTO" />
+          <xs:element minOccurs="0" name="customerdocdetails" nillable="true" type="tns:ArrayOfCustomerDocDetailsDTO" />
+          <xs:element minOccurs="0" name="customermaterialmaps" nillable="true" type="tns:ArrayOfCustomerMaterialMapDTO" />
+          <xs:element minOccurs="0" name="district" nillable="true" type="tns:DistrictDTO" />
+          <xs:element minOccurs="0" name="ownershipstatu" nillable="true" type="tns:OwnershipStatusDTO" />
+          <xs:element minOccurs="0" name="state" nillable="true" type="tns:StateDTO" />
+          <xs:element minOccurs="0" name="truckdetails" nillable="true" type="tns:ArrayOfTruckDetailsDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerDTO" nillable="true" type="tns:CustomerDTO" />
+  <xs:complexType name="ArrayOfTruckDetailsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TruckDetailsDTO" nillable="true" type="tns:TruckDetailsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTruckDetailsDTO" nillable="true" type="tns:ArrayOfTruckDetailsDTO" />
+  <xs:complexType name="TruckDetailsDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:CustomerDTO" />
+          <xs:element minOccurs="0" name="State" nillable="true" type="tns:StateDTO" />
+          <xs:element minOccurs="0" name="TruckCarryCapacity_Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TruckMake" nillable="true" type="tns:TruckMakeDTO" />
+          <xs:element minOccurs="0" name="TruckMake_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TruckWheeler_Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_BlacklistedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Truck_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Truck_Customer" nillable="true" type="tns:CustomerDTO" />
+          <xs:element minOccurs="0" name="Truck_CustomerId" type="xs:int" />
+          <xs:element minOccurs="0" name="Truck_DriverName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_DriverShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Truck_IsBlacklisted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Truck_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Truck_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Truck_Make" type="xs:int" />
+          <xs:element minOccurs="0" name="Truck_MobileNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_OwnerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_OwnerShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_PhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_RegNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Truck_State" type="xs:int" />
+          <xs:element minOccurs="0" name="Truck_State_Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TruckDetailsDTO" nillable="true" type="tns:TruckDetailsDTO" />
+  <xs:complexType name="StateDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="State_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="State_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="State_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="State_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="State_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="State_Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StateDTO" nillable="true" type="tns:StateDTO" />
+  <xs:complexType name="TruckMakeDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TruckMake_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="TruckMake_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TruckMake_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="TruckMake_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TruckMake_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TruckMake_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TruckMake_TruckCC_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="TruckMake_TruckCC_Value" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TruckMake_TruckWheeler_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="TruckMake_TruckWheeler_Value" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="truckcarrycapacity" nillable="true" type="tns:TruckCarryCapacityDTO" />
+          <xs:element minOccurs="0" name="truckwheeler" nillable="true" type="tns:TruckWheelerDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TruckMakeDTO" nillable="true" type="tns:TruckMakeDTO" />
+  <xs:complexType name="TruckCarryCapacityDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TruckCC_CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="TruckCC_CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckCC_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="TruckCC_IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TruckCC_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckCC_Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TruckCarryCapacityDTO" nillable="true" type="tns:TruckCarryCapacityDTO" />
+  <xs:complexType name="TruckWheelerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TruckWheeler_CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="TruckWheeler_CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckWheeler_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="TruckWheeler_IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TruckWheeler_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckWheeler_Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TruckWheelerDTO" nillable="true" type="tns:TruckWheelerDTO" />
+  <xs:complexType name="AmeBlockDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Blocks_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Blocks_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Blocks_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Blocks_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Blocks_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Blocks_Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AmeBlockDTO" nillable="true" type="tns:AmeBlockDTO" />
+  <xs:complexType name="BusinessTypeDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BusinessType_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="BusinessType_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="BusinessType_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="BusinessType_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="BusinessType_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="BusinessType_Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BusinessTypeDTO" nillable="true" type="tns:BusinessTypeDTO" />
+  <xs:complexType name="ArrayOfCustomerDocDetailsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerDocDetailsDTO" nillable="true" type="tns:CustomerDocDetailsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerDocDetailsDTO" nillable="true" type="tns:ArrayOfCustomerDocDetailsDTO" />
+  <xs:complexType name="CustomerDocDetailsDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cust_Doc_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Doc_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_Doc_CustId" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Doc_Customer" nillable="true" type="tns:CustomerDTO" />
+          <xs:element minOccurs="0" name="Cust_Doc_DocAcroName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Doc_DocId" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Doc_DocName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Doc_ExDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_Doc_FileName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Doc_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Doc_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cust_Doc_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_Doc_No" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:CustomerDTO" />
+          <xs:element minOccurs="0" name="doctype" nillable="true" type="tns:DocTypeDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerDocDetailsDTO" nillable="true" type="tns:CustomerDocDetailsDTO" />
+  <xs:complexType name="DocTypeDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Doc_Acronym" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Doc_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Doc_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Doc_Group" type="xs:int" />
+          <xs:element minOccurs="0" name="Doc_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Doc_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Doc_IsUnique" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Doc_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Doc_Mandatory" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Doc_Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocTypeDTO" nillable="true" type="tns:DocTypeDTO" />
+  <xs:complexType name="ArrayOfCustomerMaterialMapDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerMaterialMapDTO" nillable="true" type="tns:CustomerMaterialMapDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerMaterialMapDTO" nillable="true" type="tns:ArrayOfCustomerMaterialMapDTO" />
+  <xs:complexType name="CustomerMaterialMapDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cust_Mat_AllotedQuantity" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cust_Mat_AllotedQuantityId" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Mat_AnnualRequirement" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Mat_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Mat_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_Mat_CustId" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Mat_Customer" nillable="true" type="tns:CustomerDTO" />
+          <xs:element minOccurs="0" name="Cust_Mat_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Mat_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Cust_Mat_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cust_Mat_LiftingLimit" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Mat_MaterialId" type="xs:int" />
+          <xs:element minOccurs="0" name="Cust_Mat_MaterialName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:CustomerDTO" />
+          <xs:element minOccurs="0" name="CustomerFirmName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomerRegType" type="xs:boolean" />
+          <xs:element minOccurs="0" name="allotedquantity" nillable="true" type="tns:AllotedQuantityDTO" />
+          <xs:element minOccurs="0" name="materialtype" nillable="true" type="tns:MaterialTypeDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CustomerMaterialMapDTO" nillable="true" type="tns:CustomerMaterialMapDTO" />
+  <xs:complexType name="AllotedQuantityDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Alloted_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="Alloted_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Alloted_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Alloted_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Alloted_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Alloted_Quantity" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AllotedQuantityDTO" nillable="true" type="tns:AllotedQuantityDTO" />
+  <xs:complexType name="MaterialTypeDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MaterialType_CFormRate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MaterialType_CSTRate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MaterialType_Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaterialType_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="MaterialType_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="MaterialType_EducationCess" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MaterialType_HandlingRate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MaterialType_HigherEducationCess" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MaterialType_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="MaterialType_IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MaterialType_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MaterialType_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="MaterialType_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaterialType_ServiceTax" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MaterialType_TiscoRate" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MaterialTypeDTO" nillable="true" type="tns:MaterialTypeDTO" />
+  <xs:complexType name="DistrictDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Dist_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Dist_Createdby" type="xs:int" />
+          <xs:element minOccurs="0" name="Dist_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Dist_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Dist_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Dist_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Dist_StateId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DistrictDTO" nillable="true" type="tns:DistrictDTO" />
+  <xs:complexType name="OwnershipStatusDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OwnershipStatus_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="OwnershipStatus_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OwnershipStatus_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="OwnershipStatus_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OwnershipStatus_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OwnershipStatus_Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OwnershipStatusDTO" nillable="true" type="tns:OwnershipStatusDTO" />
+  <xs:complexType name="StandaloneTrucksDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StandaloneTruckCarryCapacity_Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruckMake_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruckWheeler_Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_Blacklistedby" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_CreatedBy" type="xs:int" />
+          <xs:element minOccurs="0" name="StandaloneTruck_CreatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StandaloneTruck_DriverName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_DriverShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_Id" type="xs:int" />
+          <xs:element minOccurs="0" name="StandaloneTruck_IsBlacklisted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="StandaloneTruck_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="StandaloneTruck_LastUpdatedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StandaloneTruck_Make" type="xs:int" />
+          <xs:element minOccurs="0" name="StandaloneTruck_MobileNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_OwnerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_OwnerShortAdd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_PhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_RegNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StandaloneTruck_State" type="xs:int" />
+          <xs:element minOccurs="0" name="StandaloneTruck_State_Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="State" nillable="true" type="tns:StateDTO" />
+          <xs:element minOccurs="0" name="truckmake" nillable="true" type="tns:TruckMakeDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StandaloneTrucksDTO" nillable="true" type="tns:StandaloneTrucksDTO" />
+</xs:schema>

@@ -1,0 +1,38 @@
+﻿/*
+This stylesheet contains CSS for Modal Callouts only.
+*/
+
+.modalBackground
+{
+	background-color: Gray;
+	filter: alpha(opacity=70);
+	opacity: 0.7;
+	z-index:100000;
+}
+
+.modalPopup {
+    background: url("../images/mas-box.png") no-repeat scroll 0 0 Gray;
+    border-color: Gray;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Verdana;
+    font-size: small;
+    height: 208px;
+    padding: 3px;
+    width: 410px;
+}
+
+.ImagePopup
+{
+	padding: 3px;
+	background-color: Gray;
+	border-width: 1px;
+	-moz-border-radius: 5px;
+	border-style: solid;
+	border-color: Gray;
+	width: 810px;
+	height: 560px;
+	left: 97px !important;
+}
+

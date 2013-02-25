@@ -1,0 +1,423 @@
+*
+{
+    margin: auto;
+    outline: 0 none;
+    padding: 0;
+}
+body
+{
+    background: url(../images/e_sale_bg.png) no-repeat scroll top center #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 0;
+}
+
+html
+{
+    overflow-y: scroll;
+}
+a img
+{
+    border: 0 none;
+}
+img
+{
+    border: 0 none;
+    margin: 0px;
+    padding: 0px;
+}
+#mainlogincontainer
+{
+    background: trasparent;
+    margin: auto;
+    width: 892px;
+    display: block;
+    border: 0px solid #000;
+}
+.e-Salelogo
+{
+    background: url(../images/e-sale_software_logo.png) no-repeat left center transparent;
+    height: 107px;
+    width: 948px;
+    border: 0px solid #000;
+}
+.punchline
+{
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+    margin-right: 26px;
+    margin-top: 55px;
+    text-shadow: 1px 1px 1px #FFFFFF;
+    color: #000000;
+}
+.pageNameContent
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+    color: #000000;
+}
+.punchline2
+{
+    font-size: 15px;
+}
+.login_bg
+{
+    background: url(../images/login_bg.png) no-repeat top center transparent;
+    width: 892px;
+    height: 480px;
+    float: left;
+    border: 0px solid #000;
+    margin-top: -11px;
+}
+.loginlefttext
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    width: 560px;
+    margin-top: 40px;
+    margin-left: 35px;
+    border: 0px solid #000;
+    float: left;
+    text-shadow: 1px 1px 1px #000;
+}
+.loginbox
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000;
+    width: 265px;
+    height: 195px;
+    margin-top: 40px;
+    float: left;
+    border: 0px solid #000;
+}
+.resetLeftText
+{
+    /* font-family: Arial, Helvetica, sans-serif;     font-size: 16px;     font-weight: 500;     color: #FFFFFF;    text-shadow: 1px 1px 1px #000;*/
+    width: 505px;
+    margin-top: 40px;
+    margin-left: 35px;
+    border: 0px solid #000;
+    float: left;
+}
+.resetBox
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000;
+    width: 340px;
+    height: 375px;
+    margin-top: 40px;
+    float: left;
+    border: 0px solid #000;
+}
+.account_information
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+.account_information2
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #000;
+}
+.forgot_password a
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000;
+    text-decoration: underline;
+}
+.footerbanner
+{
+    margin: auto;
+    margin-left: 18px;
+}
+.footerbanner span
+{
+    padding-left: 5px;
+}
+.contact
+{
+    margin-top: 18px;
+}
+.contacttext
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #2f2f2f;
+    float: left;
+    margin-left: 30px;
+    padding-right: 30px;
+}
+
+.heading
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #2f2f2f;
+}
+.footer
+{
+    background: url(../images/footer_bg.jpg) no-repeat left center transparent;
+    width: 868px;
+    height: 43px;
+    display: block;
+    margin-left: 10px;
+}
+.copyright
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #363636;
+    display: block;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.powerby_q3tech
+{
+    border: 0 solid #000000;
+    display: block;
+    height: 30px;
+    padding-right: 21px;
+    padding-top: 5px;
+    text-align: right;
+}
+.textbox
+{
+    width: 190px;
+    height: 19px;
+}
+.textarea
+{
+    width: 190px;
+    height: 48px;
+}
+
+.listmenu
+{
+    width: 194px;
+}
+.button
+{
+    background: url(../images/button.jpg) repeat-x;
+    font-size: 12px;
+    height: 23px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+}
+.button:hover
+{
+    background: url(../images/button2.jpg) repeat-x;
+    height: 23px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+}
+.gridButton
+{
+    background: url(../images/button.jpg) repeat-x;
+    font-size: 12px;
+    height: 23px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.gridButton:hover
+{
+    background: url(../images/button2.jpg) repeat-x;
+    height: 23px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.button:disabled
+{
+    background: url(../images/disablebtn.jpg)left top;
+    font-size: 12px;
+    height: 23px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+}
+.failureNotification
+{
+    font-size: 1.2em;
+    color: Red;
+}
+.instructions
+{
+    font-size: 1em;
+    color: Red;
+}
+.formheadertext
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000000;
+    font-size: 20px;
+}
+.formpagetext
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+}
+.formlabel
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000000;
+}
+.formtext
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+.no_watermark
+{
+    border: solid 2px #aa0000;
+    border-top: solid 2px #ff0000;
+}
+.watermark
+{
+    color: #999999;
+    background-color: #eeeeee;
+    border: solid 2px #cccccc;
+    border-top: solid 2px #a0a0a0;
+    width: 190px;
+    height: 19px;
+}
+.overlay
+{
+    position: fixed;
+    z-index: 11199;
+    top: 0px;
+    left: 0px;
+    background-color: Gray;
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=70);
+    opacity: 0.70;
+    -moz-opacity: 0.70;
+}
+.ajaxloader
+{
+    z-index: 111105;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+}
+.menu
+{
+    height: 40px;
+    width: 100%;
+    background: url(../images/menu_bg.jpg) repeat-x;
+}
+.topmenu li
+{
+    background: url(../images/menu_bg.jpg) repeat-x;
+    display: block;
+    float: left;
+    height: 40px;
+    margin: 0px;
+    padding: 0px;
+}
+.topmenu li a:link
+{
+    display: block;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: left;
+    padding: 15px 6px 0 6px;
+    text-decoration: none;
+}
+.topmenu li a:visited
+{
+    display: block;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 15px 6px 0 6px;
+    text-align: left;
+    text-decoration: none;
+}
+.topmenu li a:hover
+{
+    height: 32px;
+    display: block;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 15px 6px 0 6px;
+    text-align: left;
+    text-decoration: none;
+    background: url(../images/menu_bg_active.jpg) repeat-x;
+}
+.topmenu li .saparater
+{
+    background: url(../images/sparater.jpg) no-repeat right top;
+    width: 1px;
+    height: 40px;
+    margin: 0px;
+    display: block;
+    float: right;
+    margin-top: -31px;
+    text-align: left;
+    margin-right: 0px;
+}
+.wordbreak
+{
+    width: 200px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.customCalloutStyle div, .customCalloutStyle td
+{
+    border: solid 1px #fff;
+    background-color: #fff;
+    font-size: 14px;
+    color: red;
+    direction: ltr;
+    text-align: right;
+}
+.clear
+{
+    clear: both;
+}
+
+.radioButtons input {
+    float:left;
+}
+.radioButtons label {
+    margin-left: 15px;
+    display: block;
+}
+.radioButtons td{
+    min-width:58px;
+}

@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BlankMandatoryDocList" xml:space="preserve">
+    <value>Mandatory Documents List cannot be left blank</value>
+  </data>
+  <data name="DCAAlreadyUsed" xml:space="preserve">
+    <value>DCA is already used, delete its mappings before proceeding further</value>
+  </data>
+  <data name="GoToCounterNo" xml:space="preserve">
+    <value>Go to counter number:</value>
+  </data>
+  <data name="IncorrectOldPassword" xml:space="preserve">
+    <value>Old password is not correct</value>
+  </data>
+  <data name="MaximumUploadLimit" xml:space="preserve">
+    <value>Maximum Document size allowed for certificate is 3 MB</value>
+  </data>
+  <data name="NoDocumentScanned" xml:space="preserve">
+    <value>Atleast one document should be scanned</value>
+  </data>
+  <data name="NoRecordFound" xml:space="preserve">
+    <value>No Record Found</value>
+  </data>
+  <data name="NoUploadDocument" xml:space="preserve">
+    <value>Upload approval document</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Password has been changed successfully !!</value>
+  </data>
+  <data name="SelectAgent" xml:space="preserve">
+    <value>Select Agent</value>
+  </data>
+  <data name="SelectAMEOffice" xml:space="preserve">
+    <value>Select Office Name</value>
+  </data>
+  <data name="SelectAuthRepresentative" xml:space="preserve">
+    <value>Select Authorized Representative</value>
+  </data>
+  <data name="SelectBusinessType" xml:space="preserve">
+    <value>Select Business Type</value>
+  </data>
+  <data name="SelectCustomer" xml:space="preserve">
+    <value>Select Customer</value>
+  </data>
+  <data name="SelectDCA" xml:space="preserve">
+    <value>Select DCA</value>
+  </data>
+  <data name="SelectDistrict" xml:space="preserve">
+    <value>Select District</value>
+  </data>
+  <data name="SelectMandatoryDocument" xml:space="preserve">
+    <value>Select Mandatory Document</value>
+  </data>
+  <data name="SelectMaterialType" xml:space="preserve">
+    <value>Select Material Type</value>
+  </data>
+  <data name="SelectOwnershipStatus" xml:space="preserve">
+    <value>Select Ownership Status</value>
+  </data>
+  <data name="SelectPageName" xml:space="preserve">
+    <value>Select Page Name</value>
+  </data>
+  <data name="SelectQuantity" xml:space="preserve">
+    <value>Select Quantity</value>
+  </data>
+  <data name="SelectRole" xml:space="preserve">
+    <value>Select Role</value>
+  </data>
+  <data name="SelectRoleName" xml:space="preserve">
+    <value>Select a Role name to Proceed further</value>
+  </data>
+  <data name="SelectState" xml:space="preserve">
+    <value>Select State</value>
+  </data>
+  <data name="SelectTruck" xml:space="preserve">
+    <value>Select Truck</value>
+  </data>
+  <data name="SelectTruckRegNo" xml:space="preserve">
+    <value>Select Truck RegNo</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>Select User</value>
+  </data>
+  <data name="UserNotAuthenticated" xml:space="preserve">
+    <value>You are not logged in...&lt;br /&gt; &lt;a href='../Index.aspx'&gt;Click here to login&lt;/a&gt;</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>Save all scanned files in </value>
+  </data>
+  <data name="IncorrectCredentials" xml:space="preserve">
+    <value>UserName or Password is incorrect, Try again</value>
+  </data>
+  <data name="SelectBookingMode" xml:space="preserve">
+    <value>Select Booking Mode</value>
+  </data>
+  <data name="InvalidBookingModeTime" xml:space="preserve">
+    <value>Booking mode start time must be greater than end time</value>
+  </data>
+  <data name="SelectCarryCapacity" xml:space="preserve">
+    <value>Select Carry Capacity</value>
+  </data>
+  <data name="SelectWheels" xml:space="preserve">
+    <value>Select Wheels</value>
+  </data>
+  <data name="UserCreatedSuccessfully" xml:space="preserve">
+    <value>User Created Successfully</value>
+  </data>
+  <data name="BookingClosedFor" xml:space="preserve">
+    <value>Booking Closed For</value>
+  </data>
+  <data name="NoLimit" xml:space="preserve">
+    <value>No Limit</value>
+  </data>
+  <data name="CustomerNotFound" xml:space="preserve">
+    <value>Customer details does not exist, Try again</value>
+  </data>
+  <data name="LiftingLimitExceeded" xml:space="preserve">
+    <value>No Lifting is allowed for the day in current booking mode</value>
+  </data>
+  <data name="QuantityNotAllotted" xml:space="preserve">
+    <value>Quantity not allotted for selected material</value>
+  </data>
+  <data name="TransporterTruckNotExists" xml:space="preserve">
+    <value>Transporter truck does not exist</value>
+  </data>
+  <data name="RoleCreatedSuccessfully" xml:space="preserve">
+    <value>Role Created Successfully</value>
+  </data>
+  <data name="RoleDeletedSuccessfully" xml:space="preserve">
+    <value>Role Deleted Successfully</value>
+  </data>
+  <data name="UserExistsWithRoleName" xml:space="preserve">
+    <value>Role cannot be removed, Users exists with this Role</value>
+  </data>
+  <data name="PageInRoleDeletedSuccessfully" xml:space="preserve">
+    <value>Page deleted successfully from role</value>
+  </data>
+  <data name="PageInRoleUpdatedSuccessfully" xml:space="preserve">
+    <value>Page updated successfully in role</value>
+  </data>
+  <data name="PagesInRoleSavedSuccessfully" xml:space="preserve">
+    <value>Page saved successfully in role</value>
+  </data>
+  <data name="UserDeletedSuccessfully" xml:space="preserve">
+    <value>User deleted successfully</value>
+  </data>
+  <data name="UserUpdatedSuccessfully" xml:space="preserve">
+    <value>User updated successfully</value>
+  </data>
+  <data name="DuplicateTruck" xml:space="preserve">
+    <value>Duplicate Truck</value>
+  </data>
+  <data name="DCADetailsDeletedSuccessfully" xml:space="preserve">
+    <value>DCA has been retired successfully</value>
+  </data>
+  <data name="DCASavedSuccessfully" xml:space="preserve">
+    <value>DCA details saved successfully</value>
+  </data>
+  <data name="DCAUpdatedSuccessfully" xml:space="preserve">
+    <value>DCA details updated successfully</value>
+  </data>
+  <data name="AgentNotActive" xml:space="preserve">
+    <value>Booking cannot be completed, No agent active for today</value>
+  </data>
+  <data name="MaterialTypeDeletedSuccessfully" xml:space="preserve">
+    <value>Material type deleted successfully</value>
+  </data>
+  <data name="MaterialTypeSavedSuccessfully" xml:space="preserve">
+    <value>Material type saved successfully</value>
+  </data>
+  <data name="MaterialTypeUpdatedSuccessfully" xml:space="preserve">
+    <value>Material type updated successfully</value>
+  </data>
+  <data name="CounterCreatedSuccessfully" xml:space="preserve">
+    <value>Counter created successfully</value>
+  </data>
+  <data name="CounterDeletedSuccessfully" xml:space="preserve">
+    <value>Counter deleted successfully</value>
+  </data>
+  <data name="CounterUpdatedSuccessfully" xml:space="preserve">
+    <value>Counter updated successfully</value>
+  </data>
+  <data name="BusinessTypeUpdatedSuccessfully" xml:space="preserve">
+    <value>Business type updated successfully</value>
+  </data>
+  <data name="AMEBlockDeletedSuccessfully" xml:space="preserve">
+    <value>AME block deleted successfully</value>
+  </data>
+  <data name="AMEBlockSavedSuccessfully" xml:space="preserve">
+    <value>AME block saved successfully</value>
+  </data>
+  <data name="AMEBlockUpdatedSuccessfully" xml:space="preserve">
+    <value>AME block updated successfully</value>
+  </data>
+  <data name="BusinessTypeDeletedSuccessfully" xml:space="preserve">
+    <value>Business type deleted successfully</value>
+  </data>
+  <data name="BusinessTypeSavedSuccessfully" xml:space="preserve">
+    <value>Business type saved successfully</value>
+  </data>
+  <data name="DocumentTypeDeletedSuccessfully" xml:space="preserve">
+    <value>Document type deleted successfully</value>
+  </data>
+  <data name="DocumentTypeSavedSuccessfully" xml:space="preserve">
+    <value>Document type saved successfully</value>
+  </data>
+  <data name="DocumentTypeUpdatedSuccessfully" xml:space="preserve">
+    <value>Document type updated successfully</value>
+  </data>
+  <data name="AnnualRequirementMissing" xml:space="preserve">
+    <value>Select atleast one material type and annual requirements</value>
+  </data>
+  <data name="CustomerDetailsSavedSuccessfully" xml:space="preserve">
+    <value>Customer details saved successfully</value>
+  </data>
+  <data name="CustomerDetailsUpdatedSuccessfully" xml:space="preserve">
+    <value>Customer details updated successfully</value>
+  </data>
+  <data name="ProspectiveCustomerSavedSuccessfully" xml:space="preserve">
+    <value>Propective customer details saved successfully</value>
+  </data>
+  <data name="CustomerDocumentDetailsSavedSuccessfully" xml:space="preserve">
+    <value>Customer document details saved successfully</value>
+  </data>
+  <data name="TruckSavedSuccessfully" xml:space="preserve">
+    <value>Truck details saved successfully</value>
+  </data>
+  <data name="TruckUpdatedSuccessfully" xml:space="preserve">
+    <value>Truck details Updated Successfully</value>
+  </data>
+  <data name="DistrictDeletedSuccessfully" xml:space="preserve">
+    <value>District deleted successfully</value>
+  </data>
+  <data name="DistrictSavedSuccessfully" xml:space="preserve">
+    <value>District saved successfully</value>
+  </data>
+  <data name="DistrictUpdatedSuccessfully" xml:space="preserve">
+    <value>District updated successfully</value>
+  </data>
+  <data name="StateDeletedSuccessfully" xml:space="preserve">
+    <value>State deleted successfully</value>
+  </data>
+  <data name="StateSavedSuccessfully" xml:space="preserve">
+    <value>State saved successfully</value>
+  </data>
+  <data name="StateUpdatedSuccessfully" xml:space="preserve">
+    <value>State updated successfully</value>
+  </data>
+  <data name="TruckMakeDeletedSuccessfully" xml:space="preserve">
+    <value>Truck make deleted successfully</value>
+  </data>
+  <data name="TruckMakeSavedSuccessfully" xml:space="preserve">
+    <value>Truck make saved successfully</value>
+  </data>
+  <data name="TruckMakeUpdatedSuccessfully" xml:space="preserve">
+    <value>Truck make updated successfully</value>
+  </data>
+  <data name="CustomerDCAAssociationCreated" xml:space="preserve">
+    <value>Customer DCA association created</value>
+  </data>
+  <data name="CustomerDCAAssociationRemoved" xml:space="preserve">
+    <value>Customer DCA assocaition removed</value>
+  </data>
+  <data name="AuthRepCautionListCreatedSuccessfully" xml:space="preserve">
+    <value>Authorized representative added in caution list successfully</value>
+  </data>
+  <data name="TruckDeletedSuccessfully" xml:space="preserve">
+    <value>Truck deleted successfully</value>
+  </data>
+  <data name="OwnershipStatusDeletedSuccessfully" xml:space="preserve">
+    <value>Ownership status deleted successfully</value>
+  </data>
+  <data name="OwnershipStatusSavedSuccessfully" xml:space="preserve">
+    <value>Ownership status saved successfully</value>
+  </data>
+  <data name="OwnershipStatusUpdatedSuccessfully" xml:space="preserve">
+    <value>Ownership status updated successfully</value>
+  </data>
+  <data name="AuthRepCautionListDeletedSuccessfully" xml:space="preserve">
+    <value>Authorized representative deleted from caution list successfully</value>
+  </data>
+  <data name="BookingModeDetailsAddedSuccessfully" xml:space="preserve">
+    <value>Booking Mode Details Added Successfully</value>
+  </data>
+  <data name="BookingModeDetailsDeletedSuccessfully" xml:space="preserve">
+    <value>Booking Mode Details Deleted Successfully</value>
+  </data>
+  <data name="CustomerCautionListCreatedSuccessfully" xml:space="preserve">
+    <value>Customer added in caution list successfully</value>
+  </data>
+  <data name="CustomerCautionListDeletedSuccessfully" xml:space="preserve">
+    <value>Customer deleted from caution list successfully</value>
+  </data>
+  <data name="StandaloneTruckCautionListAddedSuccessfully" xml:space="preserve">
+    <value>Standalone Truck added in caution list successfully</value>
+  </data>
+  <data name="StandaloneTruckCautionListDeletedSuccessfully" xml:space="preserve">
+    <value>Standalone Truck deleted from caution list successfully</value>
+  </data>
+  <data name="TruckCautionListAddedSuccessfully" xml:space="preserve">
+    <value>Truck added in caution list successfully</value>
+  </data>
+  <data name="TruckCautionListDeletedSuccessfully" xml:space="preserve">
+    <value>Truck deleted from caution list successfully</value>
+  </data>
+  <data name="AllotedQuantityUpdatedSuccessfully" xml:space="preserve">
+    <value>Alloted Quantity Updated Successfully</value>
+  </data>
+  <data name="AuthRepDeletedSuccessfully" xml:space="preserve">
+    <value>Authorized Representative Deleted Successfully</value>
+  </data>
+  <data name="AuthRepSavedSuccessfully" xml:space="preserve">
+    <value>Authorized Representative Saved Successfully</value>
+  </data>
+  <data name="AuthRepUpdatedSuccessfully" xml:space="preserve">
+    <value>Authorized Representative Updated Successfully</value>
+  </data>
+  <data name="CustomerAMEOfficeUpdatedSuccessfully" xml:space="preserve">
+    <value>Customer AME Office Updated Successfully</value>
+  </data>
+  <data name="CustomerDCAUpdatedSuccessfully" xml:space="preserve">
+    <value>Customer DCA Updated Successfully</value>
+  </data>
+  <data name="MaterialPercentageAllocatedSuccessfully" xml:space="preserve">
+    <value>Material Percentage Allocated Successfully</value>
+  </data>
+  <data name="OwnershipStatusCreatedSuccessfully" xml:space="preserve">
+    <value>Ownership Status Created Successfully</value>
+  </data>
+  <data name="SettlementOfAccountsSavedSuccessfully" xml:space="preserve">
+    <value>Settlement Of Accounts Saved Successfully</value>
+  </data>
+  <data name="StandaloneTruckDeletedSuccessfully" xml:space="preserve">
+    <value>Standalone Truck Deleted Successfully</value>
+  </data>
+  <data name="StandaloneTruckSavedSuccessfully" xml:space="preserve">
+    <value>Standalone Truck Saved Successfully</value>
+  </data>
+  <data name="StandaloneTruckUpdatedSuccessfully" xml:space="preserve">
+    <value>Standalone Truck Updated Successfully</value>
+  </data>
+  <data name="TruckCreatedSuccessfully" xml:space="preserve">
+    <value>Truck Created Successfully</value>
+  </data>
+  <data name="BookingConfirmation" xml:space="preserve">
+    <value>Aapke unit ke Code mein Truck number : {0} ne {1} ton Tailings book kiya hai. Is booking ke dhanyawad.</value>
+  </data>
+  <data name="CustomerRegistrationConfirmation" xml:space="preserve">
+    <value>Hamari Regn Team se sahyog karne aur apne unit ke Regn papers dene ke liye hum apka dhanyavad karte hain. Jaldi hi aapka Code SMS kiya jayega.</value>
+  </data>
+  <data name="MoneyReceiptCancelledSuccessfully" xml:space="preserve">
+    <value>Money receipt cancelled successfully</value>
+  </data>
+  <data name="CustomerDetailsDeletedSuccessfully" xml:space="preserve">
+    <value>Customer Details Deleted Successfully</value>
+  </data>
+  <data name="CustomerIsActivated" xml:space="preserve">
+    <value>Customer activated and code allotted</value>
+  </data>
+  <data name="CashDeposited" xml:space="preserve">
+    <value>Cash deposited, click on Print Money Receipt to issue loading advice</value>
+  </data>
+  <data name="TruckDetailsDoesNotExist" xml:space="preserve">
+    <value>Truck details does not exist</value>
+  </data>
+  <data name="RegistrationNoAlredyexits" xml:space="preserve">
+    <value>Registration no alredy exits. </value>
+  </data>
+  <data name="PrinterAvailabe" xml:space="preserve">
+    <value>Printer is not available.</value>
+  </data>
+  <data name="FinishPrinting" xml:space="preserve">
+    <value>Printing finished.</value>
+  </data>
+  <data name="AllData" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="SMSLimitSavedSuccessfully" xml:space="preserve">
+    <value>SMS Limit Saved Successfully</value>
+  </data>
+  <data name="InvalidSMSLimit" xml:space="preserve">
+    <value>Invalid SMS Limit</value>
+  </data>
+  <data name="Liftinglimitadd" xml:space="preserve">
+    <value>Lifting Limit added successfully</value>
+  </data>
+  <data name="TruckRegistrationSaved" xml:space="preserve">
+    <value>Truck Registration Saved Successfully</value>
+  </data>
+  <data name="TruckTypeDeleted" xml:space="preserve">
+    <value>Truck Type Deleted Successfully</value>
+  </data>
+  <data name="TruckTypeUpdated" xml:space="preserve">
+    <value>Truck Type Updated Successfully</value>
+  </data>
+  <data name="SelectRegistration" xml:space="preserve">
+    <value>Select Registration Type</value>
+  </data>
+  <data name="TruckActivated" xml:space="preserve">
+    <value>Truck has been activated successfully</value>
+  </data>
+  <data name="SettlementOfAccountsNotSaved" xml:space="preserve">
+    <value>Settlement Of Accounts can not be Saved, Because you have exceeded the Quantity limit, Balance Quantity :</value>
+  </data>
+  <data name="CustomerDetailsNotFound" xml:space="preserve">
+    <value>Customer details not found, Try again.</value>
+  </data>
+  <data name="PaymentSubmittedSuccessfully" xml:space="preserve">
+    <value>Payment Submitted Successfully.&lt;br/&gt;&lt;br/&gt;SMS Sending in Process....</value>
+  </data>
+  <data name="PAYMENTSENTTOHEADCASHIER" xml:space="preserve">
+    <value>Payment Sent to Head Cashier.</value>
+  </data>
+  <data name="PAYMENTMODEMAPPINGSAVED" xml:space="preserve">
+    <value>Payment mode mapping saved successfully.</value>
+  </data>
+  <data name="CHEQUEDETAILSDOESTNOTEXIST" xml:space="preserve">
+    <value>Cheuque details does not exist.</value>
+  </data>
+  <data name="CHEQUEACTIVATED" xml:space="preserve">
+    <value>Cheque activated and payment submitted.</value>
+  </data>
+  <data name="CHEQUEREJECTED" xml:space="preserve">
+    <value>Cheque rejected and payment not activated.</value>
+  </data>
+  <data name="PAYMENTAPPROVEDANDACTIVATED" xml:space="preserve">
+    <value>Payment Approved and Activated.</value>
+  </data>
+  <data name="PAYMENTUPDATEDSUCCESSFULLY" xml:space="preserve">
+    <value>Payment Updated successfully.</value>
+  </data>
+  <data name="RECEIPTCANCELLEDSUCCESSFULLY" xml:space="preserve">
+    <value>Receipt Cancelled Successfully.</value>
+  </data>
+  <data name="CASHDEPOSITEDSMS" xml:space="preserve">
+    <value>Aapke Code {0} mein {1} ko R.No {2} se Rs. {3}/- CASH Tailings Booking ke liye {4} ne jama kiya hai. &lt;br /&gt;MMLGhato</value>
+  </data>
+  <data name="CHEQUEDEPOSITEDSMS" xml:space="preserve">
+    <value>Aapke Code {0} mein {1} ko R.No {2} se Rs. {3}/- CHEQUE: {4} se Tailings Booking ke liye {5} ne jama kiya hai. Clearance Sunishchit Karen. &lt;br /&gt;MMLGhato</value>
+  </data>
+  <data name="DDDEPOSITEDSMS" xml:space="preserve">
+    <value>Aapke Code {0} mein {1} ko R.No {2} se Rs. {3}/- DRAFT: {4} se Tailings Booking ke liye {5} ne jama kiya hai. &lt;br /&gt;MMLGhato</value>
+  </data>
+  <data name="RTGSDEPOSITEDSMS" xml:space="preserve">
+    <value>Aapke Code {0} mein {1} ko R.No {2} se Rs. {3}/- RTGS No: {4} se Tailings Booking ke liye {5} se prapt hua hai. &lt;br /&gt;MMLGhato</value>
+  </data>
+  <data name="CHEQUEBOUNCED" xml:space="preserve">
+    <value>Aapke Code {0} mein {1} R.No {2} se Rs. {3}/- CHEQUE: {4} Bank se wapas ho gaya hai. Receipt ke saath Ghato Office se sampark karen. &lt;br/&gt;MMLGhato</value>
+  </data>
+  <data name="CustomerDoesNotExist" xml:space="preserve">
+    <value>Customer does not Exist</value>
+  </data>
+  <data name="CustomerIsBlackListed" xml:space="preserve">
+    <value>Customer is in Caution List</value>
+  </data>
+  <data name="CounerNotAlloted" xml:space="preserve">
+    <value>Counter not Alloted to the Current User. Contact Administrator</value>
+  </data>
+</root>

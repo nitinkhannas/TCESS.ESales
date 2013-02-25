@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RequiredDCAName" xml:space="preserve">
+    <value>DCA name can not be blank</value>
+  </data>
+  <data name="RequiredAME" xml:space="preserve">
+    <value>Select AME Block</value>
+  </data>
+  <data name="RequiredAMEBlock" xml:space="preserve">
+    <value>AME Block name cannot be left blank</value>
+  </data>
+  <data name="RequiredAnnualRequirements" xml:space="preserve">
+    <value>Select Annual requirements</value>
+  </data>
+  <data name="RequiredBusinessType" xml:space="preserve">
+    <value>Business type cannot be left blank</value>
+  </data>
+  <data name="RequiredCarryCapacity" xml:space="preserve">
+    <value>Select carry capacity for Truck</value>
+  </data>
+  <data name="RequiredClosureDate" xml:space="preserve">
+    <value>Closure date cannot be blank</value>
+  </data>
+  <data name="RequiredCustomer" xml:space="preserve">
+    <value>Select Customer name</value>
+  </data>
+  <data name="SelectDCAName" xml:space="preserve">
+    <value>Select a DCA name</value>
+  </data>
+  <data name="RequiredDistrict" xml:space="preserve">
+    <value>Select a District</value>
+  </data>
+  <data name="RequiredDocExpiryDate" xml:space="preserve">
+    <value>Document Expiry Date cannot be left blank</value>
+  </data>
+  <data name="RequiredDocNo" xml:space="preserve">
+    <value>Document number cannot be left blank</value>
+  </data>
+  <data name="RequiredDriverName" xml:space="preserve">
+    <value>Driver name cannot be left blank</value>
+  </data>
+  <data name="RequiredFatherName" xml:space="preserve">
+    <value>Father name cannot be left blank</value>
+  </data>
+  <data name="RequiredFirmName" xml:space="preserve">
+    <value>Firm name cannot be left blank</value>
+  </data>
+  <data name="RequiredFirstName" xml:space="preserve">
+    <value>First name cannot be left blank</value>
+  </data>
+  <data name="RequiredMaterialType" xml:space="preserve">
+    <value>Select a Material Type</value>
+  </data>
+  <data name="RequiredMobileNumber" xml:space="preserve">
+    <value>Phone number cannot be left blank</value>
+  </data>
+  <data name="RequiredOwnerName" xml:space="preserve">
+    <value>Owner name cannot be left blank</value>
+  </data>
+  <data name="RequiredOwnershipStatus" xml:space="preserve">
+    <value>Select an Ownership status</value>
+  </data>
+  <data name="RequiredPassword" xml:space="preserve">
+    <value>Password cannot be left blank</value>
+  </data>
+  <data name="RequiredPinCode" xml:space="preserve">
+    <value>Pin code can not be blank</value>
+  </data>
+  <data name="RequiredRegAddress" xml:space="preserve">
+    <value>Registered address cannot be left blank</value>
+  </data>
+  <data name="RequiredSaleType" xml:space="preserve">
+    <value>Select Sales Type</value>
+  </data>
+  <data name="RequiredStartDate" xml:space="preserve">
+    <value>Start date can not be blank</value>
+  </data>
+  <data name="RequiredState" xml:space="preserve">
+    <value>Select a State</value>
+  </data>
+  <data name="RequiredTradeName" xml:space="preserve">
+    <value>Trade name cannot be left blank</value>
+  </data>
+  <data name="RequiredTruckMake" xml:space="preserve">
+    <value>Select truck make</value>
+  </data>
+  <data name="RequiredTruckRegNo" xml:space="preserve">
+    <value>Registration number cannot be left blank</value>
+  </data>
+  <data name="RequiredUserName" xml:space="preserve">
+    <value>User name cannot be left blank</value>
+  </data>
+  <data name="RequiredUserType" xml:space="preserve">
+    <value>Select a user type</value>
+  </data>
+  <data name="RequiredWheeler" xml:space="preserve">
+    <value>Select truck wheeler type</value>
+  </data>
+  <data name="RequiredDecimalNumbers" xml:space="preserve">
+    <value>Enter only numbers with decimal</value>
+  </data>
+  <data name="RequiredInteger" xml:space="preserve">
+    <value>Enter only numbers</value>
+  </data>
+  <data name="RequiredAuthName" xml:space="preserve">
+    <value>Authorized representative name cannot be left blank</value>
+  </data>
+  <data name="RequiredIDProofNo" xml:space="preserve">
+    <value>Id number cannot be left blank</value>
+  </data>
+  <data name="RequiredCFormTRate" xml:space="preserve">
+    <value>CForm Rate can not be blank</value>
+  </data>
+  <data name="RequiredCSTRate" xml:space="preserve">
+    <value>CST Rate can not be blank</value>
+  </data>
+  <data name="RequiredEducationCess" xml:space="preserve">
+    <value>Education Cess can not be blank</value>
+  </data>
+  <data name="RequiredHandlingRate" xml:space="preserve">
+    <value>Handling rate can not be blank</value>
+  </data>
+  <data name="RequiredMaterialTypeCode" xml:space="preserve">
+    <value>Material Type can not be blank</value>
+  </data>
+  <data name="RequiredMaterialTypeName" xml:space="preserve">
+    <value>Material Type name can not be blank</value>
+  </data>
+  <data name="RequiredServiceTax" xml:space="preserve">
+    <value>Service Tax can not be blank</value>
+  </data>
+  <data name="RequiredTiscoRate" xml:space="preserve">
+    <value>Tisco Rate can not be blank</value>
+  </data>
+  <data name="RequiredQuantity" xml:space="preserve">
+    <value>Select quantity</value>
+  </data>
+  <data name="RequiredUser" xml:space="preserve">
+    <value>Select user</value>
+  </data>
+  <data name="RequiredTruckRegistrationNo" xml:space="preserve">
+    <value>Select truck registration no</value>
+  </data>
+  <data name="RequiredAuthorizedRep" xml:space="preserve">
+    <value>Select Authorized Representative</value>
+  </data>
+  <data name="RequiredRoleName" xml:space="preserve">
+    <value>Role name cannot be left blank</value>
+  </data>
+  <data name="SelectRoleName" xml:space="preserve">
+    <value>Select a role name</value>
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value>Role name already exists</value>
+  </data>
+  <data name="DuplicateUserInRole" xml:space="preserve">
+    <value>User name already exist in Role name</value>
+  </data>
+  <data name="LengthExceeded" xml:space="preserve">
+    <value>Maximum limit is 150 characters</value>
+  </data>
+  <data name="InvalidMobileNumber" xml:space="preserve">
+    <value>Enter a valid Mobile number</value>
+  </data>
+  <data name="LandmarkLengthExceeded" xml:space="preserve">
+    <value>Maximum limit is 50 characters</value>
+  </data>
+  <data name="RequiredAMEVisitDate" xml:space="preserve">
+    <value>AME visit date cannot be left blank</value>
+  </data>
+  <data name="RequiredUnitAddress" xml:space="preserve">
+    <value>Unit address cannot be left blank </value>
+  </data>
+  <data name="SelectAllotedQuantity" xml:space="preserve">
+    <value>Select alloted quantity</value>
+  </data>
+  <data name="RequiredNewPassword" xml:space="preserve">
+    <value>New password cannot be left blank</value>
+  </data>
+  <data name="RequiredOldPassword" xml:space="preserve">
+    <value>Old password cannot be left blank</value>
+  </data>
+  <data name="RequiredConfirmPassword" xml:space="preserve">
+    <value>Confirm password cannot be left blank</value>
+  </data>
+  <data name="InvalidConfirmPassword" xml:space="preserve">
+    <value>New password and Confirm password doesnt match</value>
+  </data>
+  <data name="IncorrectFormat" xml:space="preserve">
+    <value>Password doesnt match minimum criteria</value>
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>User name already exists</value>
+  </data>
+  <data name="DuplicatePageName" xml:space="preserve">
+    <value>Page name already exists</value>
+  </data>
+  <data name="RequiredPageName" xml:space="preserve">
+    <value>Select a Page name</value>
+  </data>
+  <data name="RequiredDocumentName" xml:space="preserve">
+    <value>Select a document type</value>
+  </data>
+  <data name="SelectClosureDate" xml:space="preserve">
+    <value>Closure date can not be less than start date</value>
+  </data>
+  <data name="RequiredStateName" xml:space="preserve">
+    <value>State name can not be blank</value>
+  </data>
+  <data name="RequiredMasterBusinessType" xml:space="preserve">
+    <value>Business type can not be blank</value>
+  </data>
+  <data name="RequiredBlock" xml:space="preserve">
+    <value>Block name can not be blank</value>
+  </data>
+  <data name="RequiredMasterOwnershipStatus" xml:space="preserve">
+    <value>Ownership status can not be blank</value>
+  </data>
+  <data name="RequiredDocTypeName" xml:space="preserve">
+    <value>Document type name can not be blank</value>
+  </data>
+  <data name="RequiredDistrictName" xml:space="preserve">
+    <value>District name can not be blank</value>
+  </data>
+  <data name="RequiredDocAcronym" xml:space="preserve">
+    <value>Acronym can not be blank</value>
+  </data>
+  <data name="GetCustomerDetails" xml:space="preserve">
+    <value>Get Customer Details before proceeding further</value>
+  </data>
+  <data name="InvalidPinCode" xml:space="preserve">
+    <value>Enter a valid PIN code number</value>
+  </data>
+  <data name="RequiredTruckMakeName" xml:space="preserve">
+    <value>Truck make name can not be blank</value>
+  </data>
+  <data name="DuplicateShortName" xml:space="preserve">
+    <value>Short name already exists</value>
+  </data>
+  <data name="DuplicateDistrict" xml:space="preserve">
+    <value>District already exists in this state</value>
+  </data>
+  <data name="DuplicateBusinessType" xml:space="preserve">
+    <value>Business type already exists</value>
+  </data>
+  <data name="DuplicateOwnershipStaus" xml:space="preserve">
+    <value>Ownership status already exists</value>
+  </data>
+  <data name="DuplicateState" xml:space="preserve">
+    <value>State already exists</value>
+  </data>
+  <data name="DuplicateTruckMake" xml:space="preserve">
+    <value>Truck make already exists</value>
+  </data>
+  <data name="DuplicateDocType" xml:space="preserve">
+    <value>Document type already exists</value>
+  </data>
+  <data name="DuplicateAMEBlock" xml:space="preserve">
+    <value>AME block already exists</value>
+  </data>
+  <data name="RequiredBookingNo" xml:space="preserve">
+    <value>Booking number can not be blank</value>
+  </data>
+  <data name="RequiredRemarks" xml:space="preserve">
+    <value>Remark can not be blank</value>
+  </data>
+  <data name="RequiredCancellationRemark" xml:space="preserve">
+    <value>Cancellation remark can not be blank</value>
+  </data>
+  <data name="RequiredCancelReceiptNo" xml:space="preserve">
+    <value>Cancel receipt number can not be blank</value>
+  </data>
+  <data name="RequiredRefundAmount" xml:space="preserve">
+    <value>Refund amount can not be blank</value>
+  </data>
+  <data name="RequiredBookingDate" xml:space="preserve">
+    <value>Booking date can not be blank</value>
+  </data>
+  <data name="RequiredCustomerName" xml:space="preserve">
+    <value>Customer name can not be blank</value>
+  </data>
+  <data name="RequiredReceiptNo" xml:space="preserve">
+    <value>Receipt number can not be blank</value>
+  </data>
+  <data name="RequiredAmount" xml:space="preserve">
+    <value>Amount can not be blank</value>
+  </data>
+  <data name="RequiredBalance" xml:space="preserve">
+    <value>Balance can not be blank</value>
+  </data>
+  <data name="RequiredFormDNo" xml:space="preserve">
+    <value>Form D number can not be blank</value>
+  </data>
+  <data name="RequiredHGNo" xml:space="preserve">
+    <value>Hologram number can not be blank</value>
+  </data>
+  <data name="RequiredInvoiceNo" xml:space="preserve">
+    <value>Invoice number can not be blank</value>
+  </data>
+  <data name="RequiredQty" xml:space="preserve">
+    <value>Quantity can not be blank</value>
+  </data>
+  <data name="RequiredRate" xml:space="preserve">
+    <value>Rate can not be blank</value>
+  </data>
+  <data name="RequiredTaxCode" xml:space="preserve">
+    <value>Tax code can not be blank</value>
+  </data>
+  <data name="RequiredTotalAmount" xml:space="preserve">
+    <value>Total amount can not be blank</value>
+  </data>
+  <data name="RequiredHigherEducationCess" xml:space="preserve">
+    <value>Higher education cess can not be blank</value>
+  </data>
+  <data name="RequiredCustomerCode" xml:space="preserve">
+    <value>Customer code cannot be left blank</value>
+  </data>
+  <data name="RequiredPanNumber" xml:space="preserve">
+    <value>PAN number cannot be left blank</value>
+  </data>
+  <data name="RequiredSalesTaxNumber" xml:space="preserve">
+    <value>Sales Tax number cannot be left blank</value>
+  </data>
+  <data name="RequiredShortName" xml:space="preserve">
+    <value>Short Name field cannot be left blank</value>
+  </data>
+  <data name="RequiredAdvanceAmount" xml:space="preserve">
+    <value>Advance amount cannot be left blank</value>
+  </data>
+  <data name="RequiredCurrentQty" xml:space="preserve">
+    <value>Current Quantity cannot be left blank</value>
+  </data>
+  <data name="MaxLimitRestriction" xml:space="preserve">
+    <value>Max lifting quantity limit less than avail quantity</value>
+  </data>
+  <data name="InvalidRefundAmount" xml:space="preserve">
+    <value>Refund amount should match with advance amount</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Enter a valid Email address</value>
+  </data>
+  <data name="RequiredCounterName" xml:space="preserve">
+    <value>Counter name can not be blank</value>
+  </data>
+  <data name="RequiredMacId" xml:space="preserve">
+    <value>MAC Id can not be blank</value>
+  </data>
+  <data name="BookingFailed" xml:space="preserve">
+    <value>Please select the appropriate material type</value>
+  </data>
+  <data name="RequiredFromDate" xml:space="preserve">
+    <value>From date can not be blank</value>
+  </data>
+  <data name="RequiredToDate" xml:space="preserve">
+    <value>To date can not be left blank</value>
+  </data>
+  <data name="RequiredBookingMode" xml:space="preserve">
+    <value>Select Booking mode</value>
+  </data>
+  <data name="RequiredEndTime" xml:space="preserve">
+    <value>End time cannot be left blank</value>
+  </data>
+  <data name="RequiredStartTime" xml:space="preserve">
+    <value>Start time cannot be left blank</value>
+  </data>
+  <data name="InvalidBookingModeTime" xml:space="preserve">
+    <value>End time must be greater than start time</value>
+  </data>
+  <data name="InvalidTimeInterval" xml:space="preserve">
+    <value>Time interval value should be within a day</value>
+  </data>
+  <data name="RequiredTimeInterval" xml:space="preserve">
+    <value>Time interval cannot be left blank</value>
+  </data>
+  <data name="RequiredLiftingLimit" xml:space="preserve">
+    <value>Daily Lifting limit cannot be left blank</value>
+  </data>
+  <data name="RequiredTruckLimit" xml:space="preserve">
+    <value>Truck limit cannot be left blank</value>
+  </data>
+  <data name="DuplicateBookingMode" xml:space="preserve">
+    <value>Booking mode already exists</value>
+  </data>
+  <data name="DuplicateBookingModetime" xml:space="preserve">
+    <value>Time details already exist for another booking mode</value>
+  </data>
+  <data name="RequiredPhoneNumber" xml:space="preserve">
+    <value>Required Phone Number</value>
+  </data>
+  <data name="SignatureFailed" xml:space="preserve">
+    <value>Signature not verified</value>
+  </data>
+  <data name="InvalidAmount" xml:space="preserve">
+    <value>Amount depsoited cannot be greater than Advance amount</value>
+  </data>
+  <data name="DuplicateMACId" xml:space="preserve">
+    <value>MAC Id already exists </value>
+  </data>
+  <data name="DuplicateDocumentNumber" xml:space="preserve">
+    <value>Document number already exists</value>
+  </data>
+  <data name="RequiredBrickCapacity" xml:space="preserve">
+    <value>Brick capacity cannot be left blank</value>
+  </data>
+  <data name="RequiredNoOfChimney" xml:space="preserve">
+    <value>No of chimney cannot be left blank</value>
+  </data>
+  <data name="RequiredDriverShortAdd" xml:space="preserve">
+    <value>Owner Driver Address  cannot be left blank</value>
+  </data>
+  <data name="RequiredOwnerShortAdd" xml:space="preserve">
+    <value>Owner Short Address  cannot be left blank</value>
+  </data>
+  <data name="SelectDateOfRetirement" xml:space="preserve">
+    <value>Date of retirement can not be less than date of joining</value>
+  </data>
+  <data name="DuplicateTruckRegNo" xml:space="preserve">
+    <value>Truck Registration no already exixts.</value>
+  </data>
+  <data name="DuplicateAuthName" xml:space="preserve">
+    <value>Authorized Representative Name already exits.</value>
+  </data>
+  <data name="RequiredPaymentMode" xml:space="preserve">
+    <value>Select mode of payment</value>
+  </data>
+  <data name="RequiredAccountName" xml:space="preserve">
+    <value>Account name cannot be left blank</value>
+  </data>
+  <data name="RequiredInstrumentNo" xml:space="preserve">
+    <value>Instrument number cannot be left blank</value>
+  </data>
+  <data name="AutoCutterError" xml:space="preserve">
+    <value>Autocutter error occurred.</value>
+  </data>
+  <data name="ClosePrinter" xml:space="preserve">
+    <value>Failed to close printer status monitor.</value>
+  </data>
+  <data name="CoverOpen" xml:space="preserve">
+    <value>Printer cover is open.</value>
+  </data>
+  <data name="OpenPrinter" xml:space="preserve">
+    <value>Failed to open printer status monitor.</value>
+  </data>
+  <data name="PrinterResponse" xml:space="preserve">
+    <value>No response.</value>
+  </data>
+  <data name="RollPaperError" xml:space="preserve">
+    <value>Roll paper end sensor: paper not present.</value>
+  </data>
+  <data name="RequiredSMSLimit" xml:space="preserve">
+    <value>Message Limit can not be left blank</value>
+  </data>
+  <data name="RequiredSMSLimitDate" xml:space="preserve">
+    <value>Message Limit Date can not be left blank</value>
+  </data>
+  <data name="RequiredAuthorizedBy" xml:space="preserve">
+    <value>Authorized By can not be left blank</value>
+  </data>
+  <data name="InvalidSMSLimit" xml:space="preserve">
+    <value>Enter a valid SMS Limit</value>
+  </data>
+  <data name="RequiredRejectionReason" xml:space="preserve">
+    <value>Rejection reason can not be left blank</value>
+  </data>
+  <data name="DuplicateTruckRegType" xml:space="preserve">
+    <value>Truck Registration type already exists</value>
+  </data>
+  <data name="RequiredTruckRegType" xml:space="preserve">
+    <value>Truck Registration  type cannot be left blank</value>
+  </data>
+  <data name="RequiredTruckType" xml:space="preserve">
+    <value>Select Truck Registration Type</value>
+  </data>
+  <data name="RequiredSmsId" xml:space="preserve">
+    <value>SMS Id cannot be left blank</value>
+  </data>
+  <data name="RequiredPayerName" xml:space="preserve">
+    <value>Payer name cannot be left blank.</value>
+  </data>
+  <data name="RequiredValidationType" xml:space="preserve">
+    <value>Select a validation type</value>
+  </data>
+  <data name="RequiredInstrumentDate" xml:space="preserve">
+    <value>Instrument date cannot be left blank.</value>
+  </data>
+  <data name="RequiredInstrumentNumber" xml:space="preserve">
+    <value>Instrument number cannot be left blank.</value>
+  </data>
+  <data name="RequiredInstrumentType" xml:space="preserve">
+    <value>Select Instrument type</value>
+  </data>
+  <data name="RequiredChequeNumber" xml:space="preserve">
+    <value>Cheque number cannot be left blank.</value>
+  </data>
+  <data name="RequiredChequeStatus" xml:space="preserve">
+    <value>Select a cheque status.</value>
+  </data>
+  <data name="RequiredCustomerMobile" xml:space="preserve">
+    <value>Customer mobile cannot be left blank.</value>
+  </data>
+  <data name="SelectBankDrawn" xml:space="preserve">
+    <value>Select Bank Drawn.</value>
+  </data>
+  <data name="NOROWSSELECTED" xml:space="preserve">
+    <value>Select atleast one row to start Payment Transit</value>
+  </data>
+  <data name="INCORRECTAMOUNTTOTRANSIT" xml:space="preserve">
+    <value>Amount To Transit must match Amount from selected rows in table.</value>
+  </data>
+  <data name="REQUIREDBRANCHNAME" xml:space="preserve">
+    <value>Branch name cannot be left blank.</value>
+  </data>
+  <data name="SELECTBANKNAME" xml:space="preserve">
+    <value>Select Bank Name.</value>
+  </data>
+  <data name="NOPAYMENTMODESELECTED" xml:space="preserve">
+    <value>Select atleast one Payment mode </value>
+  </data>
+  <data name="RequiredBankName" xml:space="preserve">
+    <value>Select a Bank.</value>
+  </data>
+  <data name="REQUIREDSEARCHVALUE" xml:space="preserve">
+    <value>Search value cannot be left blank.</value>
+  </data>
+  <data name="RequiredIFSCCode" xml:space="preserve">
+    <value>IFSC Code cannot be left blank.</value>
+  </data>
+  <data name="SELECTCHEQUESTATUS" xml:space="preserve">
+    <value>Select Cheque Status</value>
+  </data>
+  <data name="REQUIREDAMOUNTCREDITED" xml:space="preserve">
+    <value>Amount Credited cannot be left blank.</value>
+  </data>
+  <data name="REQUIREDDATEOFCREDIT" xml:space="preserve">
+    <value>Date of Credit cannot be left blank.</value>
+  </data>
+  <data name="AMOUNTCREDITEDMUSTBELESSCHEQUEAMOUNT" xml:space="preserve">
+    <value>Amount Credited must be less than cheque amount.</value>
+  </data>
+</root>

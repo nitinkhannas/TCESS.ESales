@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{74977846-B0F4-4627-A989-26155DC919BF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TCESS.ESales.DataTransferObjects</RootNamespace>
+    <AssemblyName>TCESS.ESales.DataTransferObjects</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AffidavitDetailsDTO.cs" />
+    <Compile Include="AgentDTO.cs" />
+    <Compile Include="AgentMaterialPercentageDTO.cs" />
+    <Compile Include="AllotedQuantityDTO.cs" />
+    <Compile Include="AmeBlockDTO.cs" />
+    <Compile Include="AuthRepDocDetailDTO.cs" />
+    <Compile Include="AuthRepDocumentsDTO.cs" />
+    <Compile Include="AuthRepDTO.cs" />
+    <Compile Include="BarcodeDTO.cs" />
+    <Compile Include="BaseDTO.cs" />
+    <Compile Include="BookingDTO.cs" />
+    <Compile Include="BookingModeDetailDTO.cs" />
+    <Compile Include="BookingModeDTO.cs" />
+    <Compile Include="BusinessTypeDTO.cs" />
+    <Compile Include="CustomerPartnerDTO.cs" />
+    <Compile Include="Form27CViewDTO.cs" />
+    <Compile Include="GhatoCollection\BatchTransferDTO.cs" />
+    <Compile Include="GhatoCollection\CollectionSummaryDTO.cs" />
+    <Compile Include="GhatoCollection\ConsolidatedReportDTO.cs" />
+    <Compile Include="GhatoCollection\PaymentCollectionDTO.cs" />
+    <Compile Include="GhatoCollection\PaymentRefundDTO.cs" />
+    <Compile Include="GhatoCollection\PaymentTransitDTO.cs" />
+    <Compile Include="LiftingIntervalDTO.cs" />
+    <Compile Include="CustomerwiseSalesReportDTO.cs" />
+    <Compile Include="DFormReportDTO.cs" />
+    <Compile Include="Form27CDTO.cs" />
+    <Compile Include="Form27C_HistoryDTO.cs" />
+    <Compile Include="Form27PeriodTypeDTO.cs" />
+    <Compile Include="LiftingLimitDTO.cs" />
+    <Compile Include="Masters\BankDTO.cs" />
+    <Compile Include="Masters\RejectionReasonDTO.cs" />
+    <Compile Include="MonthsDTO.cs" />
+    <Compile Include="PeriodTypeDTO.cs" />
+    <Compile Include="pervioussettlementDTO.cs" />
+    <Compile Include="RoadPermitReportDTO.cs" />
+    <Compile Include="SmsExecutiveListDTO.cs" />
+    <Compile Include="SMSLimitDTO.cs" />
+    <Compile Include="CounterDetailsDTO.cs" />
+    <Compile Include="CounterDTO.cs" />
+    <Compile Include="CustAuthorizationDetailDTO.cs" />
+    <Compile Include="CustomerDetailsForCodeAllocDTO.cs" />
+    <Compile Include="CustomerDocumentsDTO.cs" />
+    <Compile Include="CustomerDocumentsViewDTO.cs" />
+    <Compile Include="CustomerDTO.cs" />
+    <Compile Include="CustomerDocDetailsDTO.cs" />
+    <Compile Include="CustomerMaterialMapDTO.cs" />
+    <Compile Include="DcaMaterialAllocationDTO.cs" />
+    <Compile Include="DispatchReportDTO.cs" />
+    <Compile Include="FixupCollection.cs" />
+    <Compile Include="MoneyReceiptDTO.cs" />
+    <Compile Include="PageInfoDTO.cs" />
+    <Compile Include="PagesInRoleDTO.cs" />
+    <Compile Include="PaymentModeDTO.cs" />
+    <Compile Include="RolesDTO.cs" />
+    <Compile Include="SalesReportDTO.cs" />
+    <Compile Include="SaleSummaryDTO.cs" />
+    <Compile Include="SettlementOfAccountsDTO.cs" />
+    <Compile Include="SMSRegistrationDTO.cs" />
+    <Compile Include="StandaloneTruckDocDetails.cs" />
+    <Compile Include="StandaloneTrucksDTO.cs" />
+    <Compile Include="TruckCarryCapacityDTO.cs" />
+    <Compile Include="TruckDocDetailsDTO.cs" />
+    <Compile Include="DistrictDTO.cs" />
+    <Compile Include="DocTypeDTO.cs" />
+    <Compile Include="MaterialTypeDTO.cs" />
+    <Compile Include="OwnershipStatusDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateDTO.cs" />
+    <Compile Include="TruckDetailsDTO.cs" />
+    <Compile Include="TruckDocumentsDTO.cs" />
+    <Compile Include="TruckMakeDTO.cs" />
+    <Compile Include="TruckRegTypeDTO.cs" />
+    <Compile Include="TruckVerificationDTO.cs" />
+    <Compile Include="TruckWheelerDTO.cs" />
+    <Compile Include="UserAgentMappingDTO.cs" />
+    <Compile Include="Users\UserPaymentModeMappingDTO.cs" />
+    <Compile Include="UsersInRolesDTO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\BarcodeDTO.datasource" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

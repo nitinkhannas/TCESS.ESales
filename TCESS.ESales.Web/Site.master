@@ -1,0 +1,193 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title>e-Sales Software :: For Sale of Tailings and By-Products by DCAs to Tata Steel
+        Ltd West Bokaro Ghatotand Ramgarh [Jharkhand]</title>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+        <link href="../Styles/style.css" rel="stylesheet" type="text/css" />
+        <link href="../Styles/form.css" rel="stylesheet" type="text/css" />
+        <link href="../Styles/menu.css" rel="stylesheet" type="text/css" />
+        <link href="../Styles/StyleModalCallOut.css" rel="stylesheet" type="text/css" />
+        <script src="../Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+        <script src="../Scripts/topmenu.js" type="text/javascript"></script>
+        <script type="text/javascript" language="javascript">
+            function runScript(e) {
+                if (e.keyCode == 13) {
+                    return false;
+                }
+            }
+
+            function checkDate(sender, args) {
+                if (sender._selectedDate < new Date()) {
+                    sender._selectedDate = new Date();
+                    // set the date back to the current date
+                    sender._textbox.set_Value(sender._selectedDate.format(sender._format))
+                }
+            }
+
+            function checkInstrumentDate(sender, args) {
+                var dt = new Date();
+                dt.setMonth(new Date().getMonth() - 2);
+
+                if (sender._selectedDate > new Date()) {
+                    sender._selectedDate = new Date();
+                }
+                else if (sender._selectedDate < dt) {
+                    sender._selectedDate = dt;
+                }
+                // set the date back to the current date
+                sender._textbox.set_Value(sender._selectedDate.format(sender._format))
+            }
+
+            function ValidateEndTime(sender, args) {
+                var startTime = sender.attributes["ddlStartTime"].value;
+                var endTime = sender.attributes["ddlEndTime"].value;
+
+                var startTimeIndex = $get(startTime).selectedIndex;
+                var endTimeIndex = $get(endTime).selectedIndex;
+
+                if (startTimeIndex > 0) {
+                    if (startTimeIndex >= endTimeIndex)
+                        args.IsValid = false;
+                }
+            }
+
+            function ToggleTimeInterval(ddlBookingMode, txtTimeInterval) {
+                var selectedIndex = $get(ddlBookingMode).selectedIndex;
+                if (selectedIndex == 3)
+                    $get(txtTimeInterval).readOnly = false;
+                else
+                    $get(txtTimeInterval).readOnly = true;
+            }
+
+            function CompareDate() {
+                var fromDate = $('input[id*="txtFromDate"]').val();
+                var ToDate = $('input[id*="txtToDate"]').val();
+
+                var fromDateArray = fromDate.split("-")
+                var fromDatestr = getMonthByString(fromDateArray[1]) + "/" + fromDateArray[0] + "/" + fromDateArray[2]
+
+                var toDateArray = ToDate.split("-")
+                var toDatestr = getMonthByString(toDateArray[1]) + "/" + toDateArray[0] + "/" + toDateArray[2]
+
+                if (new Date(fromDatestr) > new Date(toDatestr)) {
+                    alert("To Date Can not be smaller than From Date");
+                    return false;
+                }
+                return true;
+            }
+
+            function getMonthByString(monthstr) {
+                var month = "";
+
+                switch (monthstr) {
+                    case 'Jan':
+                        month = 1;
+                        break;
+                    case 'Feb':
+                        month = 2;
+                        break;
+                    case 'Mar':
+                        month = 3;
+                        break;
+                    case 'Apr':
+                        month = 4;
+                        break;
+                    case 'May':
+                        month = 5;
+                        break;
+                    case 'Jun':
+                        month = 6;
+                        break;
+                    case 'Jul':
+                        month = 7;
+                        break;
+                    case 'Aug':
+                        month = 8;
+                        break;
+                    case 'Sep':
+                        month = 9;
+                        break;
+                    case 'Oct':
+                        month = 10;
+                        break;
+                    case 'Nov':
+                        month = 11;
+                        break;
+                    case 'Dec':
+                        month = 12;
+                        break;
+                    default:
+                        month = "";
+                }
+                return month;
+            }
+        </script>
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="e-Salelogo">
+        <span class="punchline" title="For Sale of Tailings and by-products
+by DCAs to Tata Steel Ltd West Bokaro Ghatotand  Ramgarh [Jharkhand]">For Sale of Tailings and
+            by-products
+            <br />
+            <span class="punchline2">DCAs - Tata Steel Ltd West Bokaro Ghatotand Ramgarh [Jharkhand]</span></span>
+    </div>
+    <div style="margin-top: 5px;">
+        <table width="950px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+            <tr>
+                <td>
+                    <div id="ddtopmenubar" class="NavigationMenuBg">
+                        <asp:Menu ID="navigationMenu" CssClass="topMenuBar" runat="server" ItemWrap="true"
+                            IncludeStyleBlock="false" EnableViewState="false" Orientation="Horizontal" OnMenuItemClick="navigationMenu_MenuItemClick">
+                            <Items>
+                                <asp:MenuItem NavigateUrl="~/Administrator/Home.aspx" Text="Home" />
+                            </Items>
+                        </asp:Menu>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="40" style="padding: 0 15px;">
+                    <asp:ScriptManager ID="ScriptManager2" runat="server" AsyncPostBackTimeout="3600" />
+                    <asp:ContentPlaceHolder ID="PageNameContent" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td height="365" align="center" valign="top" bgcolor="#FFFFFF" style="padding: 0 15px;">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td height="1" align="left" valign="middle">
+                    <table width="950px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                        <tr>
+                            <td style="width: 1px">
+                                <img src="../Images/innpage_leftbot_curv.png" width="13" height="35" alt="right bottom curve" />
+                            </td>
+                            <td align="left" valign="middle" style="background: url(../Images/innpage_rightbot_curv_bg.png) repeat-x">
+                                © Copyright e-Sales Software
+                            </td>
+                            <td style="width: 1px">
+                                <img src="../Images/innpage_rightbot_curv.png" width="13" height="35" alt="right bottom curve" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td height="1" align="right" valign="middle">
+                    <div class="powerby_q3tech">
+                        Powered by <a href="http://www.q3tech.com/" target="_blank">
+                            <img src="../Images/Q3_technologies.jpg" alt="Q3 technologies, Inc." border="0" align="top"
+                                title="Q3 technologies, Inc." /></a></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

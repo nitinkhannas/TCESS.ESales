@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F55887D1-D055-4474-B392-F3CA92C605D9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TCESS.ESales.CommonLayer.Reports</RootNamespace>
+    <AssemblyName>TCESS.ESales.CommonLayer.Reports</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ActivateCustomerReoprt.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookingPendingReport.rdlc" />
+    <EmbeddedResource Include="CashCollectionReport.rdlc" />
+    <EmbeddedResource Include="CodeAlloc.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsolidatedAdviceReport.rdlc" />
+    <EmbeddedResource Include="ConsolidatedBookingandSaleReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsolidatedSMSReport.rdlc" />
+    <EmbeddedResource Include="Form27CReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentAcknowledgement.rdlc" />
+    <EmbeddedResource Include="PaymentRefundAcknowledgement.rdlc" />
+    <EmbeddedResource Include="RoadPermitReport.rdlc" />
+    <EmbeddedResource Include="DFormReport.rdlc" />
+    <EmbeddedResource Include="CustomerRelationshipReoprt.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerWiseSalesReport.rdlc" />
+    <EmbeddedResource Include="DailyBookingPendingReportForAll.rdlc" />
+    <EmbeddedResource Include="DailyBookingReportforall.rdlc" />
+    <EmbeddedResource Include="DailyBookingReportforallDCAs.rdlc" />
+    <EmbeddedResource Include="DailyBookingReportforCustomer.rdlc" />
+    <EmbeddedResource Include="DailyHandlingIncomeAndServiceTaxStatementReport.rdlc" />
+    <EmbeddedResource Include="DailyLoadingAdviceIssuedReportForAll.rdlc" />
+    <EmbeddedResource Include="DailyLoadingAdviceReport.rdlc" />
+    <EmbeddedResource Include="DailySalesSummaryReport.rdlc" />
+    <EmbeddedResource Include="DFormutilizationStatementForTheMonth.rdlc" />
+    <EmbeddedResource Include="DispatchCustomerwiseReport.rdlc" />
+    <EmbeddedResource Include="DispatchReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DistrictWiseReportofInactiveCustomersReport.rdlc" />
+    <EmbeddedResource Include="DistrictWiseSalesReport.rdlc" />
+    <EmbeddedResource Include="HandlingBillReport.rdlc" />
+    <EmbeddedResource Include="LoadingAdviceReport.rdlc" />
+    <EmbeddedResource Include="MonthlyHandlingIncomeAndServiceTaxStatementReport.rdlc" />
+    <EmbeddedResource Include="MonthlySalesReconciliationStatementReport.rdlc" />
+    <EmbeddedResource Include="MonthlySalesStatementandReconciliationReport.rdlc" />
+    <EmbeddedResource Include="RoadPermitsUtilisationStatementForTheMonth.rdlc" />
+    <EmbeddedResource Include="SMSBookingReport.rdlc" />
+    <EmbeddedResource Include="SMSBookingsAcceptedCompletedLapsed.rdlc" />
+    <EmbeddedResource Include="Printingreport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TCESS.ESales.DataTransferObjects\TCESS.ESales.DataTransferObjects.csproj">
+      <Project>{74977846-B0F4-4627-A989-26155DC919BF}</Project>
+      <Name>TCESS.ESales.DataTransferObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.AuthRepDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.BookingDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.CustomerDocDetailsDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.CustomerDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.CustomerMaterialMapDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.DispatchReportDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.Form27CDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.Form27CViewDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.MoneyReceiptDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.RoadPermitReportDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.SalesReportDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.SettlementOfAccountsDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.SMSRegistrationDTO.datasource" />
+    <None Include="Properties\DataSources\TCESS.ESales.DataTransferObjects.TruckDetailsDTO.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
