@@ -818,7 +818,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             else if (smsPaymentID != null)
             {
                 lstPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
-                                                         .GetQuery().Where(item => item.SMSPay_Payment_Id == smsPaymentID && item.SMSPay_Date >= previousday.Date && item.SMSPay_Status == false).ToList();
+                                                         .GetQuery().Where(item => item.SMSPay_Id == smsPaymentID && item.SMSPay_Date >= previousday.Date && item.SMSPay_Status == false).ToList();
             }
             AutoMapper.Mapper.Map(lstPaymentRegEntity,smsPaymentRegDetails);
             return smsPaymentRegDetails;
