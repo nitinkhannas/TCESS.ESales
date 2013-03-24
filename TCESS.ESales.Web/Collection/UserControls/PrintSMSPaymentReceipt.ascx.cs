@@ -39,7 +39,7 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
             GetPaymentModeForUsers();
 
             //Show blank grid
-            //base.ShowBlankRowInGrid<SMSPaymentRegistrationDTO>(grdCustomersDetails);
+            base.ShowBlankRowInGrid<SMSPaymentRegistrationDTO>(grdCustomersDetails);
         }
     }
     private void GetPaymentModeForUsers()
@@ -92,8 +92,16 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
         IList<SMSPaymentRegistrationDTO> paymentList = null;
         int verificationMode = Convert.ToInt32(ViewState[Globals.StateMgmtVariables.VERIFICATIONMODE]);
         paymentList = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerSMSPaymentList(null, Convert.ToInt32(txtValidationID.Text.Trim()), 3);
-        grdCustomersDetails.DataSource = paymentList;
-        grdCustomersDetails.DataBind();
+        if (paymentList.Count > 0)
+        {
+            grdCustomersDetails.DataSource = paymentList;
+            grdCustomersDetails.DataBind();
+        }
+        else
+        {
+            ucMessageBoxForGrid.ShowMessage("SMS Details Not  Found");
+            ResetControls(false);
+        }
     }
     private IList<CustomerDTO> GetCustomerDetails(string customerCode, int validationType, string validationValue)
     {
@@ -150,7 +158,11 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
 
     private void ResetControls(bool p)
     {
-        //throw new NotImplementedException();
+        txtCustomerCode.Text = "";
+        txtValidationID.Text = "";
+        txtValidationValue.Text = "";
+        ddlValidationType.SelectedValue = "0";
+
     }
     private void ucMessageBoxForGrid_Event_OkButton(object sender, EventArgs args)
     {
@@ -168,10 +180,10 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
 
         //}
         //else
-        //{
-        //    //Show blank grid
-        //    base.ShowBlankRowInGrid<CustomerDTO>(grdCustomersDetails);
-        //}
+        {
+            //Show blank grid
+            base.ShowBlankRowInGrid<SMSPaymentRegistrationDTO>(grdCustomersDetails);
+        }
     }
 
     private void ucPaymentReceipt_Event_CloseScreen(object sender)
@@ -186,7 +198,7 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
         else
         {
             //Show blank grid
-            base.ShowBlankRowInGrid<CustomerDTO>(grdCustomersDetails);
+            base.ShowBlankRowInGrid<SMSPaymentRegistrationDTO>(grdCustomersDetails);
 
             //Reset controls
             ResetControls(true);
@@ -207,5 +219,8 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
             trSMS.Visible = true;
             trCustCode.Visible = false;
         }
+        //Show blank grid
+        base.ShowBlankRowInGrid<SMSPaymentRegistrationDTO>(grdCustomersDetails);
+        ResetControls(true);
     }
 }

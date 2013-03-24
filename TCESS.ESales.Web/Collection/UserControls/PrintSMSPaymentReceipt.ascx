@@ -97,6 +97,10 @@
                     CssClass="textbox" MaxLength="15" />
                 <ajax:FilteredTextBoxExtender ID="txtValidationValue0_FilteredTextBoxExtender" runat="server"
                     TargetControlID="txtValidationID" FilterType="LowercaseLetters, UppercaseLetters, Numbers" />
+                    <ajax:FilteredTextBoxExtender ID="ValidatorExtender" runat="server" TargetControlID="txtValidationID"
+                    FilterType="Custom, Numbers" FilterMode="ValidChars" ValidChars="." />
+
+
                 <asp:RequiredFieldValidator ID="ValidationValueValidator0" ControlToValidate="txtValidationID"
                     Display="Dynamic" ValidationGroup="ValidateGroup" SetFocusOnError="true" Text="*"
                     CssClass="failureNotification" ErrorMessage="<%$ Resources:ErrorMessages, RequiredValidationType%>"

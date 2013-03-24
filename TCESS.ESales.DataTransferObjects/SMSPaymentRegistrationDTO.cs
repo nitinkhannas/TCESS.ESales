@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TCESS.ESales.DataTransferObjects
 {
-    public class SMSPaymentRegistrationDTO
+    public class SMSPaymentRegistrationDTO:BaseDTO
     {
        
         public int SMSPay_Id
