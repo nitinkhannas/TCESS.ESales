@@ -2,13 +2,20 @@
     Inherits="GhatoCollection_UserControls_PaymentCollection" %>
 <%@ Register TagPrefix="Custom" Namespace="AlwaysShowHeaderFooter" %>
 <%@ Register Src="PaymentReceipt.ascx" TagName="PaymentReceipt" TagPrefix="uc1" %>
+<style type="text/css">
+    .style1
+    {
+        width: 146px;
+        
+    }
+</style>
 <div runat="server" id="pnlPaymentCollection">
     <table width="100%" cellspacing="10" cellpadding="5">
         <tr align="left">
-            <td nowrap="nowrap">
+            <td class="style1" nowrap="nowrap">
                 <asp:Label ID="lblCustomerCode" runat="server" Text="<%$Resources:Labels, CustomerCode%>" />
             </td>
-            <td nowrap="nowrap">
+            <td class="style1" nowrap="nowrap">
                 <asp:TextBox ID="txtCustomerCode" runat="server" CssClass="textbox" Wrap="False" />
                 <asp:RequiredFieldValidator ID="CustomerCodeValidator" runat="server" ControlToValidate="txtCustomerCode"
                     CssClass="failureNotification" Display="Dynamic" ErrorMessage="<%$ Resources:ErrorMessages, RequiredCustomerCode %>"
@@ -16,13 +23,13 @@
                 <ajax:ValidatorCalloutExtender ID="CustomerCodeValidatorCalloutExtender" runat="server"
                     TargetControlID="CustomerCodeValidator" />
             </td>
-            <td nowrap="nowrap">
+            <td nowrap="nowrap" runat="server" id="tdVal4">
                 &nbsp;
             </td>
-            <td nowrap="nowrap">
+            <td nowrap="nowrap" runat="server" id="tdVal1">
                 <asp:Label ID="lblValidationType" runat="server" Text="<%$Resources:Labels, MandatoryDocuments%>" />
             </td>
-            <td nowrap="nowrap">
+            <td nowrap="nowrap" runat="server" id="tdVal2">
                 <asp:DropDownList ID="ddlValidationType" runat="server" CssClass="listmenu" DataTextField="Doc_Name"
                     DataValueField="Doc_Id" />
                 <asp:RequiredFieldValidator ID="ValidationTypeValidator" runat="server" ControlToValidate="ddlValidationType"
@@ -31,10 +38,10 @@
                 <ajax:ValidatorCalloutExtender ID="ValidationTypeValidatorCallOutExtender" runat="server"
                     TargetControlID="ValidationTypeValidator" />
             </td>
-            <td nowrap="nowrap">
+            <td nowrap="nowrap" runat="server" id="tdVal5">
                 &nbsp;
             </td>
-            <td nowrap="nowrap">
+            <td nowrap="nowrap" runat="server" id="tdVal3">
                 <asp:Label ID="Label3" runat="server" Text="<%$Resources:Labels, DocumentNumber%>" />
             </td>
             <td nowrap="nowrap">
@@ -122,46 +129,46 @@
                 &nbsp;
             </td>
             <td nowrap="nowrap">
+                <asp:Label ID="lblRemarks" runat="server" Text="<%$Resources:Labels, Remarks%>" />
+            </td>
+            <td nowrap="nowrap">
+                <ajax:FilteredTextBoxExtender ID="PayerNameValidatorExtender" runat="server" TargetControlID="txtPayerName"
+                    FilterType="UppercaseLetters, LowercaseLetters, Custom" ValidChars=" " FilterMode="ValidChars" />
+                <ajax:ValidatorCalloutExtender ID="PayerNameValidatorCalloutExtender" runat="server"
+                    TargetControlID="PayerNameValidator" />
+                <asp:TextBox ID="txtRemarks" onkeypress="return runScript(event)" runat="server"
+                    CssClass="textbox" />
+            </td>
+        </tr>
+        <tr  id="trPayeeType" runat="server" align="left" >
+            <td nowrap="nowrap">
                 <asp:Label ID="lblPayerName" runat="server" Text="<%$Resources:Labels, PayerName%>" />
             </td>
             <td nowrap="nowrap">
+                <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" TargetControlID="txtMobileNo"
+                    FilterMode="ValidChars" ValidChars="+,-" FilterType="Numbers,Custom" />
+                <ajax:ValidatorCalloutExtender ID="MobileNoValidatorCalloutExtender" runat="server"
+                    TargetControlID="MobileNoValidator" />
                 <asp:TextBox ID="txtPayerName" onkeypress="return runScript(event)" runat="server"
                     CssClass="textbox" MaxLength="50" />
                 <asp:RequiredFieldValidator ID="PayerNameValidator" ControlToValidate="txtPayerName"
                     Display="Dynamic" ValidationGroup="SaveGroup" SetFocusOnError="true" Text="*"
                     CssClass="failureNotification" ErrorMessage="<%$ Resources:ErrorMessages, RequiredPayerName%>"
                     runat="server" />
-                <ajax:FilteredTextBoxExtender ID="PayerNameValidatorExtender" runat="server" TargetControlID="txtPayerName"
-                    FilterType="UppercaseLetters, LowercaseLetters, Custom" ValidChars=" " FilterMode="ValidChars" />
-                <ajax:ValidatorCalloutExtender ID="PayerNameValidatorCalloutExtender" runat="server"
-                    TargetControlID="PayerNameValidator" />
             </td>
-        </tr>
-        <tr align="left">
+            <td nowrap="nowrap">
+                &nbsp;
+            </td>
             <td nowrap="nowrap">
                 <asp:Label ID="lblMobileNo" runat="server" Text="<%$Resources:Labels, PayerMobile%>" />
             </td>
-            <td nowrap="nowrap">
+            <td nowrap="nowrap" colspan="4">
                 <asp:TextBox ID="txtMobileNo" onkeypress="return runScript(event)" runat="server"
                     CssClass="textbox" MaxLength="15" />
                 <asp:RequiredFieldValidator ID="MobileNoValidator" ControlToValidate="txtMobileNo"
                     Display="Dynamic" ValidationGroup="SaveGroup" SetFocusOnError="true" Text="*"
                     CssClass="failureNotification" ErrorMessage="<%$ Resources:ErrorMessages, RequiredMobileNumber%>"
                     runat="server" />
-                <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" TargetControlID="txtMobileNo"
-                    FilterMode="ValidChars" ValidChars="+,-" FilterType="Numbers,Custom" />
-                <ajax:ValidatorCalloutExtender ID="MobileNoValidatorCalloutExtender" runat="server"
-                    TargetControlID="MobileNoValidator" />
-            </td>
-            <td nowrap="nowrap">
-                &nbsp;
-            </td>
-            <td nowrap="nowrap">
-                <asp:Label ID="lblRemarks" runat="server" Text="<%$Resources:Labels, Remarks%>" />
-            </td>
-            <td nowrap="nowrap" colspan="4">
-                <asp:TextBox ID="txtRemarks" onkeypress="return runScript(event)" runat="server"
-                    CssClass="textbox" />
             </td>
         </tr>
         <tr align="left" id="trInstrumentType" runat="server" visible="false">

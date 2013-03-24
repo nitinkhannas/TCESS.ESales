@@ -291,6 +291,10 @@ namespace TCESS.ESales.CommonLayer.Mapper
 
             AutoMapper.Mapper.CreateMap<vwcollectionsummary, CollectionSummaryDTO>();
             AutoMapper.Mapper.CreateMap<CollectionSummaryDTO, vwcollectionsummary>();
+
+            AutoMapper.Mapper.CreateMap<smspaymentregistration, SMSPaymentRegistrationDTO>();
+            AutoMapper.Mapper.CreateMap<SMSPaymentRegistrationDTO, smspaymentregistration>();
+
         }
 
         #endregion

@@ -24,7 +24,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
     public void SetPaymentModeForUser(int paymentModeId)
     {
         ViewState[Globals.StateMgmtVariables.PAYMENTMODE] = paymentModeId;
-        
+
         ////Show initial screen details
         ShowInitialScreen();
 
@@ -48,7 +48,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         {
             IList<CustomerDTO> lstCustomer = GetCustomerDetails(string.Empty, custId, "0");
             BindCustomerDetails(lstCustomer);
-                        
+
             GetPaymentModeForUsers();
             ResetControls(false);
 
@@ -125,13 +125,21 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
     {
         if (Page.IsValid)
         {
+            if (!tdVal1.Visible)
+            {
+                ddlValidationType.SelectedItem.Value = "2";
+                CustomerDTO cust = ESalesUnityContainer.Container.Resolve<ICustomerService>().GetCustomerDetailsByCode(txtCustomerCode.Text.Trim());
+                ViewState[Globals.StateMgmtVariables.CUSTOMERNAME] = cust.Cust_OwnerName;
+                txtValidationValue.Text = cust.Cust_MobileNo;
+            }
+
             //Get customer details based on the search information entered
-            IList<CustomerDTO> lstCustomer = GetCustomerDetails(txtCustomerCode.Text.Trim(), 
+            IList<CustomerDTO> lstCustomer = GetCustomerDetails(txtCustomerCode.Text.Trim(),
                 Convert.ToInt32(ddlValidationType.SelectedItem.Value), txtValidationValue.Text.Trim());
 
             //Bind customer details with the customer list
             BindCustomerDetails(lstCustomer);
-            
+
             //Reset the controls
             ResetControls(false);
         }
@@ -183,7 +191,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
 
         PaymentCollectionDTO paymentCollection = new PaymentCollectionDTO();
 
-        paymentCollection.PC_ReceiptNo = string.Format("{0}/{1}/{2}/{3}", 
+        paymentCollection.PC_ReceiptNo = string.Format("{0}/{1}/{2}/{3}",
             DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString(),
             DateTime.Now.Day.ToString(), GetLeadingZeroesForReceiptNumber());
 
@@ -205,7 +213,11 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         {
             //Get details for IFSC code
             paymentCollection.PC_BankIFSCCode = txtIFSCCode.Text.Trim();
+
+            txtPayerName.Text = Convert.ToString(ViewState[Globals.StateMgmtVariables.CUSTOMERNAME]);
+            txtMobileNo.Text = txtValidationValue.Text;
         }
+        
 
         ////If its reissue of a cancelled collection
         if (previousCollectionId > 0)
@@ -221,6 +233,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         paymentCollection.PC_ReprintCount = 0;
         paymentCollection.PC_CreatedBy = base.GetCurrentUserId();
         paymentCollection.PC_CreatedDate = DateTime.Now;
+
 
         //Saves payment collection details in database
         return ESalesUnityContainer.Container.Resolve<IPaymentService>().
@@ -300,16 +313,16 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             }
 
             ddlValidationType.SelectedValue = "0";
-            txtValidationValue.Text = string.Empty;            
+            txtValidationValue.Text = string.Empty;
         }
-        
+
         txtAmount.ReadOnly = false;
-        txtAmount.Text = string.Empty;        
+        txtAmount.Text = string.Empty;
         txtInstrumentNumber.Text = string.Empty;
         ddlBankDrawn.SelectedValue = "0";
         txtInstrumentDate.Text = string.Empty;
         txtPayerName.Text = string.Empty;
-        txtMobileNo.Text = string.Empty;        
+        txtMobileNo.Text = string.Empty;
         txtBranchName.Text = string.Empty;
         btnAccept.Enabled = false;
         ViewState[Globals.StateMgmtVariables.NEWCOLLECTIONID] = null;
@@ -328,6 +341,11 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
     private void GetPaymentModeForUsers()
     {
         int paymentMode = Convert.ToInt32(ViewState[Globals.StateMgmtVariables.PAYMENTMODE]);
+        trPayeeType.Visible = true;
+
+        CheckValidation(true);
+
+
 
         ////If payment mode is not Cash, show Instrument and bank details
         if (paymentMode == (int)HelperClass.PaymentModes.CHEQUE ||
@@ -341,12 +359,37 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             if (Convert.ToInt32(ViewState[Globals.StateMgmtVariables.PAYMENTMODE]) == (int)HelperClass.PaymentModes.RTGSTRANSFER)
             {
                 trIFSCCode.Visible = true;
+                trPayeeType.Visible = false;
                 lblInstrumentNumber.Text = "RGTS Number";
                 lblInstrumentDate.Text = "RTGS Date";
+                CheckValidation(false);
             }
 
             //Fill bank details in drop down
             FillDropdownForBanks();
+        }
+    }
+
+    private void CheckValidation(bool show)
+    {
+        if (show)
+        {
+            txtValidationValue.Visible = true;
+            tdVal1.Visible = true;
+            tdVal2.Visible = true;
+            tdVal3.Visible = true;
+            tdVal4.Visible = true;
+            tdVal5.Visible = true;
+        }
+        else
+        {
+            tdVal1.Visible = false;
+            tdVal2.Visible = false;
+            tdVal3.Visible = false;
+            tdVal4.Visible = false;
+            tdVal5.Visible = false;
+            txtValidationValue.Visible = false;
+            txtValidationValue.Text = "0";
         }
     }
 
@@ -380,7 +423,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
     private void ucPaymentReceipt_Event_CloseScreen(object sender)
     {
         pnlPaymentCollection.Visible = true;
-        pnlPaymentReceipt.Visible = false;        
+        pnlPaymentReceipt.Visible = false;
 
         if (Convert.ToInt32(ViewState[Globals.StateMgmtVariables.COLLECTIONID]) > 0)
         {
@@ -416,10 +459,10 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         switch (paymentModeId)
         {
             case (int)HelperClass.PaymentModes.CASH:
-                englishMessage = string.Format(Messages.CASHDEPOSITEDSMS, 
+                englishMessage = string.Format(Messages.CASHDEPOSITEDSMS,
                     collectionDetails.CustomerCode,
                     String.Format("{0:dd/MM/yyyy}", collectionDetails.PC_ReceiptDate),
-                    collectionDetails.PC_Id, collectionDetails.PC_Amount, 
+                    collectionDetails.PC_Id, collectionDetails.PC_Amount,
                     collectionDetails.PC_PayerName);
                 break;
 
@@ -431,7 +474,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
                     collectionDetails.PC_InstrumentNo, collectionDetails.PC_PayerName);
                 break;
 
-            case (int) HelperClass.PaymentModes.DEMANDDRAFT:
+            case (int)HelperClass.PaymentModes.DEMANDDRAFT:
                 englishMessage = string.Format(Messages.DDDEPOSITEDSMS,
                     collectionDetails.CustomerCode,
                     String.Format("{0:dd/MM/yyyy}", collectionDetails.PC_ReceiptDate),
@@ -439,7 +482,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
                     collectionDetails.PC_InstrumentNo, collectionDetails.PC_PayerName);
                 break;
 
-            case (int) HelperClass.PaymentModes.RTGSTRANSFER:
+            case (int)HelperClass.PaymentModes.RTGSTRANSFER:
                 englishMessage = string.Format(Messages.RTGSDEPOSITEDSMS,
                     collectionDetails.CustomerCode,
                     String.Format("{0:dd/MM/yyyy}", collectionDetails.PC_ReceiptDate),

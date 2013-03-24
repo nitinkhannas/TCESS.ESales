@@ -70,6 +70,7 @@
     <Compile Include="GhatoCollection\PaymentCollectionDTO.cs" />
     <Compile Include="GhatoCollection\PaymentRefundDTO.cs" />
     <Compile Include="GhatoCollection\PaymentTransitDTO.cs" />
+    <Compile Include="LapsedBookingDTO.cs" />
     <Compile Include="LiftingIntervalDTO.cs" />
     <Compile Include="CustomerwiseSalesReportDTO.cs" />
     <Compile Include="DFormReportDTO.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="SalesReportDTO.cs" />
     <Compile Include="SaleSummaryDTO.cs" />
     <Compile Include="SettlementOfAccountsDTO.cs" />
+    <Compile Include="SMSPaymentRegistrationDTO.cs" />
     <Compile Include="SMSRegistrationDTO.cs" />
     <Compile Include="StandaloneTruckDocDetails.cs" />
     <Compile Include="StandaloneTrucksDTO.cs" />

@@ -223,5 +223,10 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         IList<Form27CViewDTO> GetForm27CReport(DateTime fromDate, DateTime toDate);
         IList<Form27CViewDTO> Form27CViewList(DateTime fromDate, DateTime toDate);
         IList<SmsExecutiveListDTO> GetSMSSendingList();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IList<SMSRegistrationDTO> GetPendingSMSList();
     }
 }

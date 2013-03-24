@@ -2,22 +2,25 @@
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
   <Body>
     <ReportItems>
-      <Image Name="Image1">
-        <Source>Embedded</Source>
-        <Value>banner</Value>
-        <Sizing>Fit</Sizing>
-        <Height>1.01835in</Height>
-        <Width>7.46875in</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Image>
       <Textbox Name="Textbox112">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>e-Sales Software-Ghatotand</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
           <Paragraph>
             <TextRuns>
               <TextRun>
@@ -76,11 +79,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox110</rd:DefaultName>
-        <Top>1.07125in</Top>
-        <Left>0.24729in</Left>
-        <Height>0.64802in</Height>
+        <Top>0.165in</Top>
+        <Left>0.12229in</Left>
+        <Height>0.80427in</Height>
         <Width>6.97416in</Width>
-        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -627,7 +629,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="Date: "&amp; Now.Date().ToString("dd/MM/yyyy hh:mm:ss") &amp; ""</Value>
+                    <Value>="Date: "&amp; Now.Date().ToString("dd/MM/yyyy") &amp; ""</Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>
@@ -1414,11 +1416,11 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>1.78871in</Top>
-        <Left>0.2504in</Left>
+        <Top>1.03871in</Top>
+        <Left>0.1254in</Left>
         <Height>6.1331in</Height>
-        <Width>7.00542in</Width>
-        <ZIndex>2</ZIndex>
+        <Width>7.0009in</Width>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1426,7 +1428,7 @@
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>8.18761in</Height>
+    <Height>7.29178in</Height>
     <Style />
   </Body>
   <ReportParameters>
@@ -1525,7 +1527,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>7.51833in</Width>
+  <Width>7.26833in</Width>
   <Page>
     <PageHeight>11.69in</PageHeight>
     <PageWidth>8.27in</PageWidth>

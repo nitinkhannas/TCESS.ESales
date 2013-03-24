@@ -20,6 +20,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
     using TCESS.ESales.DataTransferObjects.Masters;
     using TCESS.ESales.PersistenceLayer.Entity;
     using TCESS.ESales.PersistenceLayer.Interfaces;
+    using TCESS.ESales.DataTransferObjects;
 
     #endregion
 
@@ -216,7 +217,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             return paymentCollection;
         }
 
-        IList<BatchTransferDTO> IPaymentService.GetBatchDetails(Nullable<int> userId, 
+        IList<BatchTransferDTO> IPaymentService.GetBatchDetails(Nullable<int> userId,
             Nullable<int> paymentMode)
         {
             //To retrive payment collection from database for transit to head cashier
@@ -781,6 +782,56 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                 lstPaymentCollection = lstPaymentCollection.Where(item => item.PC_CreatedBy == userId).ToList();
             }
             return lstPaymentCollection;
+        }
+
+        public int SaveAndUpdateSMSPaymentDetails(SMSPaymentRegistrationDTO smsPaymentDetails)
+        {
+            int smsPay_Id = 0;
+            smspaymentregistration smsPaymentegistrationEntity = new smspaymentregistration();
+            AutoMapper.Mapper.Map(smsPaymentDetails, smsPaymentegistrationEntity);
+
+            if (smsPaymentDetails.SMSPay_Id == 0)
+            {
+                ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>().Save(smsPaymentegistrationEntity);
+            }
+            else
+            {
+                ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>().Update(smsPaymentegistrationEntity);
+            }
+
+            smsPay_Id = smsPaymentegistrationEntity.SMSPay_Id;
+
+            //return the details
+            return smsPay_Id;
+        }
+
+        public IList<SMSPaymentRegistrationDTO> GetCustomerSMSPaymentList(int? customerID, int? smsPaymentID, int validDays)
+        {
+            DateTime previousday = DateTime.Now.AddDays(-validDays);
+            List<smspaymentregistration> lstPaymentRegEntity = null;
+            IList<SMSPaymentRegistrationDTO> smsPaymentRegDetails = new List<SMSPaymentRegistrationDTO>();
+            if (customerID != null)
+            {
+                lstPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
+                                                         .GetQuery().Where(item => item.SMSPay_CustId == customerID && item.SMSPay_Date >= previousday.Date && item.SMSPay_Status == false).ToList();
+            }
+            else if (smsPaymentID != null)
+            {
+                lstPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
+                                                         .GetQuery().Where(item => item.SMSPay_Payment_Id == smsPaymentID && item.SMSPay_Date >= previousday.Date && item.SMSPay_Status == false).ToList();
+            }
+            AutoMapper.Mapper.Map(lstPaymentRegEntity,smsPaymentRegDetails);
+            return smsPaymentRegDetails;
+        }
+
+        public SMSPaymentRegistrationDTO GetSMSPaymentDetails(int smsID)
+        {
+            SMSPaymentRegistrationDTO smsPaymentRegDetails = new SMSPaymentRegistrationDTO();
+            smspaymentregistration smsPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
+                                                        .GetSingle(item => item.SMSPay_Id == smsID);
+
+            AutoMapper.Mapper.Map(smsPaymentRegEntity, smsPaymentRegDetails);
+            return smsPaymentRegDetails;
         }
     }
 }

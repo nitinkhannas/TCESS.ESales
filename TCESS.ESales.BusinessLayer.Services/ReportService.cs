@@ -875,5 +875,14 @@ namespace TCESS.ESales.BusinessLayer.Services
             .GetQuery().ToList(), smsExecutiveListList);
             return smsExecutiveListList;
         }
+        public IList<SMSRegistrationDTO> GetPendingSMSList()
+        {
+            DateTime PreviousDate = DateTime.Now.Date.AddDays(-1);
+            List<SMSRegistrationDTO> smsRegistration = new List<SMSRegistrationDTO>();
+            List<smsregistration> lstSmsEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smsregistration>>()
+                .GetQuery().Where(item => item.SMSReg_IsDeleted == false && item.SMSReg_BookingStatus == true && item.SMSReg_Date == PreviousDate && item.SMSReg_Booking_Id == null).ToList();
+            AutoMapper.Mapper.Map(lstSmsEntity, smsRegistration);
+            return smsRegistration;
+        }
     }
 }

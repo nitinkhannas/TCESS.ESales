@@ -106,6 +106,7 @@
     <EmbeddedResource Include="SMSBookingReport.rdlc" />
     <EmbeddedResource Include="SMSBookingsAcceptedCompletedLapsed.rdlc" />
     <EmbeddedResource Include="Printingreport.rdlc" />
+    <EmbeddedResource Include="SMSPaymentReceipt.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TCESS.ESales.DataTransferObjects\TCESS.ESales.DataTransferObjects.csproj">

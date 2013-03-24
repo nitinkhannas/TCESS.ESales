@@ -16,6 +16,13 @@ public class HelperClass
         CASH = 8
     }
 
+    public enum VerificationMode
+    {
+        CUSTOMERCODE = 1,
+        SMSID = 2
+        
+    }
+
     /// <summary>
     /// Enum for Action Mode For Manage Payments
     /// </summary>

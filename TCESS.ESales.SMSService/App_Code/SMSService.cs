@@ -62,4 +62,12 @@ public class SMSService : ISMSService
 		return truckCount;
 
 	}
+
+
+    public string RespondPaymentSms(string phoneNumber, string customerCode, decimal amount)
+    {
+        ESalesUnityContainerExtension.InitializeContainer();
+        ESalesUnityContainer.Container.Resolve<IMapObject>().CreateMap();
+        return SmsUtility.AcceptPayment(phoneNumber, customerCode, amount);
+    }
 }

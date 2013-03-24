@@ -2,6 +2,7 @@
 
 using System.ServiceModel;
 using TCESS.ESales.DataTransferObjects;
+using System;
 
 #endregion
 
@@ -31,4 +32,7 @@ public interface ISMSService
 	/// <returns>int count</returns>
 	[OperationContract]
 	int GetTruckCountForDateBarcode(System.DateTime currentDate, int truckStatus);
+    [OperationContract]
+    string RespondPaymentSms(string phoneNumber, string customerCode, Decimal amount);
+    
 }

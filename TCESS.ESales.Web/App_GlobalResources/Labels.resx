@@ -1344,4 +1344,7 @@
   <data name="ModeOfPayment" xml:space="preserve">
     <value>Mode Of Payment</value>
   </data>
+  <data name="PrintSMSSlip" xml:space="preserve">
+    <value>Print SMS Slip</value>
+  </data>
 </root>

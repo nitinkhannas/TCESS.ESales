@@ -12,6 +12,7 @@ using Microsoft.Practices.Unity;
 using TCESS.ESales.BusinessLayer.Interfaces;
 using TCESS.ESales.CommonLayer.Unity;
 using TCESS.ESales.DataTransferObjects;
+using TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection;
 
 #endregion
 
@@ -267,7 +268,7 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             if (lstBookingStatusData.Count > 0)
             {
 
-                reportData =   " SMS Accepted:" + lstBookingStatusData[0] +
+                reportData = " SMS Accepted:" + lstBookingStatusData[0] +
                                " Bookings:" + lstBookingStatusData[1] +
                                " Loading Advice Issue:" + lstBookingStatusData[2] +
                                " Truck Out:" + lstBookingStatusData[3] +
@@ -281,11 +282,74 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
                     {
                         SendSMS(item.SmsExecutiveList_PhoneNumber, reportData.Trim());
                     }
-                
+
                 }
             }
 
             return "SMS Sent";
         }
+        public static IList<LapsedBookingDTO> GetPendingMessages()
+        {
+            IList<LapsedBookingDTO> lstLapsedBookingDTO = new List<LapsedBookingDTO>();
+            IList<SMSRegistrationDTO> lstSMSRegistration = ESalesUnityContainer.Container.Resolve<IReportService>()
+                .GetPendingSMSList().ToList();
+            foreach (SMSRegistrationDTO item in lstSMSRegistration)
+            {
+                LapsedBookingDTO lb = new LapsedBookingDTO();
+                lb.SMS_Order_No = item.SMSReg_Id;
+                lb.Truck_No = item.SMSReg_TruckNo;
+                lb.Customer_Code = item.SMSReg_Cust_Code;
+                lb.Customer_Name = item.SMSReg_Cust_UnitName;
+                lb.Mobile_No = item.SMSReg_Cust_PhoneNumber;
+                lb.Distt = item.SMSReg_Cust_District_Name;
+                lstLapsedBookingDTO.Add(lb);
+            }
+            return lstLapsedBookingDTO;
+        }
+
+        public static string AcceptPayment(string phoneNumber, string customerCode, Decimal amount)
+        {
+            string custPhoneNumber = phoneNumber.Substring(2, phoneNumber.Length - 2);
+            IList<CustomerDTO> lstCustomer = ESalesUnityContainer.Container.Resolve<ICustomerService>()
+                .GetCustomerDetailsByMobileNumber(custPhoneNumber);
+
+            if (lstCustomer.Count > 0)
+            {
+                foreach (CustomerDTO customer in lstCustomer)
+                {
+                    if (customer.Cust_Code == customerCode)
+                    {
+                        string paymentId = ESalesUnityContainer.Container.Resolve<IPaymentService>()
+                            .SaveAndUpdateSMSPaymentDetails(InitializeSMSPaymentDetails(customer.Cust_Id, customerCode, amount)).ToString();
+                        string smsMessage = ConfigurationManager.AppSettings["PaymentSMS"]; ;
+                        return smsMessage.FormatWith(paymentId);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                return Messages.PhoneNoNotFound;
+
+            }
+            else
+            {
+                return Messages.PhoneNoNotFound;
+            }
+        }
+
+        private static SMSPaymentRegistrationDTO InitializeSMSPaymentDetails(int custId, string customerCode, Decimal amount)
+        {
+            SMSPaymentRegistrationDTO smsPayDetails = new SMSPaymentRegistrationDTO();
+            smsPayDetails.SMSPay_CustId = custId;
+            smsPayDetails.SMSPay_Cust_Code = customerCode;
+            smsPayDetails.SMSPay_Amount = amount;
+            smsPayDetails.SMSPay_Status= false;
+            smsPayDetails.SMSPay_CreatedDate = DateTime.Now;
+            smsPayDetails.SMSPay_LastUpdatedDate = DateTime.Now;
+            smsPayDetails.SMSPay_Date = DateTime.Now.Date;
+            return smsPayDetails;
+        }
+
     }
 }

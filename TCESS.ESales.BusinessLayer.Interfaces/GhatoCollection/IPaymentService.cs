@@ -11,6 +11,7 @@ namespace TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection
     using System;
     using System.Collections.Generic;
     using TCESS.ESales.DataTransferObjects.GhatoCollection;
+    using TCESS.ESales.DataTransferObjects;
 
     #endregion
 
@@ -41,5 +42,14 @@ namespace TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection
         IList<PaymentCollectionDTO> GetCollectionDetailsForPrint(string searchValue, bool? isNumeric, int? userId);
         IList<PaymentCollectionDTO> GetCollectionDetailsForCancelAndReIssue(string searchValue, bool? isNumeric, int? userId);
         PaymentCollectionDTO GetCollectionDetailsByOldReceiptNo(int oldReceiptNo);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="smsPaymentDetails"></param>
+        /// <returns></returns>
+        int SaveAndUpdateSMSPaymentDetails(SMSPaymentRegistrationDTO smsPaymentDetails);
+        IList<SMSPaymentRegistrationDTO> GetCustomerSMSPaymentList(int? customerID, int? smsPaymentID, int validDays);
+
+        SMSPaymentRegistrationDTO GetSMSPaymentDetails(int smsPaymentId);
     }
 }
