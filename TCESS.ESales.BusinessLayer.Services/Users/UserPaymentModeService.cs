@@ -70,6 +70,10 @@ namespace TCESS.ESales.BusinessLayer.Services.Users
             }
         }
 
+        /// <summary>
+        /// Delete user payment mode details from database based on userId
+        /// </summary>
+        /// <param name="userId">userId to delete payment mode details</param>
         void IUserPaymentModeService.DeleteUserPaymentModeDetails(int userId)
         {
             IList<userpaymentmodemapping> lstUserPaymentModeMappingEntity = base.UserPaymentModeRepository.GetQuery()
@@ -81,6 +85,11 @@ namespace TCESS.ESales.BusinessLayer.Services.Users
             }
         }
 
+        /// <summary>
+        /// Get user payment mode by user id from database
+        /// </summary>
+        /// <param name="userId">user id to get payment modes</param>
+        /// <returns>returns list of payment modes from database</returns>
         IList<int> IUserPaymentModeService.GetUserPaymentModesByUserId(int userId)
         {
             List<int> lstPaymentModes = base.UserPaymentModeRepository.GetQuery().Where(item => item.UPM_UserId  == userId)

@@ -522,6 +522,12 @@ namespace TCESS.ESales.PersistenceLayer.EF
             get { return _paymentcollections  ?? (_paymentcollections = CreateObjectSet<paymentcollection>("paymentcollections")); }
         }
         private ObjectSet<paymentcollection> _paymentcollections;
+    
+        public ObjectSet<smspaymentregistration> smspaymentregistrations
+        {
+            get { return _smspaymentregistrations  ?? (_smspaymentregistrations = CreateObjectSet<smspaymentregistration>("smspaymentregistrations")); }
+        }
+        private ObjectSet<smspaymentregistration> _smspaymentregistrations;
 
         #endregion
     }

@@ -47,32 +47,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCESS.ESales.Scheduler.Data
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9FA08D5B-DC8E-437C-BE47-1D42708F495D}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TCESS.ESales.SMSService", "TCESS.ESales.SMSService\", "{0D13AD8C-3636-42EB-B973-80B43741EFB2}"
-	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = ""
-		SccAuxPath = ""
-		SccLocalPath = ""
-		SccProvider = ""
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{41B64DE9-8EDD-4F50-8455-F54461644E83}|TCESS.ESales.CommonLayer.CommonLibrary.dll;{AD432118-3592-439D-9D31-15ABE9C743F7}|TCESS.ESales.BusinessLayer.Interfaces.dll;{74977846-B0F4-4627-A989-26155DC919BF}|TCESS.ESales.DataTransferObjects.dll;{AF44808C-3DBC-4635-9A5A-F82D208655AF}|TCESS.ESales.CommonLayer.Unity.dll;{D4566D8E-CEDB-471F-9CBD-2D60154B3C5C}|TCESS.ESales.CommonLayer.UnityExtension.dll;{A782AFF6-FA4B-499D-8C4F-77BB245DC00A}|TCESS.ESales.BusinessLayer.Services.dll;{667CFD64-41C5-450E-935C-83A0CC6BD74E}|TCESS.ESales.PersistenceLayer.dll;{99FCE484-EB61-4FF7-8857-9829AF12F0A0}|TCESS.ESales.CommonLayer.Exception.dll;{152F2184-637B-4017-ABBD-176C466AAD87}|TCESS.ESales.CommonLayer.Logging.dll;{71860B16-1B8C-4433-9D24-6AEDE9A543DF}|TCESS.ESales.CommonLayer.Mapper.dll;{FA8BD093-B6AA-48C2-B3FF-6EE86D144D7E}|TCESS.ESales.PersistenceLayer.Repository.dll;{71300D85-4965-4362-95D0-5FEB242031C9}|TCESS.ESales.PersistenceLayer.EF.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/TCESS.ESales.SMSService"
-		Debug.AspNetCompiler.PhysicalPath = "TCESS.ESales.SMSService\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TCESS.ESales.SMSService\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/TCESS.ESales.SMSService"
-		Release.AspNetCompiler.PhysicalPath = "TCESS.ESales.SMSService\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\TCESS.ESales.SMSService\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "56594"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TCESS.SMSGateway", "TCESS.SMSGateway\", "{DE0420C2-7BB9-4A25-A59A-0A192BA8B90A}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = ""
@@ -97,7 +71,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TCESS.SMSGateway", "TCESS.S
 		VWDPort = "56601"
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2} = {0D13AD8C-3636-42EB-B973-80B43741EFB2}
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B} = {04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}
 	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SMSService", "SMSService\SMSService.vdproj", "{75553640-529F-4D5B-8150-7013E3ABEED8}"
@@ -135,6 +109,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TCESS.ESales.Web", "TCESS.E
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "56597"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SMSService", "http://localhost/SMSService", "{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/SMSService"
+		Debug.AspNetCompiler.PhysicalPath = "TCESS.ESales.SMSService\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SMSService\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/SMSService"
+		Release.AspNetCompiler.PhysicalPath = "TCESS.ESales.SMSService\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\SMSService\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "TCESS.ESales.SMSService\"
 	EndProjectSection
 EndProject
 Global
@@ -297,16 +292,6 @@ Global
 		{240AE6FE-9A42-47EA-93F0-1B6E41730B3E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{240AE6FE-9A42-47EA-93F0-1B6E41730B3E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{240AE6FE-9A42-47EA-93F0-1B6E41730B3E}.Release|x86.ActiveCfg = Release|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2}.Release|x86.ActiveCfg = Debug|Any CPU
 		{DE0420C2-7BB9-4A25-A59A-0A192BA8B90A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE0420C2-7BB9-4A25-A59A-0A192BA8B90A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE0420C2-7BB9-4A25-A59A-0A192BA8B90A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -393,6 +378,16 @@ Global
 		{E2C508DD-B805-4B61-9173-853A0C2F9074}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{E2C508DD-B805-4B61-9173-853A0C2F9074}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 		{E2C508DD-B805-4B61-9173-853A0C2F9074}.Release|x86.ActiveCfg = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -423,6 +418,6 @@ Global
 		{240AE6FE-9A42-47EA-93F0-1B6E41730B3E} = {F587860D-7C34-408F-9CB1-CE9752B8155F}
 		{8FEC0A95-306B-4600-BCC3-2DABCA4EE14F} = {F587860D-7C34-408F-9CB1-CE9752B8155F}
 		{2FEE818E-9E71-4E0A-94B9-A08B796DA63C} = {F587860D-7C34-408F-9CB1-CE9752B8155F}
-		{0D13AD8C-3636-42EB-B973-80B43741EFB2} = {9FA08D5B-DC8E-437C-BE47-1D42708F495D}
+		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B} = {9FA08D5B-DC8E-437C-BE47-1D42708F495D}
 	EndGlobalSection
 EndGlobal

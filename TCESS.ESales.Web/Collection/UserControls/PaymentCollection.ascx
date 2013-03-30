@@ -6,11 +6,25 @@
     .style1
     {
         width: 146px;
-        
     }
 </style>
 <div runat="server" id="pnlPaymentCollection">
-    <table width="100%" cellspacing="10" cellpadding="5">
+    <table width="100%" cellspacing="10" cellpadding="5" runat="server" id="tblSMSControls">
+        <tr align="left">
+            <td class="style1" nowrap="nowrap">
+                <asp:Label ID="lblSMSId" runat="server" Text="<%$Resources:Labels, SMSId%>" />
+                <asp:TextBox ID="txtSMSId" runat="server" CssClass="textbox" Wrap="False" />
+                <asp:RequiredFieldValidator ID="SMSIdValidator" runat="server" ControlToValidate="txtSMSId"
+                    CssClass="failureNotification" Display="Dynamic" ErrorMessage="<%$ Resources:ErrorMessages, RequiredSMSId %>"
+                    SetFocusOnError="true" Text="*" ValidationGroup="ValidateGroup" />
+                <ajax:ValidatorCalloutExtender ID="SMSIdValidatorCalloutExtender" runat="server"
+                    TargetControlID="SMSIdValidator" />
+                <asp:Button ID="btnSMSValidate" runat="server" CssClass="button" OnClick="btnSMSValidate_Click"
+                    Text="Validate" ValidationGroup="SMSValidateGroup" />
+            </td>
+        </tr>
+    </table>
+    <table width="100%" cellspacing="10" cellpadding="5" id="tblValidateControls" runat="server">
         <tr align="left">
             <td class="style1" nowrap="nowrap">
                 <asp:Label ID="lblCustomerCode" runat="server" Text="<%$Resources:Labels, CustomerCode%>" />
@@ -140,7 +154,7 @@
                     CssClass="textbox" />
             </td>
         </tr>
-        <tr  id="trPayeeType" runat="server" align="left" >
+        <tr id="trPayeeType" runat="server" align="left">
             <td nowrap="nowrap">
                 <asp:Label ID="lblPayerName" runat="server" Text="<%$Resources:Labels, PayerName%>" />
             </td>

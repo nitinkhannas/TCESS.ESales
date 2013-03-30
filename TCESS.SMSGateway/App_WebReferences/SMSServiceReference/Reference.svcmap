@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="feb4bcf6-7191-46c1-90e5-bd460eeb5b39" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e36a1178-bf4e-4b9c-9a25-86d13b5a6bf5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,14 +18,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:1961/TCESS.ESales.SMSService/Service.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/SMSService/Service.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SMSService.wsdl" MetadataType="Wsdl" ID="4f234004-b57e-4953-8515-e9cc5c2035b1" SourceId="1" SourceUrl="http://localhost:1961/TCESS.ESales.SMSService/Service.svc?wsdl" />
-    <MetadataFile FileName="Service.xsd" MetadataType="Schema" ID="2e2a146c-283f-4c59-a420-d90d99a6eec5" SourceId="1" SourceUrl="http://localhost:1961/TCESS.ESales.SMSService/Service.svc?xsd=xsd2" />
-    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="af2785c9-a890-4c5e-ab42-f1a19d41725f" SourceId="1" SourceUrl="http://localhost:1961/TCESS.ESales.SMSService/Service.svc?xsd=xsd1" />
-    <MetadataFile FileName="Service.disco" MetadataType="Disco" ID="c32a50e0-797f-4ad7-af59-b6c15bc8e0cf" SourceId="1" SourceUrl="http://localhost:1961/TCESS.ESales.SMSService/Service.svc?disco" />
-    <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="08f4e0f5-575b-4ffb-8358-7d92396c9685" SourceId="1" SourceUrl="http://localhost:1961/TCESS.ESales.SMSService/Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="SMSService.wsdl" MetadataType="Wsdl" ID="6cf8c62e-d995-4f0f-94ec-86c709b49b40" SourceId="1" SourceUrl="http://localhost/SMSService/Service.svc?wsdl" />
+    <MetadataFile FileName="Service.disco" MetadataType="Disco" ID="38d80017-7128-43d2-b27d-a58270a86f83" SourceId="1" SourceUrl="http://localhost/SMSService/Service.svc?disco" />
+    <MetadataFile FileName="Service.xsd" MetadataType="Schema" ID="d85dd4f7-ff0c-40f2-91a3-cde0a46774e1" SourceId="1" SourceUrl="http://localhost/SMSService/Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="2053201c-c637-4d49-9444-ff6e8573ee7a" SourceId="1" SourceUrl="http://localhost/SMSService/Service.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="69c89d10-749c-4d40-bb6e-29d3ece89cf3" SourceId="1" SourceUrl="http://localhost/SMSService/Service.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

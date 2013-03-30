@@ -28,6 +28,8 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         ////Show initial screen details
         ShowInitialScreen();
 
+        SetSettingsForSMSAcceptance(paymentModeId);
+
         int counterId = ESalesUnityContainer.Container.Resolve<ICounterService>().
             GetCounterDetailsByUserId(base.GetCurrentUserId());
 
@@ -145,6 +147,29 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         }
     }
 
+    protected void btnSMSValidate_Click(object sender, EventArgs e)
+    {
+        if (Page.IsValid)
+        {
+            SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
+                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()));
+
+            //Get customer details based on the search information entered
+            IList<CustomerDTO> lstCustomer = GetCustomerDetails(string.Empty,
+                smsPaymentDetails.SMSPay_CustId, "0");
+
+            //Bind customer details with the customer list
+            BindCustomerDetails(lstCustomer);
+
+            if (smsPaymentDetails.SMSPay_Amount > 0)
+            {
+                txtAmount.Text = smsPaymentDetails.SMSPay_Amount.ToString();
+                txtAmount.ReadOnly = true;
+                btnAccept.Enabled = true;
+            }
+        }
+    }
+
     protected void btnValidateAmount_Click(object sender, EventArgs e)
     {
         CurrencyConvertor currencyConvertor = new CurrencyConvertor();
@@ -217,7 +242,6 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             txtPayerName.Text = Convert.ToString(ViewState[Globals.StateMgmtVariables.CUSTOMERNAME]);
             txtMobileNo.Text = txtValidationValue.Text;
         }
-        
 
         ////If its reissue of a cancelled collection
         if (previousCollectionId > 0)
@@ -233,7 +257,6 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         paymentCollection.PC_ReprintCount = 0;
         paymentCollection.PC_CreatedBy = base.GetCurrentUserId();
         paymentCollection.PC_CreatedDate = DateTime.Now;
-
 
         //Saves payment collection details in database
         return ESalesUnityContainer.Container.Resolve<IPaymentService>().
@@ -344,8 +367,6 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         trPayeeType.Visible = true;
 
         CheckValidation(true);
-
-
 
         ////If payment mode is not Cash, show Instrument and bank details
         if (paymentMode == (int)HelperClass.PaymentModes.CHEQUE ||
@@ -494,5 +515,18 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
                 break;
         }
         SmsUtility.SendSMSForBookings(collectionDetails.PC_MobileNumber, englishMessage);
+    }
+
+    private void SetSettingsForSMSAcceptance(int paymentModeId)
+    {
+        tblSMSControls.Visible = false;
+        tblValidateControls.Visible = true;
+
+        if (paymentModeId == (int)Globals.PaymentModes.CASH)
+        {
+            tblSMSControls.Visible = true;
+            tblValidateControls.Visible = false;
+            btnValidateAmount.Visible = false;
+        }
     }
 }

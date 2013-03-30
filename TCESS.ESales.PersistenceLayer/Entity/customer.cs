@@ -871,6 +871,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<paymentcollection> _paymentcollections;
+    
+        public virtual ICollection<smspaymentregistration> smspaymentregistrations
+        {
+            get
+            {
+                if (_smspaymentregistrations == null)
+                {
+                    var newCollection = new FixupCollection<smspaymentregistration>();
+                    newCollection.CollectionChanged += Fixupsmspaymentregistrations;
+                    _smspaymentregistrations = newCollection;
+                }
+                return _smspaymentregistrations;
+            }
+            set
+            {
+                if (!ReferenceEquals(_smspaymentregistrations, value))
+                {
+                    var previousValue = _smspaymentregistrations as FixupCollection<smspaymentregistration>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupsmspaymentregistrations;
+                    }
+                    _smspaymentregistrations = value;
+                    var newValue = value as FixupCollection<smspaymentregistration>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupsmspaymentregistrations;
+                    }
+                }
+            }
+        }
+        private ICollection<smspaymentregistration> _smspaymentregistrations;
 
         #endregion
         #region Association Fixup
@@ -1262,6 +1294,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (paymentcollection item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.customer, this))
+                    {
+                        item.customer = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupsmspaymentregistrations(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (smspaymentregistration item in e.NewItems)
+                {
+                    item.customer = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (smspaymentregistration item in e.OldItems)
                 {
                     if (ReferenceEquals(item.customer, this))
                     {

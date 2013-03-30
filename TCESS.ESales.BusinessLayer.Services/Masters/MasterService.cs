@@ -35,7 +35,6 @@ using System.Transactions;
             return objBusinessTypeDTO;
         }
 
-
         /// <summary>
         /// Save And Update Bussiness Type
         /// </summary>
@@ -172,6 +171,7 @@ using System.Transactions;
             }
             return result;
         }
+
         /// <summary>
         /// Verify Ownership Status Exists or not by ownershipStatusId and ownershipStatus
         /// </summary>
@@ -245,6 +245,11 @@ using System.Transactions;
             }
         }
 
+        /// <summary>
+        /// Get bank details by bank id
+        /// </summary>
+        /// <param name="bankId">bank id to retreive bank details</param>
+        /// <returns>returns BankDTO object</returns>
         BankDTO IMasterService.GetBanksDetailsById(int bankId)
         {
             BankDTO bankDTO = new BankDTO();
@@ -273,6 +278,10 @@ using System.Transactions;
             return lstPaymentMode;
         }
 
+        /// <summary>
+        /// Get all active rejection reasons from database
+        /// </summary>
+        /// <returns>list of rejection reasons</returns>
         IList<RejectionReasonDTO> IMasterService.GetRejectionReasons()
         {
             List<RejectionReasonDTO> lstRejectionsDTO = new List<RejectionReasonDTO>();                        

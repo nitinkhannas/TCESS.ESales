@@ -733,7 +733,8 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             List<PaymentCollectionDTO> lstPaymentCollection =
                 (from pcItem in base.PaymentCollectionRepository.GetQuery()
                      .Where(item => (item.PC_Status == null ||
-                         item.PC_Status == (int)Globals.CollectionStatus.CANCELLED))
+                         item.PC_Status == (int)Globals.CollectionStatus.CANCELLED) 
+                         && item.PC_PaymentMode != (int)Globals.PaymentModes.CASH)
                  join custItem in base.CustomerRepository.GetQuery()
                  .Where(item => item.Cust_IsDeleted == false)
                  on pcItem.PC_CustId equals custItem.Cust_Id

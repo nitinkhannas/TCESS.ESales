@@ -244,6 +244,9 @@
     <Compile Include="Entity\smsexecutivelist.cs">
       <DependentUpon>eSalesEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\smspaymentregistration.cs">
+      <DependentUpon>eSalesEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\smsregistration.cs">
       <DependentUpon>eSalesEntities.tt</DependentUpon>
     </Compile>

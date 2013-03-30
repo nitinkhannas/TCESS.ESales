@@ -1347,4 +1347,7 @@
   <data name="PrintSMSSlip" xml:space="preserve">
     <value>Print SMS Slip</value>
   </data>
+  <data name="SMSId" xml:space="preserve">
+    <value>SMS Id</value>
+  </data>
 </root>

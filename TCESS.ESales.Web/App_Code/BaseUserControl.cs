@@ -54,9 +54,9 @@ public class BaseUserControl : UserControl
         baseClass.ShowBlankRowInGrid(customGridView);
     }
 
-    protected Guid GetCurrentUserId()
+    protected int GetCurrentUserId()
     {
-        return Membership.GetUser().ProviderUserKey;
+        return Convert.ToInt32(Membership.GetUser().ProviderUserKey);
     }
 
     public UserAgentMappingDTO GetAgentByUserId()
