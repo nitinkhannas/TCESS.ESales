@@ -41,7 +41,7 @@ public partial class Collection_UserControls_PaymentRefund : BaseUserControl
         {
             GetDocumentTypeToValidate();
             GetPaymentModeForUsers();
-
+            pnlRefundReceipt.Visible = false;
             //Show blank grid
             base.ShowBlankRowInGrid<CustomerDTO>(grdCustomersDetails);
         }
