@@ -113,16 +113,16 @@
                 <asp:Button ID="btnValidateID" runat="server" CssClass="button" OnClick="btnValidateID_Click"
                     Text="Validate" ValidationGroup="ValidateGroup" />
             </td>
-            <td nowrap="nowrap">
+            <td >
                 &nbsp;
             </td>
-            <td nowrap="nowrap" >
+            <td >
                 &nbsp;
             </td>
-            <td nowrap="nowrap">
+            <td >
                 &nbsp;
             </td>
-            <td nowrap="nowrap">
+            <td>
                 &nbsp;
             </td>
         </tr>
@@ -159,6 +159,16 @@
                 <asp:TemplateField HeaderText="District Name">
                     <ItemTemplate>
                         <asp:Label ID="lblMobileNo" runat="server" Text='<%# Bind("SMSPay_Cust_District_Name") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Date">
+                    <ItemTemplate>
+                        <asp:Label ID="lblPayDate" runat="server" Text='<%#Convert.ToDateTime(Eval("SMSPay_Date")).ToString("dd-MMM-yyyy")%>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Amount">
+                    <ItemTemplate>
+                        <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("SMSPay_Amount") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="<%$Resources:Labels, Action%>">
