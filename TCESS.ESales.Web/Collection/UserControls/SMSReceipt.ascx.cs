@@ -23,16 +23,18 @@ public partial class Collection_UserControls_SMSReceipt : BaseUserControl
             Common.SetReportEmbeddedResource(reportViewer, "TCESS.ESales.CommonLayer.Reports.SMSPaymentReceipt.rdlc");
         }
     }
-    public void GetSMSDetails(int smsPaymentId)
+
+    public void GetSMSDetails(int smsPaymentId, int validDays)
     {
         //Gets collection details from collectionId
         SMSPaymentRegistrationDTO SMSPaymentDetails = ESalesUnityContainer.Container.
-            Resolve<IPaymentService>().GetSMSPaymentDetails(smsPaymentId);
+            Resolve<IPaymentService>().GetSMSPaymentDetails(smsPaymentId, validDays);
+
         //Sets report parameters and refreshes it
         SetReportParameters(SMSPaymentDetails, reportViewer);
         reportViewer.LocalReport.Refresh();
-
     }
+
     private void SetReportParameters(SMSPaymentRegistrationDTO smsPaymentDetails, ReportViewer reportViewer)
     {
         string amount = Convert.ToString(smsPaymentDetails.SMSPay_Amount);
@@ -52,6 +54,7 @@ public partial class Collection_UserControls_SMSReceipt : BaseUserControl
             rpSMSPay_Date, rpCustomerCode, rpTradeName, rpCustomerName, rpDistrictName,
             rpAmount, rpAmountInWords});
     }
+
     protected void btnReturn_Click(object sender, EventArgs e)
     {
         Event_CloseScreen(sender);

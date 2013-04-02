@@ -14,6 +14,7 @@ using TCESS.ESales.CommonLayer.Unity;
 using TCESS.ESales.DataTransferObjects;
 using TCESS.ESales.DataTransferObjects.GhatoCollection;
 using TCESS.ESales.DataTransferObjects.Users;
+using System.Configuration;
 
 #endregion
 
@@ -91,7 +92,9 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
     {
         IList<SMSPaymentRegistrationDTO> paymentList = null;
         int verificationMode = Convert.ToInt32(ViewState[Globals.StateMgmtVariables.VERIFICATIONMODE]);
-        paymentList = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerSMSPaymentList(null, Convert.ToInt32(txtValidationID.Text.Trim()), 3);
+        paymentList = ESalesUnityContainer.Container.Resolve<IPaymentService>().
+            GetCustomerSMSPaymentList(null, Convert.ToInt32(txtValidationID.Text.Trim()),
+            Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]));
         if (paymentList.Count > 0)
         {
             grdCustomersDetails.DataSource = paymentList;
@@ -143,17 +146,21 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
             ResetControls(false);
         }
     }
+
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Event_ShowCancellationScreen(sender);
     }
+
     protected void btnPrint_Click(object sender, CommandEventArgs e)
     {
         string smsPaymentId = (string)e.CommandArgument;
 
         pnlPaymentCollection.Visible = false;
         pnlSMSReceipt.Visible = true;
-        ucSMSReceipt.GetSMSDetails(Convert.ToInt32(smsPaymentId));
+
+        ucSMSReceipt.GetSMSDetails(Convert.ToInt32(smsPaymentId),
+            Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]));
     }
 
     private void ResetControls(bool p)
@@ -162,8 +169,8 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
         txtValidationID.Text = "";
         txtValidationValue.Text = "";
         ddlValidationType.SelectedValue = "0";
-
     }
+
     private void ucMessageBoxForGrid_Event_OkButton(object sender, EventArgs args)
     {
         //int collectionId = ViewState[Globals.StateMgmtVariables.COLLECTIONID] == null ?

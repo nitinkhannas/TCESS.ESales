@@ -50,6 +50,6 @@ namespace TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection
         int SaveAndUpdateSMSPaymentDetails(SMSPaymentRegistrationDTO smsPaymentDetails);
         IList<SMSPaymentRegistrationDTO> GetCustomerSMSPaymentList(int? customerID, int? smsPaymentID, int validDays);
 
-        SMSPaymentRegistrationDTO GetSMSPaymentDetails(int smsPaymentId);
+        SMSPaymentRegistrationDTO GetSMSPaymentDetails(int smsPaymentId, int validDays);
     }
 }

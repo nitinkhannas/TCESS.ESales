@@ -14,6 +14,7 @@ using TCESS.ESales.CommonLayer.Unity;
 using TCESS.ESales.DataTransferObjects;
 using TCESS.ESales.DataTransferObjects.GhatoCollection;
 using TCESS.ESales.DataTransferObjects.Users;
+using System.Configuration;
 
 #endregion
 
@@ -157,7 +158,8 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         if (Page.IsValid)
         {
             SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
-                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()));
+                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()), 
+                Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]));
 
             //Get customer details based on the search information entered
             IList<CustomerDTO> lstCustomer = GetCustomerDetails(string.Empty,
@@ -535,7 +537,8 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         tblSMSControls.Visible = false;
         tblValidateControls.Visible = true;
 
-        if (paymentModeId == (int)Globals.PaymentModes.CASH)
+        if (paymentModeId == (int)Globals.PaymentModes.CASH &&
+            Convert.ToBoolean(ConfigurationManager.AppSettings["IsCashSMSActive"]) == true)
         {
             tblSMSControls.Visible = true;
             tblValidateControls.Visible = false;
@@ -546,7 +549,8 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
     private void UpdateSMSInformation(int newCollectionId)
     {
         SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
-                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()));
+                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()),
+                Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]));
         
         if (smsPaymentDetails.SMSPay_Id > 0)
         {

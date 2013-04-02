@@ -35,6 +35,7 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             {
             }
         }
+
         public static void SendSMSForBookings(string phoneNumber, string message)
         {
             string url = ConfigurationManager.AppSettings["SendSMS"];
@@ -92,6 +93,7 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             smsRegDetails.SMSReg_Date = DateTime.Now.Date;
             return smsRegDetails;
         }
+
         public static BookingDTO UpdateGateInformation(int gateLocation, int bookingId)
         {
             BookingDTO bookingDetails = ESalesUnityContainer.Container.Resolve<IBookingService>().GetBookingDetailByBookingId(bookingId, true);
@@ -109,15 +111,13 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
                 bookingDetails.Booking_TruckMatLiftedTime = DateTime.Now;
                 ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAndUpdateBookingDetail(bookingDetails);
                 return ESalesUnityContainer.Container.Resolve<IBookingService>().GetBookingDetailByBookingId(bookingId, true);
-
             }
             else
             {
                 return new BookingDTO();
             }
-
-
         }
+
         public static int GetTruckCountForDateBarcode(DateTime currentDate, int truckStatus)
         {
             if (truckStatus == 1)
@@ -134,6 +134,7 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
                 return 0;
             }
         }
+
         public static string UpdateDCAPercentage()
         {
             IList<DcaMaterialAllocationDTO> listAllMaterial = ESalesUnityContainer.Container.Resolve<IDcaMaterialAllocationService>()
@@ -196,11 +197,12 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             {
                 return "Updation Not Compleated";
             }
-
         }
+
         public static void UpdatePreviousDayaActualPercenatge()
         {
             IList<MaterialTypeDTO> lstMaterialTypeDTO = ESalesUnityContainer.Container.Resolve<IMaterialTypeService>().GetMaterialTypeList(true);
+            
             foreach (MaterialTypeDTO Material in lstMaterialTypeDTO)
             {
                 IList<DcaMaterialAllocationDTO> listMaterial = ESalesUnityContainer.Container.Resolve<IDcaMaterialAllocationService>()
@@ -285,9 +287,9 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
 
                 }
             }
-
             return "SMS Sent";
         }
+
         public static IList<LapsedBookingDTO> GetPendingMessages()
         {
             IList<LapsedBookingDTO> lstLapsedBookingDTO = new List<LapsedBookingDTO>();
@@ -350,6 +352,5 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             smsPayDetails.SMSPay_Date = DateTime.Now.Date;
             return smsPayDetails;
         }
-
     }
 }

@@ -825,11 +825,14 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             return smsPaymentRegDetails;
         }
 
-        public SMSPaymentRegistrationDTO GetSMSPaymentDetails(int smsID)
+        public SMSPaymentRegistrationDTO GetSMSPaymentDetails(int smsID, int validDays)
         {
+            DateTime previousday = DateTime.Now.AddDays(-validDays);
+
             SMSPaymentRegistrationDTO smsPaymentRegDetails = new SMSPaymentRegistrationDTO();
             smspaymentregistration smsPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
-                                                        .GetSingle(item => item.SMSPay_Id == smsID && item.SMSPay_Status == false);
+                                                        .GetSingle(item => item.SMSPay_Id == smsID && item.SMSPay_Status == false
+                                                        && item.SMSPay_Date >= previousday.Date);
 
             AutoMapper.Mapper.Map(smsPaymentRegEntity, smsPaymentRegDetails);
             return smsPaymentRegDetails;
