@@ -829,7 +829,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
         {
             SMSPaymentRegistrationDTO smsPaymentRegDetails = new SMSPaymentRegistrationDTO();
             smspaymentregistration smsPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
-                                                        .GetSingle(item => item.SMSPay_Id == smsID);
+                                                        .GetSingle(item => item.SMSPay_Id == smsID && item.SMSPay_Status == false);
 
             AutoMapper.Mapper.Map(smsPaymentRegEntity, smsPaymentRegDetails);
             return smsPaymentRegDetails;

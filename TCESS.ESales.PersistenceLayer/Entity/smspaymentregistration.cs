@@ -56,6 +56,12 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             set;
         }
     
+        public virtual Nullable<int> SMSPay_CollectionId
+        {
+            get;
+            set;
+        }
+    
         public virtual decimal SMSPay_Amount
         {
             get;

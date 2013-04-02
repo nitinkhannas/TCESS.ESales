@@ -26,6 +26,8 @@ namespace TCESS.ESales.DataTransferObjects
             set;
         }
 
+        public Nullable<int> SMSPay_CollectionId { get; set; }
+
         public decimal SMSPay_Amount
         {
             get;

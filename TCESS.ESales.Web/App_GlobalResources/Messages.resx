@@ -573,4 +573,7 @@
   <data name="CounerNotAlloted" xml:space="preserve">
     <value>Counter not Alloted to the Current User. Contact Administrator</value>
   </data>
+  <data name="SMSIdNotFound" xml:space="preserve">
+    <value>SMS Id Not Found, Try Again With New Id.</value>
+  </data>
 </root>

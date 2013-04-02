@@ -49,7 +49,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         if (collectionId > 0)
         {
             IList<CustomerDTO> lstCustomer = GetCustomerDetails(string.Empty, custId, "0");
-            BindCustomerDetails(lstCustomer);
+            BindCustomerDetails(lstCustomer, false);
 
             GetPaymentModeForUsers();
             ResetControls(false);
@@ -118,6 +118,11 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
                 ViewState[Globals.StateMgmtVariables.NEWCOLLECTIONID] = newCollectionId;
             }
 
+            if (newCollectionId > 0 && tblSMSControls.Visible == true)
+            {
+                UpdateSMSInformation(newCollectionId);
+            }
+
             //Shows message box to user
             ucMessageBoxForGrid.ShowMessage(Messages.PaymentSubmittedSuccessfully);
         }
@@ -140,7 +145,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
                 Convert.ToInt32(ddlValidationType.SelectedItem.Value), txtValidationValue.Text.Trim());
 
             //Bind customer details with the customer list
-            BindCustomerDetails(lstCustomer);
+            BindCustomerDetails(lstCustomer, false);
 
             //Reset the controls
             ResetControls(false);
@@ -159,7 +164,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
                 smsPaymentDetails.SMSPay_CustId, "0");
 
             //Bind customer details with the customer list
-            BindCustomerDetails(lstCustomer);
+            BindCustomerDetails(lstCustomer, true);
 
             if (smsPaymentDetails.SMSPay_Amount > 0)
             {
@@ -294,7 +299,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         return lstCustomer;
     }
 
-    private void BindCustomerDetails(IList<CustomerDTO> lstCustomer)
+    private void BindCustomerDetails(IList<CustomerDTO> lstCustomer, bool smsValidation)
     {
         if (lstCustomer.Count > 0)
         {
@@ -319,8 +324,16 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         }
         else
         {
-            ucMessageBoxForGrid.ShowMessage(Messages.CustomerDetailsNotFound);
-            ResetControls(false);
+            if (smsValidation)
+            {
+                ucMessageBoxForGrid.ShowMessage(Messages.SMSIdNotFound);
+                ResetControls(false);
+            }
+            else
+            {
+                ucMessageBoxForGrid.ShowMessage(Messages.CustomerDetailsNotFound);
+                ResetControls(false);
+            }
         }
     }
 
@@ -528,5 +541,20 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             tblValidateControls.Visible = false;
             btnValidateAmount.Visible = false;
         }
+    }
+
+    private void UpdateSMSInformation(int newCollectionId)
+    {
+        SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
+                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()));
+        
+        if (smsPaymentDetails.SMSPay_Id > 0)
+        {
+            smsPaymentDetails.SMSPay_Status = true;
+            smsPaymentDetails.SMSPay_CollectionId = newCollectionId;
+        }
+
+        ESalesUnityContainer.Container.Resolve<IPaymentService>()
+            .SaveAndUpdateSMSPaymentDetails(smsPaymentDetails);
     }
 }
