@@ -111,8 +111,11 @@ namespace TCESS.ESales.DataTransferObjects
                     var previousValue = _customer;
                     _customer = null;
                     SMSPay_Cust_District_Name = value.Cust_District_Name;
+                    SMSPay_Cust_UnitName = value.Cust_FirmName;
+                    SMSPay_Cust_UnitAddress = value.Cust_UnitAddress;
                     SMSPay_Cust_TradeName = value.Cust_TradeName;
                     SMSPay_CustomerName = value.Cust_OwnerName;
+                    SMSPay_CustomerBusinessType = value.Cust_Business_Name;
                 }
             }
         }
