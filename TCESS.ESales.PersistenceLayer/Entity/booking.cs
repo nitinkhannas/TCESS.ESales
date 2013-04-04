@@ -397,6 +397,21 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private counter _counter;
     
+        public virtual customer customer
+        {
+            get { return _customer; }
+            set
+            {
+                if (!ReferenceEquals(_customer, value))
+                {
+                    var previousValue = _customer;
+                    _customer = value;
+                    Fixupcustomer(previousValue);
+                }
+            }
+        }
+        private customer _customer;
+    
         public virtual materialtype materialtype
         {
             get { return _materialtype; }
@@ -520,21 +535,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<smsregistration> _smsregistrations;
-    
-        public virtual customer customer
-        {
-            get { return _customer; }
-            set
-            {
-                if (!ReferenceEquals(_customer, value))
-                {
-                    var previousValue = _customer;
-                    _customer = value;
-                    Fixupcustomer(previousValue);
-                }
-            }
-        }
-        private customer _customer;
 
         #endregion
         #region Association Fixup
@@ -586,6 +586,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             else if (!_settingFK)
             {
                 Booking_CounterId = null;
+            }
+        }
+    
+        private void Fixupcustomer(customer previousValue)
+        {
+            if (previousValue != null && previousValue.bookings.Contains(this))
+            {
+                previousValue.bookings.Remove(this);
+            }
+    
+            if (customer != null)
+            {
+                if (!customer.bookings.Contains(this))
+                {
+                    customer.bookings.Add(this);
+                }
+                if (Booking_Cust_Id != customer.Cust_Id)
+                {
+                    Booking_Cust_Id = customer.Cust_Id;
+                }
             }
         }
     
@@ -674,26 +694,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             else if (!_settingFK)
             {
                 Booking_Truck_Id = null;
-            }
-        }
-    
-        private void Fixupcustomer(customer previousValue)
-        {
-            if (previousValue != null && previousValue.bookings.Contains(this))
-            {
-                previousValue.bookings.Remove(this);
-            }
-    
-            if (customer != null)
-            {
-                if (!customer.bookings.Contains(this))
-                {
-                    customer.bookings.Add(this);
-                }
-                if (Booking_Cust_Id != customer.Cust_Id)
-                {
-                    Booking_Cust_Id = customer.Cust_Id;
-                }
             }
         }
     

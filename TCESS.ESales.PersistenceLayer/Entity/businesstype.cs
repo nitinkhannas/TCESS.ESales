@@ -58,6 +58,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
+        public virtual ICollection<customer> customers
+        {
+            get
+            {
+                if (_customers == null)
+                {
+                    var newCollection = new FixupCollection<customer>();
+                    newCollection.CollectionChanged += Fixupcustomers;
+                    _customers = newCollection;
+                }
+                return _customers;
+            }
+            set
+            {
+                if (!ReferenceEquals(_customers, value))
+                {
+                    var previousValue = _customers as FixupCollection<customer>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupcustomers;
+                    }
+                    _customers = value;
+                    var newValue = value as FixupCollection<customer>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupcustomers;
+                    }
+                }
+            }
+        }
+        private ICollection<customer> _customers;
+    
         public virtual ICollection<liftinglimit> liftinglimits
         {
             get
@@ -121,41 +153,31 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<liftinglimit_history> _liftinglimit_history;
+
+        #endregion
+        #region Association Fixup
     
-        public virtual ICollection<customer> customers
+        private void Fixupcustomers(object sender, NotifyCollectionChangedEventArgs e)
         {
-            get
+            if (e.NewItems != null)
             {
-                if (_customers == null)
+                foreach (customer item in e.NewItems)
                 {
-                    var newCollection = new FixupCollection<customer>();
-                    newCollection.CollectionChanged += Fixupcustomers;
-                    _customers = newCollection;
+                    item.businesstype = this;
                 }
-                return _customers;
             }
-            set
+    
+            if (e.OldItems != null)
             {
-                if (!ReferenceEquals(_customers, value))
+                foreach (customer item in e.OldItems)
                 {
-                    var previousValue = _customers as FixupCollection<customer>;
-                    if (previousValue != null)
+                    if (ReferenceEquals(item.businesstype, this))
                     {
-                        previousValue.CollectionChanged -= Fixupcustomers;
-                    }
-                    _customers = value;
-                    var newValue = value as FixupCollection<customer>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupcustomers;
+                        item.businesstype = null;
                     }
                 }
             }
         }
-        private ICollection<customer> _customers;
-
-        #endregion
-        #region Association Fixup
     
         private void Fixupliftinglimits(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -192,28 +214,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (liftinglimit_history item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.businesstype, this))
-                    {
-                        item.businesstype = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixupcustomers(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (customer item in e.NewItems)
-                {
-                    item.businesstype = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (customer item in e.OldItems)
                 {
                     if (ReferenceEquals(item.businesstype, this))
                     {

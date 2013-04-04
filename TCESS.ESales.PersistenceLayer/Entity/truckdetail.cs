@@ -274,6 +274,21 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<booking> _bookings;
     
+        public virtual customer customer
+        {
+            get { return _customer; }
+            set
+            {
+                if (!ReferenceEquals(_customer, value))
+                {
+                    var previousValue = _customer;
+                    _customer = value;
+                    Fixupcustomer(previousValue);
+                }
+            }
+        }
+        private customer _customer;
+    
         public virtual state state
         {
             get { return _state; }
@@ -350,26 +365,31 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<truckdocdetail> _truckdocdetails;
-    
-        public virtual customer customer
-        {
-            get { return _customer; }
-            set
-            {
-                if (!ReferenceEquals(_customer, value))
-                {
-                    var previousValue = _customer;
-                    _customer = value;
-                    Fixupcustomer(previousValue);
-                }
-            }
-        }
-        private customer _customer;
 
         #endregion
         #region Association Fixup
     
         private bool _settingFK = false;
+    
+        private void Fixupcustomer(customer previousValue)
+        {
+            if (previousValue != null && previousValue.truckdetails.Contains(this))
+            {
+                previousValue.truckdetails.Remove(this);
+            }
+    
+            if (customer != null)
+            {
+                if (!customer.truckdetails.Contains(this))
+                {
+                    customer.truckdetails.Add(this);
+                }
+                if (Truck_CustomerId != customer.Cust_Id)
+                {
+                    Truck_CustomerId = customer.Cust_Id;
+                }
+            }
+        }
     
         private void Fixupstate(state previousValue)
         {
@@ -431,26 +451,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (Truck_Make != truckmake.TruckMake_Id)
                 {
                     Truck_Make = truckmake.TruckMake_Id;
-                }
-            }
-        }
-    
-        private void Fixupcustomer(customer previousValue)
-        {
-            if (previousValue != null && previousValue.truckdetails.Contains(this))
-            {
-                previousValue.truckdetails.Remove(this);
-            }
-    
-            if (customer != null)
-            {
-                if (!customer.truckdetails.Contains(this))
-                {
-                    customer.truckdetails.Add(this);
-                }
-                if (Truck_CustomerId != customer.Cust_Id)
-                {
-                    Truck_CustomerId = customer.Cust_Id;
                 }
             }
         }

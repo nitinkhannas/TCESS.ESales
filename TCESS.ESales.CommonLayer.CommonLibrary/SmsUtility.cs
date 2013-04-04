@@ -311,40 +311,53 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
 
         public static string AcceptPayment(string phoneNumber, string customerCode, Decimal amount)
         {
+            string returnMessage;
             string custPhoneNumber = phoneNumber.Substring(2, phoneNumber.Length - 2);
-            IList<CustomerDTO> lstCustomer = ESalesUnityContainer.Container.Resolve<ICustomerService>()
-                .GetCustomerDetailsByMobileNumber(custPhoneNumber);
+            CustomerDTO customer = ESalesUnityContainer.Container.Resolve<ICustomerService>()
+                .GetCustomerDetailsForCashSMS(custPhoneNumber, customerCode);
 
-            if (lstCustomer.Count > 0)
+            if (customer == null)
             {
-                foreach (CustomerDTO customer in lstCustomer)
+                returnMessage = Messages.CustomerInCautionList;
+            }
+            else if (customer.Cust_Id > 0)
+            {
+                IList<CustomerMaterialMapDTO> listCustMatDetails = ESalesUnityContainer.Container.Resolve<ICustomerMaterialService>()
+                    .GetCustomerMaterialDetailsByCustomerId(customer.Cust_Id).ToList();
+
+                CustomerMaterialMapDTO CustomerMatDetails = ESalesUnityContainer.Container.Resolve<ICustomerMaterialService>()
+                        .GetCustomerMaterialByCustomerAndMaterialId(customer.Cust_Id,
+                        listCustMatDetails[0].Cust_Mat_MaterialId);
+
+                IList<object> obj = ESalesUnityContainer.Container.Resolve<IBookingService>()
+                            .GetTotalIssuedQty(customer.Cust_Id, listCustMatDetails[0].Cust_Mat_MaterialId, DateTime.Now.Date).ToList();
+
+                if (Convert.ToInt32(CustomerMatDetails.Cust_Mat_AllotedQuantity) > Convert.ToInt32(obj[0]))
                 {
-                    if (customer.Cust_Code == customerCode)
-                    {
-                        string paymentId = ESalesUnityContainer.Container.Resolve<IPaymentService>()
-                            .SaveAndUpdateSMSPaymentDetails(InitializeSMSPaymentDetails(customer.Cust_Id, customerCode, amount)).ToString();
-                        string smsMessage = ConfigurationManager.AppSettings["PaymentSMS"]; ;
-                        return smsMessage.FormatWith(paymentId);
-                    }
-                    else
-                    {
-
-                    }
+                    string paymentId = ESalesUnityContainer.Container.Resolve<IPaymentService>()
+                    .SaveAndUpdateSMSPaymentDetails(InitializeSMSPaymentDetails(customer.Cust_Id, customerCode, amount)).ToString();
+                
+                    returnMessage = string.Format(Messages.CashSMSAccepted,
+                    customerCode, String.Format("{0:dd/MM/yyyy}", DateTime.Now), amount, 
+                    paymentId);
                 }
-                return Messages.PhoneNoNotFound;
-
+                else
+                {
+                    returnMessage =  Messages.QuantityLifted;
+                }
             }
             else
             {
-                return Messages.PhoneNoNotFound;
+                returnMessage = Messages.PhoneNoNotFound;
             }
+            return returnMessage;
         }
 
         private static SMSPaymentRegistrationDTO InitializeSMSPaymentDetails(int custId, string customerCode, Decimal amount)
         {
             SMSPaymentRegistrationDTO smsPayDetails = new SMSPaymentRegistrationDTO();
             smsPayDetails.SMSPay_CustId = custId;
-            smsPayDetails.SMSPay_Cust_Code = customerCode;
+            smsPayDetails.SMSPay_CustCode = customerCode;
             smsPayDetails.SMSPay_Amount = amount;
             smsPayDetails.SMSPay_Status= false;
             smsPayDetails.SMSPay_CreatedDate = DateTime.Now;

@@ -90,6 +90,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<agentdetail> _agentdetails;
     
+        public virtual ICollection<customer> customers
+        {
+            get
+            {
+                if (_customers == null)
+                {
+                    var newCollection = new FixupCollection<customer>();
+                    newCollection.CollectionChanged += Fixupcustomers;
+                    _customers = newCollection;
+                }
+                return _customers;
+            }
+            set
+            {
+                if (!ReferenceEquals(_customers, value))
+                {
+                    var previousValue = _customers as FixupCollection<customer>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupcustomers;
+                    }
+                    _customers = value;
+                    var newValue = value as FixupCollection<customer>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupcustomers;
+                    }
+                }
+            }
+        }
+        private ICollection<customer> _customers;
+    
         public virtual ICollection<district> districts
         {
             get
@@ -185,38 +217,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<truckdetail> _truckdetails;
-    
-        public virtual ICollection<customer> customers
-        {
-            get
-            {
-                if (_customers == null)
-                {
-                    var newCollection = new FixupCollection<customer>();
-                    newCollection.CollectionChanged += Fixupcustomers;
-                    _customers = newCollection;
-                }
-                return _customers;
-            }
-            set
-            {
-                if (!ReferenceEquals(_customers, value))
-                {
-                    var previousValue = _customers as FixupCollection<customer>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupcustomers;
-                    }
-                    _customers = value;
-                    var newValue = value as FixupCollection<customer>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupcustomers;
-                    }
-                }
-            }
-        }
-        private ICollection<customer> _customers;
 
         #endregion
         #region Association Fixup
@@ -234,6 +234,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (agentdetail item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.state, this))
+                    {
+                        item.state = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupcustomers(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (customer item in e.NewItems)
+                {
+                    item.state = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (customer item in e.OldItems)
                 {
                     if (ReferenceEquals(item.state, this))
                     {
@@ -300,28 +322,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (truckdetail item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.state, this))
-                    {
-                        item.state = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixupcustomers(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (customer item in e.NewItems)
-                {
-                    item.state = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (customer item in e.OldItems)
                 {
                     if (ReferenceEquals(item.state, this))
                     {

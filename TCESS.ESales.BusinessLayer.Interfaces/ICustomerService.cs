@@ -19,7 +19,9 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         CustomerDTO GetCustomerDetailsById(int customerId);
 		CustomerDTO GetCustomerDetailsByCode(string customerCode);
         CustomerDTO GetCustomerDetails(int customerId);
+        
         IList<CustomerDTO> GetCustomerDetailsByMobileNumber(string mobileNumber);
+        CustomerDTO GetCustomerDetailsForCashSMS(string mobileNumber, string customerCode);
 
         IList<CustomerDTO> GetCustomersByCustomerStatus(bool customerStatus);
         IList<CustomerDTO> GetReValidatedCustomersByCustomer();

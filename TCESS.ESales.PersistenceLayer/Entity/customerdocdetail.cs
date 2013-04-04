@@ -104,21 +104,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual doctype doctype
-        {
-            get { return _doctype; }
-            set
-            {
-                if (!ReferenceEquals(_doctype, value))
-                {
-                    var previousValue = _doctype;
-                    _doctype = value;
-                    Fixupdoctype(previousValue);
-                }
-            }
-        }
-        private doctype _doctype;
-    
         public virtual customer customer
         {
             get { return _customer; }
@@ -133,29 +118,24 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private customer _customer;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupdoctype(doctype previousValue)
+        public virtual doctype doctype
         {
-            if (previousValue != null && previousValue.customerdocdetails.Contains(this))
+            get { return _doctype; }
+            set
             {
-                previousValue.customerdocdetails.Remove(this);
-            }
-    
-            if (doctype != null)
-            {
-                if (!doctype.customerdocdetails.Contains(this))
+                if (!ReferenceEquals(_doctype, value))
                 {
-                    doctype.customerdocdetails.Add(this);
-                }
-                if (Cust_Doc_DocId != doctype.Doc_Id)
-                {
-                    Cust_Doc_DocId = doctype.Doc_Id;
+                    var previousValue = _doctype;
+                    _doctype = value;
+                    Fixupdoctype(previousValue);
                 }
             }
         }
+        private doctype _doctype;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupcustomer(customer previousValue)
         {
@@ -173,6 +153,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (Cust_Doc_CustId != customer.Cust_Id)
                 {
                     Cust_Doc_CustId = customer.Cust_Id;
+                }
+            }
+        }
+    
+        private void Fixupdoctype(doctype previousValue)
+        {
+            if (previousValue != null && previousValue.customerdocdetails.Contains(this))
+            {
+                previousValue.customerdocdetails.Remove(this);
+            }
+    
+            if (doctype != null)
+            {
+                if (!doctype.customerdocdetails.Contains(this))
+                {
+                    doctype.customerdocdetails.Add(this);
+                }
+                if (Cust_Doc_DocId != doctype.Doc_Id)
+                {
+                    Cust_Doc_DocId = doctype.Doc_Id;
                 }
             }
         }

@@ -96,6 +96,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<moneyreceipt> _moneyreceipts;
     
+        public virtual ICollection<paymentcollection> paymentcollections
+        {
+            get
+            {
+                if (_paymentcollections == null)
+                {
+                    var newCollection = new FixupCollection<paymentcollection>();
+                    newCollection.CollectionChanged += Fixuppaymentcollections;
+                    _paymentcollections = newCollection;
+                }
+                return _paymentcollections;
+            }
+            set
+            {
+                if (!ReferenceEquals(_paymentcollections, value))
+                {
+                    var previousValue = _paymentcollections as FixupCollection<paymentcollection>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixuppaymentcollections;
+                    }
+                    _paymentcollections = value;
+                    var newValue = value as FixupCollection<paymentcollection>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixuppaymentcollections;
+                    }
+                }
+            }
+        }
+        private ICollection<paymentcollection> _paymentcollections;
+    
         public virtual ICollection<userpaymentmodemapping> userpaymentmodemappings
         {
             get
@@ -159,38 +191,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<paymentrefund> _paymentrefunds;
-    
-        public virtual ICollection<paymentcollection> paymentcollections
-        {
-            get
-            {
-                if (_paymentcollections == null)
-                {
-                    var newCollection = new FixupCollection<paymentcollection>();
-                    newCollection.CollectionChanged += Fixuppaymentcollections;
-                    _paymentcollections = newCollection;
-                }
-                return _paymentcollections;
-            }
-            set
-            {
-                if (!ReferenceEquals(_paymentcollections, value))
-                {
-                    var previousValue = _paymentcollections as FixupCollection<paymentcollection>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixuppaymentcollections;
-                    }
-                    _paymentcollections = value;
-                    var newValue = value as FixupCollection<paymentcollection>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixuppaymentcollections;
-                    }
-                }
-            }
-        }
-        private ICollection<paymentcollection> _paymentcollections;
 
         #endregion
         #region Association Fixup
@@ -208,6 +208,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (moneyreceipt item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.paymentmode, this))
+                    {
+                        item.paymentmode = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixuppaymentcollections(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (paymentcollection item in e.NewItems)
+                {
+                    item.paymentmode = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (paymentcollection item in e.OldItems)
                 {
                     if (ReferenceEquals(item.paymentmode, this))
                     {
@@ -252,28 +274,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (paymentrefund item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.paymentmode, this))
-                    {
-                        item.paymentmode = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixuppaymentcollections(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (paymentcollection item in e.NewItems)
-                {
-                    item.paymentmode = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (paymentcollection item in e.OldItems)
                 {
                     if (ReferenceEquals(item.paymentmode, this))
                     {

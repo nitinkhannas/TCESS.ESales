@@ -70,11 +70,38 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aapke Code {0} mein {1} ko Rs. {2} ka SMS prapt hua. Use Jama karne ki Id {3} hai.MMLGhato.
+        /// </summary>
+        internal static string CashSMSAccepted {
+            get {
+                return ResourceManager.GetString("CashSMSAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aapke code mein booking par rok lagi hai. Kripa Ghato se sampark kare.MMLGhato.
+        /// </summary>
+        internal static string CustomerInCautionList {
+            get {
+                return ResourceManager.GetString("CustomerInCautionList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone number not found. Contact Ghato sales office.
         /// </summary>
         internal static string PhoneNoNotFound {
             get {
                 return ResourceManager.GetString("PhoneNoNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aapke Code mein aur quantity balance nahi hai. Advance jama karne se pehle Ghato se sampark kare.MMLGhato.
+        /// </summary>
+        internal static string QuantityLifted {
+            get {
+                return ResourceManager.GetString("QuantityLifted", resourceCulture);
             }
         }
     }

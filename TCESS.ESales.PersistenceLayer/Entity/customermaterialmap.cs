@@ -136,21 +136,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private allotedquantity _allotedquantity;
     
-        public virtual materialtype materialtype
-        {
-            get { return _materialtype; }
-            set
-            {
-                if (!ReferenceEquals(_materialtype, value))
-                {
-                    var previousValue = _materialtype;
-                    _materialtype = value;
-                    Fixupmaterialtype(previousValue);
-                }
-            }
-        }
-        private materialtype _materialtype;
-    
         public virtual customer customer
         {
             get { return _customer; }
@@ -165,6 +150,21 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private customer _customer;
+    
+        public virtual materialtype materialtype
+        {
+            get { return _materialtype; }
+            set
+            {
+                if (!ReferenceEquals(_materialtype, value))
+                {
+                    var previousValue = _materialtype;
+                    _materialtype = value;
+                    Fixupmaterialtype(previousValue);
+                }
+            }
+        }
+        private materialtype _materialtype;
 
         #endregion
         #region Association Fixup
@@ -189,26 +189,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
     
-        private void Fixupmaterialtype(materialtype previousValue)
-        {
-            if (previousValue != null && previousValue.customermaterialmaps.Contains(this))
-            {
-                previousValue.customermaterialmaps.Remove(this);
-            }
-    
-            if (materialtype != null)
-            {
-                if (!materialtype.customermaterialmaps.Contains(this))
-                {
-                    materialtype.customermaterialmaps.Add(this);
-                }
-                if (Cust_Mat_MaterialId != materialtype.MaterialType_Id)
-                {
-                    Cust_Mat_MaterialId = materialtype.MaterialType_Id;
-                }
-            }
-        }
-    
         private void Fixupcustomer(customer previousValue)
         {
             if (previousValue != null && previousValue.customermaterialmaps.Contains(this))
@@ -225,6 +205,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (Cust_Mat_CustId != customer.Cust_Id)
                 {
                     Cust_Mat_CustId = customer.Cust_Id;
+                }
+            }
+        }
+    
+        private void Fixupmaterialtype(materialtype previousValue)
+        {
+            if (previousValue != null && previousValue.customermaterialmaps.Contains(this))
+            {
+                previousValue.customermaterialmaps.Remove(this);
+            }
+    
+            if (materialtype != null)
+            {
+                if (!materialtype.customermaterialmaps.Contains(this))
+                {
+                    materialtype.customermaterialmaps.Add(this);
+                }
+                if (Cust_Mat_MaterialId != materialtype.MaterialType_Id)
+                {
+                    Cust_Mat_MaterialId = materialtype.MaterialType_Id;
                 }
             }
         }

@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BookingRequestAccepted" xml:space="preserve">
-    <value>We have received your Booking Request. Our Booking Office will shortly verify and confirm booking</value>
-  </data>
-  <data name="CashSMSAccepted" xml:space="preserve">
-    <value>Aapke Code {0} mein {1} ko Rs. {2} ka SMS prapt hua. Use Jama karne ki Id {3} hai.MMLGhato</value>
-  </data>
-  <data name="CustomerInCautionList" xml:space="preserve">
-    <value>Aapke code mein booking par rok lagi hai. Kripa Ghato se sampark kare.MMLGhato</value>
-  </data>
-  <data name="PhoneNoNotFound" xml:space="preserve">
-    <value>Phone number not found. Contact Ghato sales office</value>
-  </data>
-  <data name="QuantityLifted" xml:space="preserve">
-    <value>Aapke Code mein aur quantity balance nahi hai. Advance jama karne se pehle Ghato se sampark kare.MMLGhato</value>
+  <data name="CashSMSInvalid" xml:space="preserve">
+    <value>SMS sahi nahi hai. Phir se bhejein. Is prakar type kare BOOK &lt;CODE&gt; A &lt;AMOUNT&gt; jaise BOOK A0123 A 15000.MMLGhato</value>
   </data>
 </root>

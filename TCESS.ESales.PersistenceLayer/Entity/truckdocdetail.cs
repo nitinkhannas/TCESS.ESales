@@ -104,21 +104,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual truckdetail truckdetail
-        {
-            get { return _truckdetail; }
-            set
-            {
-                if (!ReferenceEquals(_truckdetail, value))
-                {
-                    var previousValue = _truckdetail;
-                    _truckdetail = value;
-                    Fixuptruckdetail(previousValue);
-                }
-            }
-        }
-        private truckdetail _truckdetail;
-    
         public virtual doctype doctype
         {
             get { return _doctype; }
@@ -133,29 +118,24 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private doctype _doctype;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixuptruckdetail(truckdetail previousValue)
+        public virtual truckdetail truckdetail
         {
-            if (previousValue != null && previousValue.truckdocdetails.Contains(this))
+            get { return _truckdetail; }
+            set
             {
-                previousValue.truckdocdetails.Remove(this);
-            }
-    
-            if (truckdetail != null)
-            {
-                if (!truckdetail.truckdocdetails.Contains(this))
+                if (!ReferenceEquals(_truckdetail, value))
                 {
-                    truckdetail.truckdocdetails.Add(this);
-                }
-                if (Truck_Doc_TruckId != truckdetail.Truck_Id)
-                {
-                    Truck_Doc_TruckId = truckdetail.Truck_Id;
+                    var previousValue = _truckdetail;
+                    _truckdetail = value;
+                    Fixuptruckdetail(previousValue);
                 }
             }
         }
+        private truckdetail _truckdetail;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupdoctype(doctype previousValue)
         {
@@ -173,6 +153,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (Truck_Doc_DocId != doctype.Doc_Id)
                 {
                     Truck_Doc_DocId = doctype.Doc_Id;
+                }
+            }
+        }
+    
+        private void Fixuptruckdetail(truckdetail previousValue)
+        {
+            if (previousValue != null && previousValue.truckdocdetails.Contains(this))
+            {
+                previousValue.truckdocdetails.Remove(this);
+            }
+    
+            if (truckdetail != null)
+            {
+                if (!truckdetail.truckdocdetails.Contains(this))
+                {
+                    truckdetail.truckdocdetails.Add(this);
+                }
+                if (Truck_Doc_TruckId != truckdetail.Truck_Id)
+                {
+                    Truck_Doc_TruckId = truckdetail.Truck_Id;
                 }
             }
         }

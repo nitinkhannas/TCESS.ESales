@@ -138,6 +138,7 @@
           <xs:element minOccurs="0" name="Counter_Id" type="xs:int" />
           <xs:element minOccurs="0" name="Counter_IsActive" type="xs:boolean" />
           <xs:element minOccurs="0" name="Counter_IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Counter_IsPayment" type="xs:boolean" />
           <xs:element minOccurs="0" name="Counter_LastUpdatedDate" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Counter_MAC_Id" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Counter_Name" nillable="true" type="xs:string" />

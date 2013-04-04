@@ -744,6 +744,70 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<form27c_history> _form27c_history;
     
+        public virtual ICollection<paymentcollection> paymentcollections
+        {
+            get
+            {
+                if (_paymentcollections == null)
+                {
+                    var newCollection = new FixupCollection<paymentcollection>();
+                    newCollection.CollectionChanged += Fixuppaymentcollections;
+                    _paymentcollections = newCollection;
+                }
+                return _paymentcollections;
+            }
+            set
+            {
+                if (!ReferenceEquals(_paymentcollections, value))
+                {
+                    var previousValue = _paymentcollections as FixupCollection<paymentcollection>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixuppaymentcollections;
+                    }
+                    _paymentcollections = value;
+                    var newValue = value as FixupCollection<paymentcollection>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixuppaymentcollections;
+                    }
+                }
+            }
+        }
+        private ICollection<paymentcollection> _paymentcollections;
+    
+        public virtual ICollection<smspaymentregistration> smspaymentregistrations
+        {
+            get
+            {
+                if (_smspaymentregistrations == null)
+                {
+                    var newCollection = new FixupCollection<smspaymentregistration>();
+                    newCollection.CollectionChanged += Fixupsmspaymentregistrations;
+                    _smspaymentregistrations = newCollection;
+                }
+                return _smspaymentregistrations;
+            }
+            set
+            {
+                if (!ReferenceEquals(_smspaymentregistrations, value))
+                {
+                    var previousValue = _smspaymentregistrations as FixupCollection<smspaymentregistration>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupsmspaymentregistrations;
+                    }
+                    _smspaymentregistrations = value;
+                    var newValue = value as FixupCollection<smspaymentregistration>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupsmspaymentregistrations;
+                    }
+                }
+            }
+        }
+        private ICollection<smspaymentregistration> _smspaymentregistrations;
+    
         public virtual ICollection<smsregistration> smsregistrations
         {
             get
@@ -839,70 +903,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<paymentrefund> _paymentrefunds;
-    
-        public virtual ICollection<paymentcollection> paymentcollections
-        {
-            get
-            {
-                if (_paymentcollections == null)
-                {
-                    var newCollection = new FixupCollection<paymentcollection>();
-                    newCollection.CollectionChanged += Fixuppaymentcollections;
-                    _paymentcollections = newCollection;
-                }
-                return _paymentcollections;
-            }
-            set
-            {
-                if (!ReferenceEquals(_paymentcollections, value))
-                {
-                    var previousValue = _paymentcollections as FixupCollection<paymentcollection>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixuppaymentcollections;
-                    }
-                    _paymentcollections = value;
-                    var newValue = value as FixupCollection<paymentcollection>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixuppaymentcollections;
-                    }
-                }
-            }
-        }
-        private ICollection<paymentcollection> _paymentcollections;
-    
-        public virtual ICollection<smspaymentregistration> smspaymentregistrations
-        {
-            get
-            {
-                if (_smspaymentregistrations == null)
-                {
-                    var newCollection = new FixupCollection<smspaymentregistration>();
-                    newCollection.CollectionChanged += Fixupsmspaymentregistrations;
-                    _smspaymentregistrations = newCollection;
-                }
-                return _smspaymentregistrations;
-            }
-            set
-            {
-                if (!ReferenceEquals(_smspaymentregistrations, value))
-                {
-                    var previousValue = _smspaymentregistrations as FixupCollection<smspaymentregistration>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupsmspaymentregistrations;
-                    }
-                    _smspaymentregistrations = value;
-                    var newValue = value as FixupCollection<smspaymentregistration>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupsmspaymentregistrations;
-                    }
-                }
-            }
-        }
-        private ICollection<smspaymentregistration> _smspaymentregistrations;
 
         #endregion
         #region Association Fixup
@@ -1215,6 +1215,50 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
     
+        private void Fixuppaymentcollections(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (paymentcollection item in e.NewItems)
+                {
+                    item.customer = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (paymentcollection item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.customer, this))
+                    {
+                        item.customer = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupsmspaymentregistrations(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (smspaymentregistration item in e.NewItems)
+                {
+                    item.customer = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (smspaymentregistration item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.customer, this))
+                    {
+                        item.customer = null;
+                    }
+                }
+            }
+        }
+    
         private void Fixupsmsregistrations(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -1272,50 +1316,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (paymentrefund item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.customer, this))
-                    {
-                        item.customer = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixuppaymentcollections(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (paymentcollection item in e.NewItems)
-                {
-                    item.customer = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (paymentcollection item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.customer, this))
-                    {
-                        item.customer = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixupsmspaymentregistrations(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (smspaymentregistration item in e.NewItems)
-                {
-                    item.customer = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (smspaymentregistration item in e.OldItems)
                 {
                     if (ReferenceEquals(item.customer, this))
                     {

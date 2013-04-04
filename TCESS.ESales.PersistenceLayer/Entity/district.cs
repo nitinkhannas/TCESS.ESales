@@ -107,21 +107,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<agentdetail> _agentdetails;
     
-        public virtual state state
-        {
-            get { return _state; }
-            set
-            {
-                if (!ReferenceEquals(_state, value))
-                {
-                    var previousValue = _state;
-                    _state = value;
-                    Fixupstate(previousValue);
-                }
-            }
-        }
-        private state _state;
-    
         public virtual ICollection<customer> customers
         {
             get
@@ -153,6 +138,21 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<customer> _customers;
+    
+        public virtual state state
+        {
+            get { return _state; }
+            set
+            {
+                if (!ReferenceEquals(_state, value))
+                {
+                    var previousValue = _state;
+                    _state = value;
+                    Fixupstate(previousValue);
+                }
+            }
+        }
+        private state _state;
 
         #endregion
         #region Association Fixup

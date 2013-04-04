@@ -91,6 +91,12 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<authrepdocument> _authrepdocuments;
     
+        public ObjectSet<bank> banks
+        {
+            get { return _banks  ?? (_banks = CreateObjectSet<bank>("banks")); }
+        }
+        private ObjectSet<bank> _banks;
+    
         public ObjectSet<booking> bookings
         {
             get { return _bookings  ?? (_bookings = CreateObjectSet<booking>("bookings")); }
@@ -133,6 +139,12 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<custauthorizationdetail> _custauthorizationdetails;
     
+        public ObjectSet<customer> customers
+        {
+            get { return _customers  ?? (_customers = CreateObjectSet<customer>("customers")); }
+        }
+        private ObjectSet<customer> _customers;
+    
         public ObjectSet<customer_history> customer_history
         {
             get { return _customer_history  ?? (_customer_history = CreateObjectSet<customer_history>("customer_history")); }
@@ -174,6 +186,12 @@ namespace TCESS.ESales.PersistenceLayer.EF
             get { return _districts  ?? (_districts = CreateObjectSet<district>("districts")); }
         }
         private ObjectSet<district> _districts;
+    
+        public ObjectSet<doctype> doctypes
+        {
+            get { return _doctypes  ?? (_doctypes = CreateObjectSet<doctype>("doctypes")); }
+        }
+        private ObjectSet<doctype> _doctypes;
     
         public ObjectSet<form27c> form27c
         {
@@ -289,11 +307,35 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<pagesinrole> _pagesinroles;
     
+        public ObjectSet<paymentcollection> paymentcollections
+        {
+            get { return _paymentcollections  ?? (_paymentcollections = CreateObjectSet<paymentcollection>("paymentcollections")); }
+        }
+        private ObjectSet<paymentcollection> _paymentcollections;
+    
+        public ObjectSet<paymentmode> paymentmodes
+        {
+            get { return _paymentmodes  ?? (_paymentmodes = CreateObjectSet<paymentmode>("paymentmodes")); }
+        }
+        private ObjectSet<paymentmode> _paymentmodes;
+    
         public ObjectSet<paymenttransit> paymenttransits
         {
             get { return _paymenttransits  ?? (_paymenttransits = CreateObjectSet<paymenttransit>("paymenttransits")); }
         }
         private ObjectSet<paymenttransit> _paymenttransits;
+    
+        public ObjectSet<periodtype> periodtypes
+        {
+            get { return _periodtypes  ?? (_periodtypes = CreateObjectSet<periodtype>("periodtypes")); }
+        }
+        private ObjectSet<periodtype> _periodtypes;
+    
+        public ObjectSet<rejectionreason> rejectionreasons
+        {
+            get { return _rejectionreasons  ?? (_rejectionreasons = CreateObjectSet<rejectionreason>("rejectionreasons")); }
+        }
+        private ObjectSet<rejectionreason> _rejectionreasons;
     
         public ObjectSet<settlementofaccount> settlementofaccounts
         {
@@ -312,6 +354,12 @@ namespace TCESS.ESales.PersistenceLayer.EF
             get { return _smsexecutivelists  ?? (_smsexecutivelists = CreateObjectSet<smsexecutivelist>("smsexecutivelists")); }
         }
         private ObjectSet<smsexecutivelist> _smsexecutivelists;
+    
+        public ObjectSet<smspaymentregistration> smspaymentregistrations
+        {
+            get { return _smspaymentregistrations  ?? (_smspaymentregistrations = CreateObjectSet<smspaymentregistration>("smspaymentregistrations")); }
+        }
+        private ObjectSet<smspaymentregistration> _smspaymentregistrations;
     
         public ObjectSet<smsregistration> smsregistrations
         {
@@ -385,6 +433,18 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<useragentmapping> _useragentmappings;
     
+        public ObjectSet<userpaymentmodemapping> userpaymentmodemappings
+        {
+            get { return _userpaymentmodemappings  ?? (_userpaymentmodemappings = CreateObjectSet<userpaymentmodemapping>("userpaymentmodemappings")); }
+        }
+        private ObjectSet<userpaymentmodemapping> _userpaymentmodemappings;
+    
+        public ObjectSet<bookingandsettlement> bookingandsettlements
+        {
+            get { return _bookingandsettlements  ?? (_bookingandsettlements = CreateObjectSet<bookingandsettlement>("bookingandsettlements")); }
+        }
+        private ObjectSet<bookingandsettlement> _bookingandsettlements;
+    
         public ObjectSet<customerdetailsforcodealloc> customerdetailsforcodeallocs
         {
             get { return _customerdetailsforcodeallocs  ?? (_customerdetailsforcodeallocs = CreateObjectSet<customerdetailsforcodealloc>("customerdetailsforcodeallocs")); }
@@ -402,12 +462,6 @@ namespace TCESS.ESales.PersistenceLayer.EF
             get { return _dformreports  ?? (_dformreports = CreateObjectSet<dformreport>("dformreports")); }
         }
         private ObjectSet<dformreport> _dformreports;
-    
-        public ObjectSet<truckverification> truckverifications
-        {
-            get { return _truckverifications  ?? (_truckverifications = CreateObjectSet<truckverification>("truckverifications")); }
-        }
-        private ObjectSet<truckverification> _truckverifications;
     
         public ObjectSet<dispatchreport> dispatchreports
         {
@@ -439,59 +493,11 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<roadpermitreport> _roadpermitreports;
     
-        public ObjectSet<bookingandsettlement> bookingandsettlements
+        public ObjectSet<truckverification> truckverifications
         {
-            get { return _bookingandsettlements  ?? (_bookingandsettlements = CreateObjectSet<bookingandsettlement>("bookingandsettlements")); }
+            get { return _truckverifications  ?? (_truckverifications = CreateObjectSet<truckverification>("truckverifications")); }
         }
-        private ObjectSet<bookingandsettlement> _bookingandsettlements;
-    
-        public ObjectSet<doctype> doctypes
-        {
-            get { return _doctypes  ?? (_doctypes = CreateObjectSet<doctype>("doctypes")); }
-        }
-        private ObjectSet<doctype> _doctypes;
-    
-        public ObjectSet<periodtype> periodtypes
-        {
-            get { return _periodtypes  ?? (_periodtypes = CreateObjectSet<periodtype>("periodtypes")); }
-        }
-        private ObjectSet<periodtype> _periodtypes;
-    
-        public ObjectSet<customer> customers
-        {
-            get { return _customers  ?? (_customers = CreateObjectSet<customer>("customers")); }
-        }
-        private ObjectSet<customer> _customers;
-    
-        public ObjectSet<paymentmode> paymentmodes
-        {
-            get { return _paymentmodes  ?? (_paymentmodes = CreateObjectSet<paymentmode>("paymentmodes")); }
-        }
-        private ObjectSet<paymentmode> _paymentmodes;
-    
-        public ObjectSet<userpaymentmodemapping> userpaymentmodemappings
-        {
-            get { return _userpaymentmodemappings  ?? (_userpaymentmodemappings = CreateObjectSet<userpaymentmodemapping>("userpaymentmodemappings")); }
-        }
-        private ObjectSet<userpaymentmodemapping> _userpaymentmodemappings;
-    
-        public ObjectSet<rejectionreason> rejectionreasons
-        {
-            get { return _rejectionreasons  ?? (_rejectionreasons = CreateObjectSet<rejectionreason>("rejectionreasons")); }
-        }
-        private ObjectSet<rejectionreason> _rejectionreasons;
-    
-        public ObjectSet<bank> banks
-        {
-            get { return _banks  ?? (_banks = CreateObjectSet<bank>("banks")); }
-        }
-        private ObjectSet<bank> _banks;
-    
-        public ObjectSet<vwnonchequepayment> vwnonchequepayments
-        {
-            get { return _vwnonchequepayments  ?? (_vwnonchequepayments = CreateObjectSet<vwnonchequepayment>("vwnonchequepayments")); }
-        }
-        private ObjectSet<vwnonchequepayment> _vwnonchequepayments;
+        private ObjectSet<truckverification> _truckverifications;
     
         public ObjectSet<vwchequepayment> vwchequepayments
         {
@@ -499,17 +505,17 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<vwchequepayment> _vwchequepayments;
     
-        public ObjectSet<batchtransfer> batchtransfers
-        {
-            get { return _batchtransfers  ?? (_batchtransfers = CreateObjectSet<batchtransfer>("batchtransfers")); }
-        }
-        private ObjectSet<batchtransfer> _batchtransfers;
-    
         public ObjectSet<vwcollectionsummary> vwcollectionsummaries
         {
             get { return _vwcollectionsummaries  ?? (_vwcollectionsummaries = CreateObjectSet<vwcollectionsummary>("vwcollectionsummaries")); }
         }
         private ObjectSet<vwcollectionsummary> _vwcollectionsummaries;
+    
+        public ObjectSet<vwnonchequepayment> vwnonchequepayments
+        {
+            get { return _vwnonchequepayments  ?? (_vwnonchequepayments = CreateObjectSet<vwnonchequepayment>("vwnonchequepayments")); }
+        }
+        private ObjectSet<vwnonchequepayment> _vwnonchequepayments;
     
         public ObjectSet<paymentrefund> paymentrefunds
         {
@@ -517,17 +523,11 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<paymentrefund> _paymentrefunds;
     
-        public ObjectSet<paymentcollection> paymentcollections
+        public ObjectSet<batchtransfer> batchtransfers
         {
-            get { return _paymentcollections  ?? (_paymentcollections = CreateObjectSet<paymentcollection>("paymentcollections")); }
+            get { return _batchtransfers  ?? (_batchtransfers = CreateObjectSet<batchtransfer>("batchtransfers")); }
         }
-        private ObjectSet<paymentcollection> _paymentcollections;
-    
-        public ObjectSet<smspaymentregistration> smspaymentregistrations
-        {
-            get { return _smspaymentregistrations  ?? (_smspaymentregistrations = CreateObjectSet<smspaymentregistration>("smspaymentregistrations")); }
-        }
-        private ObjectSet<smspaymentregistration> _smspaymentregistrations;
+        private ObjectSet<batchtransfer> _batchtransfers;
 
         #endregion
     }

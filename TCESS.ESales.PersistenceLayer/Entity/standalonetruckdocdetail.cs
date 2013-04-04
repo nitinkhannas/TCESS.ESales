@@ -110,21 +110,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual standalonetruck standalonetruck
-        {
-            get { return _standalonetruck; }
-            set
-            {
-                if (!ReferenceEquals(_standalonetruck, value))
-                {
-                    var previousValue = _standalonetruck;
-                    _standalonetruck = value;
-                    Fixupstandalonetruck(previousValue);
-                }
-            }
-        }
-        private standalonetruck _standalonetruck;
-    
         public virtual doctype doctype
         {
             get { return _doctype; }
@@ -139,29 +124,24 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private doctype _doctype;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupstandalonetruck(standalonetruck previousValue)
+        public virtual standalonetruck standalonetruck
         {
-            if (previousValue != null && previousValue.standalonetruckdocdetails.Contains(this))
+            get { return _standalonetruck; }
+            set
             {
-                previousValue.standalonetruckdocdetails.Remove(this);
-            }
-    
-            if (standalonetruck != null)
-            {
-                if (!standalonetruck.standalonetruckdocdetails.Contains(this))
+                if (!ReferenceEquals(_standalonetruck, value))
                 {
-                    standalonetruck.standalonetruckdocdetails.Add(this);
-                }
-                if (StandaloneTruck_Doc_TruckId != standalonetruck.StandaloneTruck_Id)
-                {
-                    StandaloneTruck_Doc_TruckId = standalonetruck.StandaloneTruck_Id;
+                    var previousValue = _standalonetruck;
+                    _standalonetruck = value;
+                    Fixupstandalonetruck(previousValue);
                 }
             }
         }
+        private standalonetruck _standalonetruck;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupdoctype(doctype previousValue)
         {
@@ -179,6 +159,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (StandaloneTruck_Doc_DocId != doctype.Doc_Id)
                 {
                     StandaloneTruck_Doc_DocId = doctype.Doc_Id;
+                }
+            }
+        }
+    
+        private void Fixupstandalonetruck(standalonetruck previousValue)
+        {
+            if (previousValue != null && previousValue.standalonetruckdocdetails.Contains(this))
+            {
+                previousValue.standalonetruckdocdetails.Remove(this);
+            }
+    
+            if (standalonetruck != null)
+            {
+                if (!standalonetruck.standalonetruckdocdetails.Contains(this))
+                {
+                    standalonetruck.standalonetruckdocdetails.Add(this);
+                }
+                if (StandaloneTruck_Doc_TruckId != standalonetruck.StandaloneTruck_Id)
+                {
+                    StandaloneTruck_Doc_TruckId = standalonetruck.StandaloneTruck_Id;
                 }
             }
         }

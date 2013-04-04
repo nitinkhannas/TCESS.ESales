@@ -327,6 +327,33 @@ namespace TCESS.ESales.BusinessLayer.Services
         }
 
         /// <summary>
+        /// Get ustomer Details By MobileNumber and customer code
+        /// </summary>
+        /// <param name="mobileNumber">string:mobileNumber</param>
+        /// <returns>returns list of customers where Cust_MobileNo matches with mobileNumber</returns>
+        public CustomerDTO GetCustomerDetailsForCashSMS(string mobileNumber, string customerCode)
+        {
+            CustomerDTO customerDTO = new CustomerDTO();
+
+            customer customerEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<customer>>().
+                GetSingle(item => item.Cust_MobileNo == mobileNumber
+                    && item.Cust_Code == customerCode
+                    && item.Cust_IsDeleted == false
+                    && item.Cust_IsBlacklisted == false);
+
+            if (customerEntity != null)
+            {
+                AutoMapper.Mapper.Map(customerEntity, customerDTO);
+            }
+            else
+            {
+                customerDTO = null;
+            }
+            
+            return customerDTO;
+        }
+
+        /// <summary>
         /// Get Customer Details By Code
         /// </summary>
         /// <param name="customerCode"></param>

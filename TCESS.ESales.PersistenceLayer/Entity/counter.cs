@@ -93,6 +93,12 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             set;
         }
     
+        public virtual bool Counter_IsPayment
+        {
+            get;
+            set;
+        }
+    
         public virtual int Counter_CreatedBy
         {
             get;

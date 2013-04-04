@@ -74,21 +74,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual batchtransfer batchtransfer
-        {
-            get { return _batchtransfer; }
-            set
-            {
-                if (!ReferenceEquals(_batchtransfer, value))
-                {
-                    var previousValue = _batchtransfer;
-                    _batchtransfer = value;
-                    Fixupbatchtransfer(previousValue);
-                }
-            }
-        }
-        private batchtransfer _batchtransfer;
-    
         public virtual paymentcollection paymentcollection
         {
             get { return _paymentcollection; }
@@ -135,29 +120,24 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<smspaymentregistration> _smspaymentregistrations;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupbatchtransfer(batchtransfer previousValue)
+        public virtual batchtransfer batchtransfer
         {
-            if (previousValue != null && previousValue.paymenttransits.Contains(this))
+            get { return _batchtransfer; }
+            set
             {
-                previousValue.paymenttransits.Remove(this);
-            }
-    
-            if (batchtransfer != null)
-            {
-                if (!batchtransfer.paymenttransits.Contains(this))
+                if (!ReferenceEquals(_batchtransfer, value))
                 {
-                    batchtransfer.paymenttransits.Add(this);
-                }
-                if (PaymentTransit_BatchId != batchtransfer.BT_ID)
-                {
-                    PaymentTransit_BatchId = batchtransfer.BT_ID;
+                    var previousValue = _batchtransfer;
+                    _batchtransfer = value;
+                    Fixupbatchtransfer(previousValue);
                 }
             }
         }
+        private batchtransfer _batchtransfer;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixuppaymentcollection(paymentcollection previousValue)
         {
@@ -175,6 +155,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (PaymentTransit_CollectionId != paymentcollection.PC_Id)
                 {
                     PaymentTransit_CollectionId = paymentcollection.PC_Id;
+                }
+            }
+        }
+    
+        private void Fixupbatchtransfer(batchtransfer previousValue)
+        {
+            if (previousValue != null && previousValue.paymenttransits.Contains(this))
+            {
+                previousValue.paymenttransits.Remove(this);
+            }
+    
+            if (batchtransfer != null)
+            {
+                if (!batchtransfer.paymenttransits.Contains(this))
+                {
+                    batchtransfer.paymenttransits.Add(this);
+                }
+                if (PaymentTransit_BatchId != batchtransfer.BT_ID)
+                {
+                    PaymentTransit_BatchId = batchtransfer.BT_ID;
                 }
             }
         }

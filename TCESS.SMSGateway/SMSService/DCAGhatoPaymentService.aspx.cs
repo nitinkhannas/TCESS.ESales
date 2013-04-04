@@ -6,13 +6,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SMSServiceReference;
 using System.Text.RegularExpressions;
+using System.IO;
+using Resources;
 
 public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
-
+        FileInfo logFile = new FileInfo("c:\\myLogFile.txt");
+        var val = Request.QueryString;
+        using (StreamWriter logStream = logFile.AppendText())
+        {
+            logStream.Write(val.ToString());
+        }
         //Note: remove all html data from the .aspx page. dont use any html tag in response.
         //To Print Response use "Response.Write()" method.
         string strSource = "", strPhoneNumber = "", strMessage = "";
@@ -22,12 +29,12 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
 
         //Write all your code in this section
         //1. Trap all query string variables
-        if ((Request.QueryString["scid"] == null) && (Request.QueryString["scid"] == null) && (Request.QueryString["msg"] == null))
+        if ((Request.QueryString["userid"] == null) || (Request.QueryString["pno"] == null) || (Request.QueryString["msg"] == null))
         {
             return;
         }
 
-        strSource = Request.QueryString["scid"].ToString();
+        strSource = Request.QueryString["userid"].ToString();
         strPhoneNumber = Request.QueryString["pno"].ToString();
         strMessage = Request.QueryString["msg"].ToString();
 
@@ -52,7 +59,7 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
         }
 
         //print simple text using "Response.Write" what ever u want in response.
-        if (strKeyword.ToUpper() == "BOOK" && strSubKeyword.ToUpper() == "C")
+        if (strKeyword.ToUpper() == "BOOK" && strSubKeyword.ToUpper() == "A")
         {
             //DateTime midnight = DateTime.Today;
             //DateTime eightam = midnight.AddHours(8);
@@ -62,6 +69,7 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
             strAmount = Regex.Replace(strAmount, "[^0-9a-zA-Z]+", "");
             double dblAmount;
             bool isNum = Double.TryParse(Convert.ToString(strAmount), out dblAmount);
+            
             if (isNum)
             {
                 SMSServiceReference.SMSServiceClient sc = new SMSServiceClient();
@@ -70,12 +78,12 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
             }
             else
             {
-                Response.Write("Enter a valid amount");
+                Response.Write("Enter a Valid Amount");
             }
         }
         else
         {
-            Response.Write("Message in incorrect format, try again"); //Invalid Keyword
+            Response.Write(Messages.CashSMSInvalid); //Invalid Keyword
         }
     }
 }
