@@ -135,8 +135,16 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
                 {
                     paymentList = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerSMSPaymentList(Convert.ToInt32(lstCustomer[0].Cust_Id), null, 3);
                 }
-                grdCustomersDetails.DataSource = paymentList;
-                grdCustomersDetails.DataBind();
+                if (paymentList.Count > 0)
+                {
+                    grdCustomersDetails.DataSource = paymentList;
+                    grdCustomersDetails.DataBind();
+                }
+                else
+                {
+                    ucMessageBoxForGrid.ShowMessage("No Payment Messages Found");
+                    ResetControls(false);
+                }
 
             }
         }
