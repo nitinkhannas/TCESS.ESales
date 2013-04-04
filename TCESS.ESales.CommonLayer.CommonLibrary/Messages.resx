@@ -121,7 +121,7 @@
     <value>We have received your Booking Request. Our Booking Office will shortly verify and confirm booking</value>
   </data>
   <data name="CashSMSAccepted" xml:space="preserve">
-    <value>Aapke Code {0} mein {1} ko Rs. {2} ka SMS prapt hua. Use Jama karne ki Id {3} hai.MMLGhato</value>
+    <value>Cash Deposity ID {0} Code {1} Rs {2}. Yeh ID {3} tak manya hai. Is ID message ko counter par dikhaye.MMLGhato</value>
   </data>
   <data name="CustomerInCautionList" xml:space="preserve">
     <value>Aapke code mein booking par rok lagi hai. Kripa Ghato se sampark kare.MMLGhato</value>

@@ -338,8 +338,8 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
                     .SaveAndUpdateSMSPaymentDetails(InitializeSMSPaymentDetails(customer.Cust_Id, customerCode, amount)).ToString();
                 
                     returnMessage = string.Format(Messages.CashSMSAccepted,
-                    customerCode, String.Format("{0:dd/MM/yyyy}", DateTime.Now), amount, 
-                    paymentId);
+                    paymentId, customerCode, amount, String.Format("{0:dd/MM/yyyy}", 
+                    DateTime.Now.Add(Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]))));
                 }
                 else
                 {
