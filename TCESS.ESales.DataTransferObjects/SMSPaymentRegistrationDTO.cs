@@ -98,6 +98,24 @@ namespace TCESS.ESales.DataTransferObjects
             set;
         }
 
+        public string SMSPay_Cust_UnitName
+        {
+            get;
+            set;
+        }
+
+        public string SMSPay_Cust_UnitAddress
+        {
+            get;
+            set;
+        }
+
+        public string SMSPay_CustomerBusinessType
+        {
+            get;
+            set;
+        }
+
         #region Navigation Properties
         private CustomerDTO _customer;
 
