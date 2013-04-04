@@ -8,12 +8,12 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        FileInfo logFile = new FileInfo("c:\\myLogFile.txt");
-        var val = Request.QueryString;
-        using (StreamWriter logStream = logFile.AppendText())
-        {
-            logStream.Write(val.ToString());
-        }
+        //FileInfo logFile = new FileInfo("c:\\myLogFile.txt");
+        //var val = Request.QueryString;
+        //using (StreamWriter logStream = logFile.AppendText())
+        //{
+        //    logStream.Write(val.ToString());
+        //}
 
         //Note: remove all html data from the .aspx page. dont use any html tag in response.
         //To Print Response use "Response.Write()" method.
@@ -54,12 +54,13 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
         //print simple text using "Response.Write" what ever u want in response.
         if (strKeyword.ToUpper() == "BOOK" && strSubKeyword.ToUpper() == "A")
         {
-            strAmount = Regex.Replace(strAmount, "[^0-9a-zA-Z]+", "");
+            strAmount = strAmount.Trim();  //Regex.Replace(strAmount, "[^0-9a-zA-Z]+", "");
             double dblAmount;
             bool isNum = double.TryParse(Convert.ToString(strAmount), out dblAmount);
             
             if (isNum)
             {
+                strAmount = Math.Floor(dblAmount).ToString();
                 SMSServiceReference.SMSServiceClient sc = new SMSServiceClient();
                 string msg = sc.RespondPaymentSms(strPhoneNumber, strcustCode.ToUpper(),Convert.ToDecimal(strAmount));
                 Response.Write(msg);
