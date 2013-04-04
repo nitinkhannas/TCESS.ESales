@@ -337,9 +337,11 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
                     string paymentId = ESalesUnityContainer.Container.Resolve<IPaymentService>()
                     .SaveAndUpdateSMSPaymentDetails(InitializeSMSPaymentDetails(customer.Cust_Id, customerCode, amount)).ToString();
                 
+                    DateTime validtiyDays = DateTime.Now.AddDays(Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]));
+
                     returnMessage = string.Format(Messages.CashSMSAccepted,
-                    paymentId, customerCode, amount, String.Format("{0:dd/MM/yyyy}", 
-                    DateTime.Now.Add(Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]))));
+                    paymentId, customerCode, amount, 
+                    String.Format("{0:dd MMM yy}", validtiyDays));
                 }
                 else
                 {

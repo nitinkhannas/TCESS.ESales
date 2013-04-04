@@ -1,31 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using SMSServiceReference;
-using System.Text.RegularExpressions;
 using System.IO;
+using System.Text.RegularExpressions;
 using Resources;
+using SMSServiceReference;
 
 public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         FileInfo logFile = new FileInfo("c:\\myLogFile.txt");
         var val = Request.QueryString;
         using (StreamWriter logStream = logFile.AppendText())
         {
             logStream.Write(val.ToString());
         }
+
         //Note: remove all html data from the .aspx page. dont use any html tag in response.
         //To Print Response use "Response.Write()" method.
         string strSource = "", strPhoneNumber = "", strMessage = "";
         string strKeyword = "", strSubKeyword = "", strAmount = "", strcustCode = "";
-        //ShowQuerystringValues();
-        //Make WCF service call to validate the request
 
         //Write all your code in this section
         //1. Trap all query string variables
@@ -61,14 +54,9 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
         //print simple text using "Response.Write" what ever u want in response.
         if (strKeyword.ToUpper() == "BOOK" && strSubKeyword.ToUpper() == "A")
         {
-            //DateTime midnight = DateTime.Today;
-            //DateTime eightam = midnight.AddHours(8);
-            //DateTime sixpm = midnight.AddHours(18);
-            //if (System.DateTime.Now >= eightam && System.DateTime.Now <= sixpm)
-            //{
             strAmount = Regex.Replace(strAmount, "[^0-9a-zA-Z]+", "");
             double dblAmount;
-            bool isNum = Double.TryParse(Convert.ToString(strAmount), out dblAmount);
+            bool isNum = double.TryParse(Convert.ToString(strAmount), out dblAmount);
             
             if (isNum)
             {
@@ -78,7 +66,7 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
             }
             else
             {
-                Response.Write("Enter a Valid Amount");
+                Response.Write(Messages.InvalidAmount);
             }
         }
         else
