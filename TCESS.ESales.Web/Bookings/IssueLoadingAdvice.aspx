@@ -152,27 +152,58 @@
                 </tr>
                 <tr align="left">
                     <td nowrap="nowrap">
-                        <asp:Label ID="lblAdvanceAmount" runat="server" Text="<%$Resources:Labels, BookingAdvance%>" />
+                        <asp:Label ID="lblAdvanceAmount0" runat="server" 
+                            Text="Total Booking Advance" />
                     </td>
                     <td nowrap="nowrap">
-                        <asp:TextBox ID="txtAdvanceAmount" runat="server" CssClass="textbox" />
-                        <ajax:FilteredTextBoxExtender ID="FilteredAdvanceAmountExtender" runat="server" TargetControlID="txtAdvanceAmount"
-                            FilterMode="ValidChars" FilterType="Custom, Numbers" ValidChars="." />
-                        <asp:RequiredFieldValidator ID="AdvanceAmountValidator" ControlToValidate="txtAdvanceAmount"
-                            Display="Dynamic" ValidationGroup="SaveGroup" SetFocusOnError="true" Text="*"
-                            CssClass="failureNotification" ErrorMessage="<%$ Resources:ErrorMessages, RequiredAdvanceAmount %>"
-                            runat="server" />
-                        <ajax:ValidatorCalloutExtender ID="AdvanceAmountValidatorCallOutExtender" runat="server"
-                            TargetControlID="AdvanceAmountValidator" />
+                       
+                        <asp:TextBox ID="txtTotalBookingAdvance" runat="server" CssClass="textbox" 
+                            ReadOnly="True" />
+                        <ajax:FilteredTextBoxExtender ID="txtTotalBookingAdvance_FilteredTextBoxExtender" 
+                            runat="server" FilterMode="ValidChars" FilterType="Custom, Numbers" 
+                            TargetControlID="txtTotalBookingAdvance" ValidChars="." />
+                       
                     </td>
                     <td nowrap="nowrap">
                         &nbsp;
                     </td>
                     <td nowrap="nowrap">
-                        <asp:Label ID="lblStandalone" runat="server" Text="<%$Resources:Labels, AuthorizedTruck%>" />
+                        <asp:Label ID="lblAdvanceAmount" runat="server" 
+                            Text="Current Booking Advance" />
                     </td>
                     <td nowrap="nowrap">
-                        <table align="left">
+                        
+                        <asp:TextBox ID="txtAdvanceAmount" runat="server" CssClass="textbox" />
+                        <ajax:FilteredTextBoxExtender ID="FilteredAdvanceAmountExtender" runat="server" 
+                            FilterMode="ValidChars" FilterType="Custom, Numbers" 
+                            TargetControlID="txtAdvanceAmount" ValidChars="." />
+                        <asp:RequiredFieldValidator ID="AdvanceAmountValidator" runat="server" 
+                            ControlToValidate="txtAdvanceAmount" CssClass="failureNotification" 
+                            Display="Dynamic" 
+                            ErrorMessage="<%$ Resources:ErrorMessages, RequiredAdvanceAmount %>" 
+                            SetFocusOnError="true" Text="*" ValidationGroup="SaveGroup" />
+                        <ajax:ValidatorCalloutExtender ID="AdvanceAmountValidatorCallOutExtender" 
+                            runat="server" TargetControlID="AdvanceAmountValidator" />
+                        
+                    </td>
+                </tr>
+                <tr align="left">
+                    <td nowrap="nowrap">
+                        <asp:Label ID="lblAdvanceAmount1" runat="server" Text="Balance Advance" />
+                    </td>
+                    <td nowrap="nowrap">
+                        <asp:TextBox ID="txtBalanceAdvance" runat="server" CssClass="textbox" 
+                            ReadOnly="True" />
+                       
+                    </td>
+                    <td nowrap="nowrap">
+                        &nbsp;</td>
+                    <td nowrap="nowrap">
+                        <asp:Label ID="lblStandalone" runat="server" 
+                            Text="<%$Resources:Labels, AuthorizedTruck%>" />
+                    </td>
+                    <td nowrap="nowrap">
+                      <table align="left">
                             <tr>
                                 <td align="left">
                                     <asp:RadioButtonList ID="rdStandAlone" runat="server" RepeatDirection="Horizontal"
@@ -183,8 +214,7 @@
                                     </asp:RadioButtonList>
                                 </td>
                             </tr>
-                        </table>
-                    </td>
+                        </table></td>
                 </tr>
                 <tr align="left">
                     <td nowrap="nowrap">

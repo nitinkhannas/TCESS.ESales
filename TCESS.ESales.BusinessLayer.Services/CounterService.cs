@@ -55,7 +55,7 @@ namespace TCESS.ESales.BusinessLayer.Services
 
             List<counter> objlstCounter = ESalesUnityContainer.Container
                 .Resolve<IGenericRepository<counter>>().GetQuery()
-                .Where(item => item.Counter_Id > 0).ToList();
+                .Where(item => item.Counter_Id > 0 && item.Counter_IsPayment == false && item.Counter_IsDeleted == false).ToList();
 
             AutoMapper.Mapper.Map(objlstCounter, lstCounter);
             return lstCounter;

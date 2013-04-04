@@ -44,7 +44,11 @@ namespace TCESS.ESales.DataTransferObjects
 			get;
 			set;
 		}
-
+        public bool Counter_IsPayment
+        {
+            get;
+            set;
+        }
 		public bool Counter_IsActive
 		{
 			get;

@@ -707,9 +707,12 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         decimal currentAmount = GetAmount(currentLoad);
         if (totalAmountCollected >= (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount))
         {
-            lblAdvanceAmount.Text = "Balance Available";
-            decimal balanceAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
-            txtAdvanceAmount.Text = string.Format("{0:N2}", balanceAmount);
+            
+            decimal balanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
+            decimal balanceAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount);
+            txtAdvanceAmount.Text = string.Format("{0:N2}", currentAmount);
+            txtTotalBookingAdvance.Text = string.Format("{0:N2}", balanceAvlAmount);
+            txtBalanceAdvance.Text = string.Format("{0:N2}", balanceAmount);
             txtAdvanceAmount.ReadOnly = true;
         }
         else
@@ -864,6 +867,8 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         btnGetStandAlone.Enabled = true;
         ddlMaterial.Enabled = true;
         smsValidate.Enabled = true;
+        txtTotalBookingAdvance.Text = string.Empty;
+        txtBalanceAdvance.Text = string.Empty;
 
 
         ViewState[Globals.StateMgmtVariables.DOCID] = null;

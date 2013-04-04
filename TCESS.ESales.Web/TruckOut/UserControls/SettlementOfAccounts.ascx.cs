@@ -147,30 +147,32 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
             //}
         }
         //}
-        CheckCurrentBalance();
-        decimal handlingRate = Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtHandlingRate.Text);
-        decimal tiscoRate = Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtTiscoRate.Text);
-        decimal grossAmount = handlingRate + tiscoRate;
-        decimal serviceTax = handlingRate * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.SERVICETAX]) / 100);
-        decimal educationCess = serviceTax * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.EDUCATIONCESS]) / 100);
-        decimal higherEducationCess = serviceTax * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.HEDUCATIONCESS]) / 100);
-        decimal netAmount = grossAmount + serviceTax + educationCess + higherEducationCess;
-        decimal balance = netAmount - Convert.ToDecimal(txtAmtDeposited.Text);
+        if (CheckCurrentBalance())
+        {
+            decimal handlingRate = Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtHandlingRate.Text);
+            decimal tiscoRate = Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtTiscoRate.Text);
+            decimal grossAmount = handlingRate + tiscoRate;
+            decimal serviceTax = handlingRate * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.SERVICETAX]) / 100);
+            decimal educationCess = serviceTax * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.EDUCATIONCESS]) / 100);
+            decimal higherEducationCess = serviceTax * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.HEDUCATIONCESS]) / 100);
+            decimal netAmount = grossAmount + serviceTax + educationCess + higherEducationCess;
+            decimal balance = netAmount - Convert.ToDecimal(txtAmtDeposited.Text);
 
-        txtGrossAmount.Text = Convert.ToString(Math.Round(tiscoRate, 2));
-        txtHndGrossAmount.Text = Convert.ToString(Math.Round(handlingRate, 2));
-        txtTotalMatAmount.Text = Convert.ToString(Math.Round(tiscoRate, 2));
-        txtTotalHndAmount.Text = Convert.ToString(Math.Round(netAmount, 2) - Math.Round(tiscoRate, 2));
-        txtHndServiceTax.Text = Convert.ToString(Math.Round(serviceTax, 2));
-        txtHndEducationCess.Text = Convert.ToString(Math.Round(educationCess, 2));
-        txtHndHigherEducationCess.Text = Convert.ToString(Math.Round(higherEducationCess, 2));
-        txtTotalAmount.Text = Convert.ToString(Math.Round(netAmount, 2));
-        txtBalance.Text = Convert.ToString(Math.Round(balance, 2));
+            txtGrossAmount.Text = Convert.ToString(Math.Round(tiscoRate, 2));
+            txtHndGrossAmount.Text = Convert.ToString(Math.Round(handlingRate, 2));
+            txtTotalMatAmount.Text = Convert.ToString(Math.Round(tiscoRate, 2));
+            txtTotalHndAmount.Text = Convert.ToString(Math.Round(netAmount, 2) - Math.Round(tiscoRate, 2));
+            txtHndServiceTax.Text = Convert.ToString(Math.Round(serviceTax, 2));
+            txtHndEducationCess.Text = Convert.ToString(Math.Round(educationCess, 2));
+            txtHndHigherEducationCess.Text = Convert.ToString(Math.Round(higherEducationCess, 2));
+            txtTotalAmount.Text = Convert.ToString(Math.Round(netAmount, 2));
+            txtBalance.Text = Convert.ToString(Math.Round(balance, 2));
 
-        //Set enabled property of save button to true
-        btnSave.Enabled = true;
+            //Set enabled property of save button to true
+            btnSave.Enabled = true;
+        }
     }
-    private void CheckCurrentBalance()
+    private bool CheckCurrentBalance()
     {
         //get total deposit amount Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID])
         decimal totalAmountCollected = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentMadeByCustomer(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"]));
@@ -187,12 +189,14 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
         if (totalAmountCollected >= (totalMaterialLiftedAmount + currentAmount + totalRefundAmount))
         {
             txtAmtDeposited.Text = Convert.ToString(totalAmountCollected - totalMaterialLiftedAmount);
+            return true;
         }
         else
         {
             //Reset controls on page to default state
-            ResetControls();
             ucMessageBox.ShowMessage("In adequate funds");
+            ResetControls();
+            return false;
         }
     }
     private decimal GetAmount(decimal qty)
