@@ -130,7 +130,7 @@
     <div style="overflow: auto; width: 100%;">
         <Custom:GridViewAlwaysShow AllowPaging="True" ID="grdCustomersDetails" runat="server"
             AutoGenerateColumns="False" BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px"
-            Font-Size="Small" PageSize="12" Width="100%" HorizontalAlign="Center" CellPadding="5"
+            Font-Size="Small"  Width="100%" HorizontalAlign="Center" CellPadding="5"
             DataKeyNames="SMSPay_Id">
             <EmptyDataTemplate>
                 <asp:Label ID="lblNoRecordsFound" runat="server" Text="<%$Resources:Labels, NoRecordsFound%>" />
