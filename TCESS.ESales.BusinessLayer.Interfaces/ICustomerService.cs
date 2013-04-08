@@ -42,5 +42,7 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         IList<CustomerDTO> ValidateCustomerDetails(string customerCode, int validationTypeId, string validationValue);
 		int SaveAndUpdateCustomerPatner(CustomerPartnerDTO customerPartner);
         List<CustomerPartnerDTO> GetPatnerList(int customerId);
+        CustomerDTO GetBlacklistedCustomerDetailsForCashSMS(string mobileNumber, string customerCode);
+        
 	}
 }
