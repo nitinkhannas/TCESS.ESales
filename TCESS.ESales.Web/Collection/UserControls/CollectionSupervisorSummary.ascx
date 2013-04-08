@@ -111,6 +111,11 @@
                     <asp:Label ID="lblFirmName" runat="server" Text='<%# Bind("BT_Id") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="<%$Resources:Labels, Date%>">
+                <ItemTemplate>
+                    <asp:Label ID="lblPayDate" runat="server" Text='<%#Convert.ToDateTime(Eval("BT_CreatedDate")).ToString("dd-MMM-yyyy")%>' />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="<%$Resources:Labels, CounterName%>">
                 <ItemTemplate>
                     <asp:Label ID="lblOwnerName" runat="server" Text='<%# Bind("CounterName") %>' />
