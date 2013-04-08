@@ -318,7 +318,17 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
 
             if (customer == null)
             {
-                returnMessage = Messages.CustomerInCautionList;
+                CustomerDTO blacklistedCustomer = ESalesUnityContainer.Container.Resolve<ICustomerService>()
+               .GetBlacklistedCustomerDetailsForCashSMS(custPhoneNumber, customerCode);
+                if (blacklistedCustomer != null)
+                {
+                    returnMessage = Messages.CustomerInCautionList;
+                }
+                else
+                {
+                    returnMessage = Messages.PhoneNoNotFound;
+                }
+                
             }
             else if (customer.Cust_Id > 0)
             {
