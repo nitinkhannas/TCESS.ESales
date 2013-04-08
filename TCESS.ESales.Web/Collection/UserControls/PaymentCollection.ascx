@@ -178,7 +178,14 @@
             </td>
             <td nowrap="nowrap" colspan="4">
                 <asp:TextBox ID="txtMobileNo" onkeypress="return runScript(event)" runat="server"
-                    CssClass="textbox" MaxLength="15" />
+                    CssClass="textbox" MaxLength="13" />
+                
+                <asp:RegularExpressionValidator ID="MobileExpressionValidator" runat="server" ControlToValidate="txtMobileNo"
+                    Display="Dynamic" SetFocusOnError="true" Text="*" ValidationGroup="SaveGroup"
+                    ErrorMessage="<%$ Resources:ErrorMessages, InvalidMobileNumber %>" CssClass="failureNotification"
+                    ValidationExpression="^((\+)?(\d{2}))?(\d{10}){1}?$" />
+                <ajax:ValidatorCalloutExtender ID="MobileExpressionValidatorCalloutExtender" runat="server"
+                    TargetControlID="MobileExpressionValidator" />
                 <asp:RequiredFieldValidator ID="MobileNoValidator" ControlToValidate="txtMobileNo"
                     Display="Dynamic" ValidationGroup="SaveGroup" SetFocusOnError="true" Text="*"
                     CssClass="failureNotification" ErrorMessage="<%$ Resources:ErrorMessages, RequiredMobileNumber%>"
