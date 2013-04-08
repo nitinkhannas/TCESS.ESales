@@ -128,7 +128,7 @@
         </tr>
     </table>
     <div style="overflow: auto; width: 100%;">
-        <Custom:GridViewAlwaysShow AllowPaging="True" ID="grdCustomersDetails" runat="server"
+        <Custom:GridViewAlwaysShow AllowPaging="false" ID="grdCustomersDetails" runat="server"
             AutoGenerateColumns="False" BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px"
             Font-Size="Small"  Width="100%" HorizontalAlign="Center" CellPadding="5"
             DataKeyNames="SMSPay_Id">
