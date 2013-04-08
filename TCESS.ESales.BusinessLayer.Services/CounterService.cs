@@ -181,7 +181,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             DateTime Currentdate = DateTime.Now.Date;
             List<counterdetail> objlstCounterDetail = ESalesUnityContainer.Container
                 .Resolve<IGenericRepository<counterdetail>>().GetQuery()
-                .Where(item => item.CounterDetail_Date == Currentdate && item.CounterDetail_Agent_Id == agentId).ToList();
+                .Where(item => item.CounterDetail_Date == Currentdate && item.CounterDetail_Agent_Id == agentId && item.counter.Counter_IsPayment==false).ToList();
 
             AutoMapper.Mapper.Map(objlstCounterDetail, lstCounterDailyDetails);
             return lstCounterDailyDetails;
