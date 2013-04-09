@@ -797,12 +797,12 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
             ViewState[Globals.StateMgmtVariables.AGENTID] = lstCustomerMaterials[0].Cust_Mat_Customer.Cust_AgentId;
             ViewState[Globals.StateMgmtVariables.CUSTOMERBUSINESSTYPE] = lstCustomerMaterials[0].Cust_Mat_Customer.Cust_Business_Name;
 
-            if ((ViewState[Globals.StateMgmtVariables.CUSTOMERBUSINESSTYPE]).ToString() != "Bricks ")
-            {
-                txtAdvanceAmount.Text = "0";
+            //if ((ViewState[Globals.StateMgmtVariables.CUSTOMERBUSINESSTYPE]).ToString() != "Bricks ")
+            //{
+                //txtAdvanceAmount.Text = "0";
                 txtAdvanceAmount.ReadOnly = true;
-                ucMessageBox.ShowMessage("Hardcoke customer, Advance Amount is 0");
-            }
+               // ucMessageBox.ShowMessage("Hardcoke customer, Advance Amount is 0");
+            //}
 
             //Get customer document details by customer id
             IList<CustomerDocDetailsDTO> listCustomerDoc = ESalesUnityContainer.Container.Resolve<ICustomerDocService>()
@@ -906,7 +906,11 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         }
 
         bookingDetails.Booking_MaterialType_Id = Convert.ToInt32(ddlMaterial.SelectedItem.Value);
-        bookingDetails.Booking_AdvanceAmount = Convert.ToDecimal(txtAdvanceAmount.Text.Trim()); ;
+        bookingDetails.Booking_AdvanceAmount = Convert.ToDecimal(txtAdvanceAmount.Text.Trim());
+
+        bookingDetails.Booking_TotalAdvanceAmount = Convert.ToDecimal(txtTotalBookingAdvance.Text.Trim());
+        bookingDetails.Booking_BalanceAmount = Convert.ToDecimal(txtBalanceAdvance.Text.Trim());
+
         bookingDetails.Booking_TotalIssuedQty = Convert.ToInt32(txtTotalIssuedQty.Text.Trim());
         bookingDetails.Booking_Qty = Convert.ToInt32(txtCurrentQty.Text.Trim());
         bookingDetails.Booking_Status = rdBookingStatus.SelectedItem.Value == "1" ? true : false;
@@ -965,6 +969,10 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         txtMaxLiftQty.Text = CustomerMatDetails.Cust_Mat_AllotedQuantity.ToString();
         txtTotalIssuedQty.Text = booking.Booking_TotalIssuedQty.ToString();
         txtAdvanceAmount.Text = booking.Booking_AdvanceAmount.ToString();
+
+        txtTotalBookingAdvance.Text = booking.Booking_TotalAdvanceAmount.ToString();
+        txtBalanceAdvance.Text = booking.Booking_BalanceAmount.ToString();
+
         txtRejectionReason.Text = booking.Booking_RejectionReson;
 
         txtAdvanceAmount.ReadOnly = true;

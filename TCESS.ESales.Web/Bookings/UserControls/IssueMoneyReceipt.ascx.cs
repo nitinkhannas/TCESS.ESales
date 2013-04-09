@@ -35,7 +35,8 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
         ddlPaymentMode.DataSource = MasterList.GetListOfPaymentMode(false);
         ddlPaymentMode.DataBind();
         ddlPaymentMode.Items.Insert(0, new ListItem(Labels.SelectPaymentMode, "0"));
-        ddlPaymentMode.SelectedIndex = 1;
+        ddlPaymentMode.SelectedIndex = ddlPaymentMode.Items.IndexOf(ddlPaymentMode.Items.FindByValue("e-Collection")); ;
+        ddlPaymentMode.Enabled = false;
     }
 
     /// <summary>
@@ -63,7 +64,8 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
         ViewState[Globals.StateMgmtVariables.ADVANCEAMOUNT] = bookingDetail.Booking_AdvanceAmount;
         txtDCAName.Text = bookingDetail.Booking_Agent_AgentName;
         txtBookingDate.Text = Convert.ToDateTime(bookingDetail.Booking_CreatedDate).ToString("dd-MMM-yyyy");
-        
+        txtTotalBookingAdvance.Text = bookingDetail.Booking_TotalAdvanceAmount.ToString();
+        txtBalanceAdvance.Text=bookingDetail.Booking_BalanceAmount.ToString();
         //If registered truck
         if (bookingDetail.Booking_TruckType == false)
         {

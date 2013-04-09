@@ -59,7 +59,20 @@
     </tr>
     <tr align="left">
         <td>
-            <asp:Label ID="lblAdvAmount" runat="server" Text="<%$Resources:Labels, BookingAdvance%>" />
+            <asp:Label ID="lblAdvanceAmount0" runat="server" 
+                Text="<%$Resources:Labels, TotalBookingAdvance%>" />
+        </td>
+        <td>
+                       
+                        <asp:TextBox ID="txtTotalBookingAdvance" runat="server" CssClass="textbox" 
+                            ReadOnly="True" />
+                        <ajax:FilteredTextBoxExtender ID="txtTotalBookingAdvance_FilteredTextBoxExtender" 
+                            runat="server" FilterMode="ValidChars" FilterType="Custom, Numbers" 
+                            TargetControlID="txtTotalBookingAdvance" ValidChars="." />
+                       
+                    </td>
+        <td>
+            <asp:Label ID="lblAdvAmount" runat="server" Text="<%$Resources:Labels, CurrentBookingAdvance%>" />
         </td>
         <td>
             <asp:TextBox ID="txtAdvAmount" runat="server" CssClass="textbox" MaxLength="6" 
@@ -76,6 +89,17 @@
             <ajax:ValidatorCalloutExtender ID="AdvAmountCustomValidatorCallout" runat="server"
                 TargetControlID="AdvAmountCustomValidator" />
         </td>
+    </tr>
+    <tr align="left">
+        <td>
+            <asp:Label ID="lblAdvanceAmount1" runat="server" 
+                Text="<%$Resources:Labels, BalanceAdvance%>" />
+        </td>
+        <td>
+                        <asp:TextBox ID="txtBalanceAdvance" runat="server" CssClass="textbox" 
+                            ReadOnly="True" />
+                       
+                    </td>
         <td>
             <asp:Label ID="lblPaymentMode" runat="server" Text="<%$Resources:Labels, PaymentMode%>" />
         </td>
@@ -89,13 +113,13 @@
             <ajax:ValidatorCalloutExtender ID="PaymentModeValidatorCallout" runat="server" TargetControlID="PaymentModeValidator" />
         </td>
     </tr>
-    <tr align="left">
+    <tr align="left"  visible="false">
         <td>
             <asp:Label ID="lblInstrumentNo" runat="server" Text="<%$Resources:Labels, InstrumentNo%>" />
         </td>
         <td>
             <asp:TextBox ID="txtInstrumentNo" runat="server" CssClass="textbox" 
-                MaxLength="16" >0</asp:TextBox>
+                MaxLength="16"  Text="0"></asp:TextBox>
             <asp:RequiredFieldValidator ID="InstrumentNoValidator" ControlToValidate="txtInstrumentNo"
                 Display="Dynamic" ValidationGroup="AddGroup" SetFocusOnError="true" Text="*"
                 CssClass="failureNotification" ErrorMessage="<%$ Resources:ErrorMessages, RequiredInstrumentNo %>"
@@ -138,7 +162,7 @@
     </tr>
     <tr>
         <td align="center" colspan="4">
-            <asp:Button ID="btnSave" runat="server" Text="<%$Resources:Labels, Collect%>" CssClass="button"
+            <asp:Button ID="btnSave" runat="server" Text="<%$Resources:Labels, Save%>" CssClass="button"
                 OnClick="btnCollect_Click" ValidationGroup="AddGroup" />&nbsp;
             <asp:Button ID="btnReset" runat="server" Text="<%$Resources:Labels, Reset%>" CssClass="button"
                 OnClick="btnReset_Click" />

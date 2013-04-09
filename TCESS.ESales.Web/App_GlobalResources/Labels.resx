@@ -1350,4 +1350,13 @@
   <data name="SMSId" xml:space="preserve">
     <value>SMS Id</value>
   </data>
+  <data name="BalanceAdvance" xml:space="preserve">
+    <value>Balance Advance</value>
+  </data>
+  <data name="CurrentBookingAdvance" xml:space="preserve">
+    <value>Current Booking Advance</value>
+  </data>
+  <data name="TotalBookingAdvance" xml:space="preserve">
+    <value>Total Booking Advance</value>
+  </data>
 </root>

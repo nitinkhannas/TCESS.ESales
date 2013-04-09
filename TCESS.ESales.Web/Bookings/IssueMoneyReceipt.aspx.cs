@@ -67,8 +67,8 @@ public partial class Bookings_IssueMoneyReceipt : BasePage
         pnlIssueMoneyReceipt.Visible = true;
         
         ucIssueMoneyReceipt.GetBookingDetails(bookingId);
-        if(((TextBox)ucIssueMoneyReceipt.FindControl("txtAdvAmount")).ReadOnly)
-            ucMessageBox.ShowMessage("Hardcoke customer, Advance Amount is 0");
+        //if(((TextBox)ucIssueMoneyReceipt.FindControl("txtAdvAmount")).ReadOnly)
+          //  ucMessageBox.ShowMessage("Hardcoke customer, Advance Amount is 0");
     }
     /// <summary>
     /// Event for Page Load

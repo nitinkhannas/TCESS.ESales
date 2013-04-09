@@ -14,7 +14,7 @@
             <div class="overlay">
                 <div class="ajaxloader">
                     <img src='<%= ResolveClientUrl("~/Images/ajax-loader.gif")%>' style="vertical-align: middle"
-                        alt="Processing" />Processing ...
+                        alt="Processing" />Sending SMS...
                 </div>
             </div>
         </ProgressTemplate>
@@ -153,7 +153,7 @@
                 <tr align="left">
                     <td nowrap="nowrap">
                         <asp:Label ID="lblAdvanceAmount0" runat="server" 
-                            Text="Total Booking Advance" />
+                            Text="<%$Resources:Labels, TotalBookingAdvance%>" />
                     </td>
                     <td nowrap="nowrap">
                        
@@ -169,7 +169,7 @@
                     </td>
                     <td nowrap="nowrap">
                         <asp:Label ID="lblAdvanceAmount" runat="server" 
-                            Text="Current Booking Advance" />
+                            Text="<%$Resources:Labels, CurrentBookingAdvance%>"/>
                     </td>
                     <td nowrap="nowrap">
                         
@@ -189,7 +189,7 @@
                 </tr>
                 <tr align="left">
                     <td nowrap="nowrap">
-                        <asp:Label ID="lblAdvanceAmount1" runat="server" Text="Balance Advance" />
+                        <asp:Label ID="lblAdvanceAmount1" runat="server" Text="<%$Resources:Labels, BalanceAdvance%>" />
                     </td>
                     <td nowrap="nowrap">
                         <asp:TextBox ID="txtBalanceAdvance" runat="server" CssClass="textbox" 

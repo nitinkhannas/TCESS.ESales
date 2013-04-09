@@ -233,7 +233,17 @@ namespace TCESS.ESales.DataTransferObjects
             get;
             set;
         }
+        public Nullable<decimal> Booking_TotalAdvanceAmount
+        {
+            get;
+            set;
+        }
 
+        public Nullable<decimal> Booking_BalanceAmount
+        {
+            get;
+            set;
+        }
         public int Booking_TotalIssuedQty
         {
             get;
@@ -383,7 +393,7 @@ namespace TCESS.ESales.DataTransferObjects
             get;
             set;
         }
-        
+
         #endregion
 
         #region Navigation Properties
