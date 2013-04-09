@@ -425,7 +425,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
                 //Get advance amount deposited details
                 MoneyReceiptDTO moneyReceiptDetails = ESalesUnityContainer.Container.Resolve<IMoneyReceiptService>()
                     .GetMoneyReceiptById(0, bookingDetails.Booking_Id);
-                txtAmtDeposited.Text = Convert.ToString(moneyReceiptDetails.MoneyReceipt_AmountPaid);
+               // txtAmtDeposited.Text = Convert.ToString(moneyReceiptDetails.MoneyReceipt_AmountPaid);
 
                 //Set values in viewstate
                 ViewState[Globals.StateMgmtVariables.SERVICETAX] = bookingDetails.Booking_MaterialType_ServiceTax;

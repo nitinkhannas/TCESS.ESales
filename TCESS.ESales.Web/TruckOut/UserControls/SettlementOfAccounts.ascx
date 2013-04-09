@@ -257,7 +257,7 @@
     </tr>
     <tr align="left">
         <td>
-            <asp:Label ID="lblAmtDeposited" runat="server" Text="<%$Resources:Labels, AdvanceReceived%>" />
+            <asp:Label ID="lblAmtDeposited" runat="server" Text="<%$Resources:Labels, TotalBookingAdvance%>" />
         </td>
         <td>
             <asp:TextBox ID="txtAmtDeposited" runat="server" CssClass="textbox" ReadOnly="true" />
@@ -271,7 +271,7 @@
     </tr>
     <tr align="left">
         <td>
-            <asp:Label ID="lblBalance" runat="server" Text="<%$Resources:Labels, Balance%>" />
+            <asp:Label ID="lblBalance" runat="server" Text="<%$Resources:Labels, BalanceAdvance%>" />
         </td>
         <td>
             <asp:TextBox ID="txtBalance" runat="server" CssClass="textbox" ReadOnly="true" />
