@@ -199,38 +199,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<booking> bookings
-        {
-            get
-            {
-                if (_bookings == null)
-                {
-                    var newCollection = new FixupCollection<booking>();
-                    newCollection.CollectionChanged += Fixupbookings;
-                    _bookings = newCollection;
-                }
-                return _bookings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_bookings, value))
-                {
-                    var previousValue = _bookings as FixupCollection<booking>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupbookings;
-                    }
-                    _bookings = value;
-                    var newValue = value as FixupCollection<booking>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupbookings;
-                    }
-                }
-            }
-        }
-        private ICollection<booking> _bookings;
-    
         public virtual ICollection<standalonetruckdocdetail> standalonetruckdocdetails
         {
             get
@@ -307,6 +275,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private truckregtype _truckregtype;
+    
+        public virtual ICollection<booking> bookings
+        {
+            get
+            {
+                if (_bookings == null)
+                {
+                    var newCollection = new FixupCollection<booking>();
+                    newCollection.CollectionChanged += Fixupbookings;
+                    _bookings = newCollection;
+                }
+                return _bookings;
+            }
+            set
+            {
+                if (!ReferenceEquals(_bookings, value))
+                {
+                    var previousValue = _bookings as FixupCollection<booking>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupbookings;
+                    }
+                    _bookings = value;
+                    var newValue = value as FixupCollection<booking>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupbookings;
+                    }
+                }
+            }
+        }
+        private ICollection<booking> _bookings;
 
         #endregion
         #region Association Fixup
@@ -377,28 +377,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
     
-        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (booking item in e.NewItems)
-                {
-                    item.standalonetruck = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (booking item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.standalonetruck, this))
-                    {
-                        item.standalonetruck = null;
-                    }
-                }
-            }
-        }
-    
         private void Fixupstandalonetruckdocdetails(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -412,6 +390,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (standalonetruckdocdetail item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.standalonetruck, this))
+                    {
+                        item.standalonetruck = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (booking item in e.NewItems)
+                {
+                    item.standalonetruck = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (booking item in e.OldItems)
                 {
                     if (ReferenceEquals(item.standalonetruck, this))
                     {

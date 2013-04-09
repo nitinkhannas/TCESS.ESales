@@ -76,38 +76,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<booking> bookings
-        {
-            get
-            {
-                if (_bookings == null)
-                {
-                    var newCollection = new FixupCollection<booking>();
-                    newCollection.CollectionChanged += Fixupbookings;
-                    _bookings = newCollection;
-                }
-                return _bookings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_bookings, value))
-                {
-                    var previousValue = _bookings as FixupCollection<booking>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupbookings;
-                    }
-                    _bookings = value;
-                    var newValue = value as FixupCollection<booking>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupbookings;
-                    }
-                }
-            }
-        }
-        private ICollection<booking> _bookings;
-    
         public virtual ICollection<bookingmodedetail> bookingmodedetails
         {
             get
@@ -139,31 +107,41 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<bookingmodedetail> _bookingmodedetails;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
+        public virtual ICollection<booking> bookings
         {
-            if (e.NewItems != null)
+            get
             {
-                foreach (booking item in e.NewItems)
+                if (_bookings == null)
                 {
-                    item.bookingmode = this;
+                    var newCollection = new FixupCollection<booking>();
+                    newCollection.CollectionChanged += Fixupbookings;
+                    _bookings = newCollection;
                 }
+                return _bookings;
             }
-    
-            if (e.OldItems != null)
+            set
             {
-                foreach (booking item in e.OldItems)
+                if (!ReferenceEquals(_bookings, value))
                 {
-                    if (ReferenceEquals(item.bookingmode, this))
+                    var previousValue = _bookings as FixupCollection<booking>;
+                    if (previousValue != null)
                     {
-                        item.bookingmode = null;
+                        previousValue.CollectionChanged -= Fixupbookings;
+                    }
+                    _bookings = value;
+                    var newValue = value as FixupCollection<booking>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupbookings;
                     }
                 }
             }
         }
+        private ICollection<booking> _bookings;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupbookingmodedetails(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -178,6 +156,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (bookingmodedetail item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.bookingmode, this))
+                    {
+                        item.bookingmode = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (booking item in e.NewItems)
+                {
+                    item.bookingmode = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (booking item in e.OldItems)
                 {
                     if (ReferenceEquals(item.bookingmode, this))
                     {

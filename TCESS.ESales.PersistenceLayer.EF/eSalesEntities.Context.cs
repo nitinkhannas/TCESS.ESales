@@ -97,12 +97,6 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<bank> _banks;
     
-        public ObjectSet<booking> bookings
-        {
-            get { return _bookings  ?? (_bookings = CreateObjectSet<booking>("bookings")); }
-        }
-        private ObjectSet<booking> _bookings;
-    
         public ObjectSet<bookingmode> bookingmodes
         {
             get { return _bookingmodes  ?? (_bookingmodes = CreateObjectSet<bookingmode>("bookingmodes")); }
@@ -528,6 +522,12 @@ namespace TCESS.ESales.PersistenceLayer.EF
             get { return _batchtransfers  ?? (_batchtransfers = CreateObjectSet<batchtransfer>("batchtransfers")); }
         }
         private ObjectSet<batchtransfer> _batchtransfers;
+    
+        public ObjectSet<booking> bookings
+        {
+            get { return _bookings  ?? (_bookings = CreateObjectSet<booking>("bookings")); }
+        }
+        private ObjectSet<booking> _bookings;
 
         #endregion
     }

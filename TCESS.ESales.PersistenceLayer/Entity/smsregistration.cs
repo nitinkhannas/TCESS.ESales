@@ -132,21 +132,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual booking booking
-        {
-            get { return _booking; }
-            set
-            {
-                if (!ReferenceEquals(_booking, value))
-                {
-                    var previousValue = _booking;
-                    _booking = value;
-                    Fixupbooking(previousValue);
-                }
-            }
-        }
-        private booking _booking;
-    
         public virtual customer customer
         {
             get { return _customer; }
@@ -161,11 +146,46 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private customer _customer;
+    
+        public virtual booking booking
+        {
+            get { return _booking; }
+            set
+            {
+                if (!ReferenceEquals(_booking, value))
+                {
+                    var previousValue = _booking;
+                    _booking = value;
+                    Fixupbooking(previousValue);
+                }
+            }
+        }
+        private booking _booking;
 
         #endregion
         #region Association Fixup
     
         private bool _settingFK = false;
+    
+        private void Fixupcustomer(customer previousValue)
+        {
+            if (previousValue != null && previousValue.smsregistrations.Contains(this))
+            {
+                previousValue.smsregistrations.Remove(this);
+            }
+    
+            if (customer != null)
+            {
+                if (!customer.smsregistrations.Contains(this))
+                {
+                    customer.smsregistrations.Add(this);
+                }
+                if (SMSReg_CustId != customer.Cust_Id)
+                {
+                    SMSReg_CustId = customer.Cust_Id;
+                }
+            }
+        }
     
         private void Fixupbooking(booking previousValue)
         {
@@ -188,26 +208,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             else if (!_settingFK)
             {
                 SMSReg_Booking_Id = null;
-            }
-        }
-    
-        private void Fixupcustomer(customer previousValue)
-        {
-            if (previousValue != null && previousValue.smsregistrations.Contains(this))
-            {
-                previousValue.smsregistrations.Remove(this);
-            }
-    
-            if (customer != null)
-            {
-                if (!customer.smsregistrations.Contains(this))
-                {
-                    customer.smsregistrations.Add(this);
-                }
-                if (SMSReg_CustId != customer.Cust_Id)
-                {
-                    SMSReg_CustId = customer.Cust_Id;
-                }
             }
         }
 
