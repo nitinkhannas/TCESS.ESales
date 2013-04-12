@@ -1359,4 +1359,7 @@
   <data name="TotalBookingAdvance" xml:space="preserve">
     <value>Total Booking Advance</value>
   </data>
+  <data name="BatchNo" xml:space="preserve">
+    <value>Batch No</value>
+  </data>
 </root>
