@@ -58,7 +58,7 @@
             <td nowrap="nowrap" runat="server" id="tdVal3">
                 <asp:Label ID="Label3" runat="server" Text="<%$Resources:Labels, DocumentNumber%>" />
             </td>
-            <td nowrap="nowrap">
+            <td nowrap="nowrap" id="tdVal6" runat="server">
                 <asp:TextBox ID="txtValidationValue" onkeypress="return runScript(event)" runat="server"
                     CssClass="textbox" MaxLength="15" />
                 <asp:RequiredFieldValidator ID="ValidationValueValidator" ControlToValidate="txtValidationValue"
@@ -67,6 +67,8 @@
                     runat="server" />
                 <ajax:FilteredTextBoxExtender ID="ValidationValueValidatorExtender" runat="server"
                     TargetControlID="txtValidationValue" FilterType="LowercaseLetters, UppercaseLetters, Numbers" />
+            </td>
+            <td>
                 <asp:Button ID="btnValidate" runat="server" CssClass="button" OnClick="btnValidate_Click"
                     Text="Validate" ValidationGroup="ValidateGroup" />
             </td>
@@ -197,7 +199,7 @@
             </td>
             <td nowrap="nowrap">
                 <asp:TextBox ID="txtInstrumentNumber" onkeypress="return runScript(event)" runat="server"
-                    CssClass="textbox" />
+                    CssClass="textbox" MaxLength="20" />
                 <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtInstrumentNumber"
                     FilterMode="ValidChars" FilterType="Numbers" />
                 <asp:RequiredFieldValidator ID="InstrumentNumberValidator" runat="server" ControlToValidate="txtInstrumentNumber"
