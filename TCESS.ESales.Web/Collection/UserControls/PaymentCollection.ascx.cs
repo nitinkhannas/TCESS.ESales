@@ -158,7 +158,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         if (Page.IsValid)
         {
             SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
-                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()), 
+                .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()),
                 Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]));
 
             //Get customer details based on the search information entered
@@ -168,7 +168,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             //Bind customer details with the customer list
             BindCustomerDetails(lstCustomer, true);
 
-            if (smsPaymentDetails.SMSPay_Amount > 0)
+            if (smsPaymentDetails.SMSPay_Amount > 0 && lstCustomer[0].Cust_IsBlacklisted == false)
             {
                 txtAmount.Text = smsPaymentDetails.SMSPay_Amount.ToString();
                 txtAmount.ReadOnly = true;
@@ -339,7 +339,8 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         }
     }
 
-    private void ResetControls(bool clearSearchParameters)
+    private void 
+        ResetControls(bool clearSearchParameters)
     {
         if (clearSearchParameters)
         {
@@ -347,13 +348,16 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             {
                 txtCustomerCode.Text = string.Empty;
                 btnValidateAmount.Enabled = false;
-                txtRemarks.Text = string.Empty;
+                base.ShowBlankRowInGrid<CustomerDTO>(grdCustomersDetails);
             }
-
-            ddlValidationType.SelectedValue = "0";
-            txtValidationValue.Text = string.Empty;
+            if (tdVal1.Visible)
+            {
+                GetDocumentTypeToValidate();
+                ddlValidationType.SelectedValue = "0";
+                txtValidationValue.Text = string.Empty;
+            }
         }
-
+        txtRemarks.Text = string.Empty;
         txtAmount.ReadOnly = false;
         txtAmount.Text = string.Empty;
         txtInstrumentNumber.Text = string.Empty;
@@ -362,6 +366,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         txtPayerName.Text = string.Empty;
         txtMobileNo.Text = string.Empty;
         txtBranchName.Text = string.Empty;
+        txtIFSCCode.Text = string.Empty;
         btnAccept.Enabled = false;
         ViewState[Globals.StateMgmtVariables.NEWCOLLECTIONID] = null;
     }
@@ -551,7 +556,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
                 .Resolve<IPaymentService>().GetSMSPaymentDetails(Convert.ToInt32(txtSMSId.Text.Trim()),
                 Convert.ToInt32(ConfigurationManager.AppSettings["AdvanceSMSValidDays"]));
-        
+
         if (smsPaymentDetails.SMSPay_Id > 0)
         {
             smsPaymentDetails.SMSPay_Status = true;

@@ -179,7 +179,6 @@
             <td nowrap="nowrap" colspan="4">
                 <asp:TextBox ID="txtMobileNo" onkeypress="return runScript(event)" runat="server"
                     CssClass="textbox" MaxLength="13" />
-                
                 <asp:RegularExpressionValidator ID="MobileExpressionValidator" runat="server" ControlToValidate="txtMobileNo"
                     Display="Dynamic" SetFocusOnError="true" Text="*" ValidationGroup="SaveGroup"
                     ErrorMessage="<%$ Resources:ErrorMessages, InvalidMobileNumber %>" CssClass="failureNotification"
@@ -199,6 +198,8 @@
             <td nowrap="nowrap">
                 <asp:TextBox ID="txtInstrumentNumber" onkeypress="return runScript(event)" runat="server"
                     CssClass="textbox" />
+                <ajax:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtInstrumentNumber"
+                    FilterMode="ValidChars" FilterType="Numbers" />
                 <asp:RequiredFieldValidator ID="InstrumentNumberValidator" runat="server" ControlToValidate="txtInstrumentNumber"
                     CssClass="failureNotification" Display="Dynamic" ErrorMessage="<%$ Resources:ErrorMessages, RequiredInstrumentNumber%>"
                     SetFocusOnError="true" Text="*" ValidationGroup="SaveGroup" />
@@ -267,8 +268,8 @@
             <td nowrap="nowrap" colspan="4">
                 <asp:TextBox ID="txtIFSCCode" onkeypress="return runScript(event)" runat="server"
                     CssClass="textbox" />
-                <ajax:FilteredTextBoxExtender ID="IFSCCodeFilteredTextBoxExtender" runat="server"
-                    TargetControlID="txtIFSCCode" FilterMode="ValidChars" ValidChars=" " FilterType="Custom, UppercaseLetters, LowercaseLetters" />
+                <%--<ajax:FilteredTextBoxExtender ID="IFSCCodeFilteredTextBoxExtender" runat="server"
+                    TargetControlID="txtIFSCCode" FilterMode="ValidChars" ValidChars=" " FilterType="Custom, UppercaseLetters, LowercaseLetters" />--%>
                 <asp:RequiredFieldValidator ID="IFSCCodeValidator" runat="server" ControlToValidate="txtIFSCCode"
                     CssClass="failureNotification" Display="Dynamic" ErrorMessage="<%$ Resources:ErrorMessages, RequiredIFSCCode%>"
                     SetFocusOnError="true" Text="*" ValidationGroup="SaveGroup" />
