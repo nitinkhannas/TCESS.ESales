@@ -193,9 +193,6 @@
     <Compile Include="Entity\my_aspnet_membership.cs">
       <DependentUpon>eSalesEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\my_aspnet_profiles.cs">
-      <DependentUpon>eSalesEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entity\my_aspnet_roles.cs">
       <DependentUpon>eSalesEntities.tt</DependentUpon>
     </Compile>

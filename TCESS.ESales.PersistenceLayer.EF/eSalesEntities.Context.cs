@@ -277,12 +277,6 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<my_aspnet_membership> _my_aspnet_membership;
     
-        public ObjectSet<my_aspnet_profiles> my_aspnet_profiles
-        {
-            get { return _my_aspnet_profiles  ?? (_my_aspnet_profiles = CreateObjectSet<my_aspnet_profiles>("my_aspnet_profiles")); }
-        }
-        private ObjectSet<my_aspnet_profiles> _my_aspnet_profiles;
-    
         public ObjectSet<my_aspnet_roles> my_aspnet_roles
         {
             get { return _my_aspnet_roles  ?? (_my_aspnet_roles = CreateObjectSet<my_aspnet_roles>("my_aspnet_roles")); }

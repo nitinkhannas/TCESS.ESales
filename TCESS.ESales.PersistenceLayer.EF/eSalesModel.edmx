@@ -45,7 +45,6 @@
           <EntitySet Name="my_ameblocks" EntityType="eSalesModel.Store.my_ameblocks" store:Type="Tables" Schema="esales" />
           <EntitySet Name="my_aspnet_applications" EntityType="eSalesModel.Store.my_aspnet_applications" store:Type="Tables" Schema="esales" />
           <EntitySet Name="my_aspnet_membership" EntityType="eSalesModel.Store.my_aspnet_membership" store:Type="Tables" Schema="esales" />
-          <EntitySet Name="my_aspnet_profiles" EntityType="eSalesModel.Store.my_aspnet_profiles" store:Type="Tables" Schema="esales" />
           <EntitySet Name="my_aspnet_roles" EntityType="eSalesModel.Store.my_aspnet_roles" store:Type="Tables" Schema="esales" />
           <EntitySet Name="my_aspnet_users" EntityType="eSalesModel.Store.my_aspnet_users" store:Type="Tables" Schema="esales" />
           <EntitySet Name="my_aspnet_usersinroles" EntityType="eSalesModel.Store.my_aspnet_usersinroles" store:Type="Tables" Schema="esales" />
@@ -1228,17 +1227,6 @@
           <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" />
           <Property Name="FailedPasswordAnswerAttemptCount" Type="uint" />
           <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" />
-        </EntityType>
-        <EntityType Name="my_aspnet_profiles">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="userId" Type="int" Nullable="false" />
-          <Property Name="valueindex" Type="longtext" />
-          <Property Name="stringdata" Type="longtext" />
-          <Property Name="binarydata" Type="longblob" />
-          <Property Name="lastUpdatedDate" Type="datetime" Nullable="false" />
-          <Property Name="my_aspnet_profilescol" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="my_aspnet_roles">
           <Key>
@@ -2862,7 +2850,6 @@
           <EntitySet Name="my_ameblocks" EntityType="eSalesModel.my_ameblocks" />
           <EntitySet Name="my_aspnet_applications" EntityType="eSalesModel.my_aspnet_applications" />
           <EntitySet Name="my_aspnet_membership" EntityType="eSalesModel.my_aspnet_membership" />
-          <EntitySet Name="my_aspnet_profiles" EntityType="eSalesModel.my_aspnet_profiles" />
           <EntitySet Name="my_aspnet_roles" EntityType="eSalesModel.my_aspnet_roles" />
           <EntitySet Name="my_aspnet_users" EntityType="eSalesModel.my_aspnet_users" />
           <EntitySet Name="my_aspnet_usersinroles" EntityType="eSalesModel.my_aspnet_usersinroles" />
@@ -3967,17 +3954,6 @@
           <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart" />
           <Property Type="Int64" Name="FailedPasswordAnswerAttemptCount" />
           <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowStart" />
-        </EntityType>
-        <EntityType Name="my_aspnet_profiles">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Type="Int32" Name="userId" Nullable="false" />
-          <Property Type="String" Name="valueindex" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="stringdata" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Type="Binary" Name="binarydata" MaxLength="Max" FixedLength="false" />
-          <Property Type="DateTime" Name="lastUpdatedDate" Nullable="false" />
-          <Property Type="String" Name="my_aspnet_profilescol" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="my_aspnet_roles">
           <Key>
@@ -6287,18 +6263,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="my_aspnet_profiles">
-            <EntityTypeMapping TypeName="eSalesModel.my_aspnet_profiles">
-              <MappingFragment StoreEntitySet="my_aspnet_profiles">
-                <ScalarProperty Name="my_aspnet_profilescol" ColumnName="my_aspnet_profilescol" />
-                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
-                <ScalarProperty Name="binarydata" ColumnName="binarydata" />
-                <ScalarProperty Name="stringdata" ColumnName="stringdata" />
-                <ScalarProperty Name="valueindex" ColumnName="valueindex" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="my_aspnet_roles">
             <EntityTypeMapping TypeName="eSalesModel.my_aspnet_roles">
               <MappingFragment StoreEntitySet="my_aspnet_roles">
@@ -7013,7 +6977,6 @@
         <EntityTypeShape EntityType="eSalesModel.my_ameblocks" Width="1.5" PointX="9.75" PointY="0.75" Height="1.980286458333353" />
         <EntityTypeShape EntityType="eSalesModel.my_aspnet_applications" Width="1.5" PointX="9.75" PointY="3.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="eSalesModel.my_aspnet_membership" Width="1.5" PointX="10.75" PointY="6.75" Height="4.6725065104166674" />
-        <EntityTypeShape EntityType="eSalesModel.my_aspnet_profiles" Width="1.5" PointX="11.75" PointY="0.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="eSalesModel.my_aspnet_roles" Width="1.5" PointX="11.75" PointY="3.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="eSalesModel.my_aspnet_users" Width="1.5" PointX="11.25" PointY="56.25" Height="2.557190755208353" />
         <EntityTypeShape EntityType="eSalesModel.my_aspnet_usersinroles" Width="1.5" PointX="0.75" PointY="12.75" Height="1.403382161458353" />
