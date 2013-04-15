@@ -198,7 +198,7 @@ public partial class Collection_DayCollectionCounterSummary : BasePage
     {
         txtAmountToTransit.Text = string.Empty;
         txtComments.Text = string.Empty;
-        ViewState["AmountToTransit"] = null;
+        ViewState["AmountToTransit"] = null; 
     }
 
     private bool CheckSelectedGridRows()
