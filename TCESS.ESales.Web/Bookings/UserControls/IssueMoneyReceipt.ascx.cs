@@ -32,10 +32,19 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
 
     private void GetPaymentModeDetails()
     {
+        string index="0";
         ddlPaymentMode.DataSource = MasterList.GetListOfPaymentMode(false);
         ddlPaymentMode.DataBind();
         ddlPaymentMode.Items.Insert(0, new ListItem(Labels.SelectPaymentMode, "0"));
-        ddlPaymentMode.SelectedIndex = ddlPaymentMode.Items.IndexOf(ddlPaymentMode.Items.FindByValue("e-Collection")); ;
+        foreach (ListItem item in ddlPaymentMode.Items)
+        {
+            if(item.Text=="e-Collection")
+            {
+                index =item.Value;
+            }
+        }
+        ddlPaymentMode.SelectedValue = index;
+            //ddlPaymentMode.Items.IndexOf(ddlPaymentMode.Items.FindByValue("e-Collection")); ;
         ddlPaymentMode.Enabled = false;
     }
 
@@ -81,7 +90,6 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
         }
 		GetPaymentModeDetails();
 		txtRemarks.Text = string.Empty;
-		txtInstrumentNo.Text = string.Empty;
 		txtAccountName.Text = string.Empty;
     }
 
