@@ -32,19 +32,19 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
 
     private void GetPaymentModeDetails()
     {
-        string index="0";
+        string index = "0";
         ddlPaymentMode.DataSource = MasterList.GetListOfPaymentMode(false);
         ddlPaymentMode.DataBind();
         ddlPaymentMode.Items.Insert(0, new ListItem(Labels.SelectPaymentMode, "0"));
         foreach (ListItem item in ddlPaymentMode.Items)
         {
-            if(item.Text=="e-Collection")
+            if (item.Text == "e-Collection")
             {
-                index =item.Value;
+                index = item.Value;
             }
         }
         ddlPaymentMode.SelectedValue = index;
-            //ddlPaymentMode.Items.IndexOf(ddlPaymentMode.Items.FindByValue("e-Collection")); ;
+        //ddlPaymentMode.Items.IndexOf(ddlPaymentMode.Items.FindByValue("e-Collection")); ;
         ddlPaymentMode.Enabled = false;
     }
 
@@ -54,15 +54,15 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
     /// <param name="bookingId"></param>
     public void GetBookingDetails(int bookingId)
     {
-        
-		//Gets Booking details by booking id
+
+        //Gets Booking details by booking id
         BookingDTO bookingDetail = MasterList.GetBookingDetailByBookingId(bookingId, false);
 
         CustomerDTO customerDetails = ESalesUnityContainer.Container.Resolve<ICustomerService>().GetCustomerDetailsByCode(bookingDetail.Booking_Cust_Code);
 
         if (customerDetails.Cust_Business_Name != "Bricks ")
         {
-            txtAdvAmount.ReadOnly = true;            
+            txtAdvAmount.ReadOnly = true;
         }
 
         ViewState[Globals.StateMgmtVariables.BOOKINGID] = bookingDetail.Booking_Id;
@@ -74,7 +74,7 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
         txtDCAName.Text = bookingDetail.Booking_Agent_AgentName;
         txtBookingDate.Text = Convert.ToDateTime(bookingDetail.Booking_CreatedDate).ToString("dd-MMM-yyyy");
         txtTotalBookingAdvance.Text = bookingDetail.Booking_TotalAdvanceAmount.ToString();
-        txtBalanceAdvance.Text=bookingDetail.Booking_BalanceAmount.ToString();
+        txtBalanceAdvance.Text = bookingDetail.Booking_BalanceAmount.ToString();
         //If registered truck
         if (bookingDetail.Booking_TruckType == false)
         {
@@ -88,9 +88,9 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
             txtDriverName.Text = bookingDetail.Booking_StandaloneTruck_DriverName;
             txtTruckOwner.Text = bookingDetail.Booking_StandaloneTruck_OwnerName;
         }
-		GetPaymentModeDetails();
-		txtRemarks.Text = string.Empty;
-		txtAccountName.Text = string.Empty;
+        GetPaymentModeDetails();
+        txtRemarks.Text = string.Empty;
+        txtAccountName.Text = string.Empty;
     }
 
     /// <summary>
@@ -111,12 +111,12 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
 
             //Get booking details by current selected booking id
             int bookingId = Convert.ToInt32(ViewState[Globals.StateMgmtVariables.BOOKINGID]);
-            
+
             BookingDTO bookingDetail = MasterList.GetBookingDetailByBookingId(bookingId, false);
 
             //Set money receipt issued status flag to true and save booking details in database
             bookingDetail.Booking_MoneyReceiptIssued = true;
-            
+
             ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAndUpdateBookingDetail(bookingDetail);
             btnPrint.Enabled = true;
         }
@@ -147,10 +147,10 @@ public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
     /// <param name="e"></param>
     protected void btnReset_Click(object sender, EventArgs e)
     {
-		GetPaymentModeDetails();
-		txtRemarks.Text = string.Empty;
-		txtInstrumentNo.Text = string.Empty;
-		txtAccountName.Text = string.Empty;
+        GetPaymentModeDetails();
+        txtRemarks.Text = string.Empty;
+        txtInstrumentNo.Text = string.Empty;
+        txtAccountName.Text = string.Empty;
     }
 
     /// <summary>
