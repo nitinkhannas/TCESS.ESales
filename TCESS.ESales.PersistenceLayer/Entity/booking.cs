@@ -230,18 +230,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             set;
         }
     
-        public virtual Nullable<decimal> Booking_TotalAdvanceAmount
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<decimal> Booking_BalanceAmount
-        {
-            get;
-            set;
-        }
-    
         public virtual int Booking_TotalIssuedQty
         {
             get;

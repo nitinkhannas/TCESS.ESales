@@ -128,21 +128,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual paymentmode paymentmode
-        {
-            get { return _paymentmode; }
-            set
-            {
-                if (!ReferenceEquals(_paymentmode, value))
-                {
-                    var previousValue = _paymentmode;
-                    _paymentmode = value;
-                    Fixuppaymentmode(previousValue);
-                }
-            }
-        }
-        private paymentmode _paymentmode;
-    
         public virtual booking booking
         {
             get { return _booking; }
@@ -157,29 +142,24 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private booking _booking;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixuppaymentmode(paymentmode previousValue)
+        public virtual paymentmode paymentmode
         {
-            if (previousValue != null && previousValue.moneyreceipts.Contains(this))
+            get { return _paymentmode; }
+            set
             {
-                previousValue.moneyreceipts.Remove(this);
-            }
-    
-            if (paymentmode != null)
-            {
-                if (!paymentmode.moneyreceipts.Contains(this))
+                if (!ReferenceEquals(_paymentmode, value))
                 {
-                    paymentmode.moneyreceipts.Add(this);
-                }
-                if (MoneyReceipt_PaymentmodeId != paymentmode.Paymentmode_Id)
-                {
-                    MoneyReceipt_PaymentmodeId = paymentmode.Paymentmode_Id;
+                    var previousValue = _paymentmode;
+                    _paymentmode = value;
+                    Fixuppaymentmode(previousValue);
                 }
             }
         }
+        private paymentmode _paymentmode;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupbooking(booking previousValue)
         {
@@ -197,6 +177,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (MoneyReceipt_Booking_Id != booking.Booking_Id)
                 {
                     MoneyReceipt_Booking_Id = booking.Booking_Id;
+                }
+            }
+        }
+    
+        private void Fixuppaymentmode(paymentmode previousValue)
+        {
+            if (previousValue != null && previousValue.moneyreceipts.Contains(this))
+            {
+                previousValue.moneyreceipts.Remove(this);
+            }
+    
+            if (paymentmode != null)
+            {
+                if (!paymentmode.moneyreceipts.Contains(this))
+                {
+                    paymentmode.moneyreceipts.Add(this);
+                }
+                if (MoneyReceipt_PaymentmodeId != paymentmode.Paymentmode_Id)
+                {
+                    MoneyReceipt_PaymentmodeId = paymentmode.Paymentmode_Id;
                 }
             }
         }

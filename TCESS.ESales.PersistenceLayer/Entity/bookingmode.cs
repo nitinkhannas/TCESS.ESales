@@ -76,38 +76,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<bookingmodedetail> bookingmodedetails
-        {
-            get
-            {
-                if (_bookingmodedetails == null)
-                {
-                    var newCollection = new FixupCollection<bookingmodedetail>();
-                    newCollection.CollectionChanged += Fixupbookingmodedetails;
-                    _bookingmodedetails = newCollection;
-                }
-                return _bookingmodedetails;
-            }
-            set
-            {
-                if (!ReferenceEquals(_bookingmodedetails, value))
-                {
-                    var previousValue = _bookingmodedetails as FixupCollection<bookingmodedetail>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupbookingmodedetails;
-                    }
-                    _bookingmodedetails = value;
-                    var newValue = value as FixupCollection<bookingmodedetail>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupbookingmodedetails;
-                    }
-                }
-            }
-        }
-        private ICollection<bookingmodedetail> _bookingmodedetails;
-    
         public virtual ICollection<booking> bookings
         {
             get
@@ -139,31 +107,41 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<booking> _bookings;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupbookingmodedetails(object sender, NotifyCollectionChangedEventArgs e)
+        public virtual ICollection<bookingmodedetail> bookingmodedetails
         {
-            if (e.NewItems != null)
+            get
             {
-                foreach (bookingmodedetail item in e.NewItems)
+                if (_bookingmodedetails == null)
                 {
-                    item.bookingmode = this;
+                    var newCollection = new FixupCollection<bookingmodedetail>();
+                    newCollection.CollectionChanged += Fixupbookingmodedetails;
+                    _bookingmodedetails = newCollection;
                 }
+                return _bookingmodedetails;
             }
-    
-            if (e.OldItems != null)
+            set
             {
-                foreach (bookingmodedetail item in e.OldItems)
+                if (!ReferenceEquals(_bookingmodedetails, value))
                 {
-                    if (ReferenceEquals(item.bookingmode, this))
+                    var previousValue = _bookingmodedetails as FixupCollection<bookingmodedetail>;
+                    if (previousValue != null)
                     {
-                        item.bookingmode = null;
+                        previousValue.CollectionChanged -= Fixupbookingmodedetails;
+                    }
+                    _bookingmodedetails = value;
+                    var newValue = value as FixupCollection<bookingmodedetail>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupbookingmodedetails;
                     }
                 }
             }
         }
+        private ICollection<bookingmodedetail> _bookingmodedetails;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -178,6 +156,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (booking item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.bookingmode, this))
+                    {
+                        item.bookingmode = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupbookingmodedetails(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (bookingmodedetail item in e.NewItems)
+                {
+                    item.bookingmode = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (bookingmodedetail item in e.OldItems)
                 {
                     if (ReferenceEquals(item.bookingmode, this))
                     {

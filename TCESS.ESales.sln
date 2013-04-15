@@ -69,7 +69,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TCESS.SMSGateway", "TCESS.S
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "56601"
+		VWDPort = "2765"
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 		{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B} = {04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}
@@ -94,7 +94,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TCESS.ESales.Web", "TCESS.ESales.Web\", "{E2C508DD-B805-4B61-9173-853A0C2F9074}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{41B64DE9-8EDD-4F50-8455-F54461644E83}|TCESS.ESales.CommonLayer.CommonLibrary.dll;{74977846-B0F4-4627-A989-26155DC919BF}|TCESS.ESales.DataTransferObjects.dll;{AF44808C-3DBC-4635-9A5A-F82D208655AF}|TCESS.ESales.CommonLayer.Unity.dll;{FA8BD093-B6AA-48C2-B3FF-6EE86D144D7E}|TCESS.ESales.PersistenceLayer.Repository.dll;{667CFD64-41C5-450E-935C-83A0CC6BD74E}|TCESS.ESales.PersistenceLayer.dll;{71300D85-4965-4362-95D0-5FEB242031C9}|TCESS.ESales.PersistenceLayer.EF.dll;{AD432118-3592-439D-9D31-15ABE9C743F7}|TCESS.ESales.BusinessLayer.Interfaces.dll;{A782AFF6-FA4B-499D-8C4F-77BB245DC00A}|TCESS.ESales.BusinessLayer.Services.dll;{D4566D8E-CEDB-471F-9CBD-2D60154B3C5C}|TCESS.ESales.CommonLayer.UnityExtension.dll;{99FCE484-EB61-4FF7-8857-9829AF12F0A0}|TCESS.ESales.CommonLayer.Exception.dll;{152F2184-637B-4017-ABBD-176C466AAD87}|TCESS.ESales.CommonLayer.Logging.dll;{71860B16-1B8C-4433-9D24-6AEDE9A543DF}|TCESS.ESales.CommonLayer.Mapper.dll;{F55887D1-D055-4474-B392-F3CA92C605D9}|TCESS.ESales.CommonLayer.Reports.dll;{F2111022-A259-425E-89AB-A5C285136B09}|TCESS.ESales.CommonLayer.BarCodeGen.dll;"
+		ProjectReferences = "{41B64DE9-8EDD-4F50-8455-F54461644E83}|TCESS.ESales.CommonLayer.CommonLibrary.dll;{74977846-B0F4-4627-A989-26155DC919BF}|TCESS.ESales.DataTransferObjects.dll;{AF44808C-3DBC-4635-9A5A-F82D208655AF}|TCESS.ESales.CommonLayer.Unity.dll;{FA8BD093-B6AA-48C2-B3FF-6EE86D144D7E}|TCESS.ESales.PersistenceLayer.Repository.dll;{667CFD64-41C5-450E-935C-83A0CC6BD74E}|TCESS.ESales.PersistenceLayer.dll;{71300D85-4965-4362-95D0-5FEB242031C9}|TCESS.ESales.PersistenceLayer.EF.dll;{AD432118-3592-439D-9D31-15ABE9C743F7}|TCESS.ESales.BusinessLayer.Interfaces.dll;{D4566D8E-CEDB-471F-9CBD-2D60154B3C5C}|TCESS.ESales.CommonLayer.UnityExtension.dll;{99FCE484-EB61-4FF7-8857-9829AF12F0A0}|TCESS.ESales.CommonLayer.Exception.dll;{152F2184-637B-4017-ABBD-176C466AAD87}|TCESS.ESales.CommonLayer.Logging.dll;{71860B16-1B8C-4433-9D24-6AEDE9A543DF}|TCESS.ESales.CommonLayer.Mapper.dll;{F55887D1-D055-4474-B392-F3CA92C605D9}|TCESS.ESales.CommonLayer.Reports.dll;{F2111022-A259-425E-89AB-A5C285136B09}|TCESS.ESales.CommonLayer.BarCodeGen.dll;{A782AFF6-FA4B-499D-8C4F-77BB245DC00A}|TCESS.ESales.BusinessLayer.Services.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/TCESS.ESales.Web"
 		Debug.AspNetCompiler.PhysicalPath = "TCESS.ESales.Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TCESS.ESales.Web\"
@@ -109,7 +109,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TCESS.ESales.Web", "TCESS.E
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "56597"
+		VWDPort = "2762"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SMSService", "http://localhost/SMSService", "{04C0AE42-32F0-4DC4-AE58-C66A834F7B0B}"

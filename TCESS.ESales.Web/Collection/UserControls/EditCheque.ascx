@@ -72,7 +72,8 @@
             <asp:Label ID="lblChequeStatus" runat="server" Text="<%$Resources:Labels, ChequeStatus%>" />
         </td>
         <td nowrap="nowrap">
-            <asp:DropDownList ID="ddlChequeStatus" runat="server" CssClass="listmenu">
+            <asp:DropDownList ID="ddlChequeStatus" runat="server" CssClass="listmenu" AutoPostBack="true"
+                OnSelectedIndexChanged="ddlChequeStatus_SelectedIndexChanged">
                 <asp:ListItem Text="Select Cheque Status" Value="0" />
                 <asp:ListItem Text="Accept" Value="1" />
                 <asp:ListItem Text="Reject" Value="3" />
@@ -87,7 +88,7 @@
     </tr>
     <tr align="left">
         <td nowrap="nowrap">
-            <asp:Label ID="lblBankName" runat="server" Text="<%$Resources:Labels, BankName%>" />
+            <asp:Label ID="lblBankName" runat="server" Text="<%$Resources:Labels, CompanyBankName%>" />
         </td>
         <td nowrap="nowrap">
             <asp:DropDownList ID="ddlBank" runat="server" CssClass="listmenu" DataTextField="Bank_Name"
@@ -101,7 +102,7 @@
         </td>
         <td nowrap="nowrap">
             <asp:DropDownList ID="ddlRejectionReason" runat="server" CssClass="listmenu" DataTextField="RR_Name"
-                DataValueField="RR_Id" />
+                DataValueField="RR_Id" Enabled="false" />
         </td>
     </tr>
     <tr align="left">
@@ -109,7 +110,8 @@
             <asp:Label ID="lblDateOfCredit" runat="server" Text="<%$Resources:Labels, DATEOFCREDIT%>" />
         </td>
         <td nowrap="nowrap">
-            <asp:TextBox ID="txtDateOfCredit" onkeypress="return runScript(event)" runat="server" CssClass="textbox" />
+            <asp:TextBox ID="txtDateOfCredit" onkeypress="return runScript(event)" runat="server"
+                CssClass="textbox" />
             <ajax:CalendarExtender ID="DateOfCreditCalendarExtender" Format="dd-MMM-yyyy" OnClientDateSelectionChanged="checkInstrumentDate"
                 runat="server" TargetControlID="txtDateOfCredit" />
             <ajax:TextBoxWatermarkExtender ID="DateOfCredit_TextBoxWatermarkExtender" runat="server"
@@ -123,7 +125,13 @@
             <asp:Label ID="lblAmountCredited" runat="server" Text="<%$Resources:Labels, AMOUNTCREDITED%>" />
         </td>
         <td nowrap="nowrap">
-            <asp:TextBox ID="txtAmountCredited" onkeypress="return runScript(event)" runat="server" CssClass="textbox" />
+            <asp:TextBox ID="txtAmountCredited" onkeypress="return runScript(event)" runat="server"
+                CssClass="textbox" />
+            <asp:RequiredFieldValidator ID="AmountCreditedValidator" ControlToValidate="txtAmountCredited"
+                Display="Dynamic" ValidationGroup="SaveGroup" SetFocusOnError="true"
+                Text="*" CssClass="failureNotification" ErrorMessage="<%$ Resources:ErrorMessages, REQUIREDAMOUNTCREDITED%>"
+                runat="server" />
+            <ajax:ValidatorCalloutExtender ID="AmountCreditedValidatorCalloutExtender" runat="server" TargetControlID="AmountCreditedValidator" />
         </td>
     </tr>
     <tr>

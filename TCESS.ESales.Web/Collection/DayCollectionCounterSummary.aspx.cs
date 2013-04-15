@@ -74,6 +74,7 @@ public partial class Collection_DayCollectionCounterSummary : BasePage
             }
 
             batchTransferDTO.BT_CreatedBy = GetCurrentUserId();
+            batchTransferDTO.BT_CreatedDate = DateTime.Now;
             batchTransferDTO.BT_Status = (int)HelperClass.BatchStatus.PENDING;
 
             //Saves payment collection details in database
@@ -99,9 +100,16 @@ public partial class Collection_DayCollectionCounterSummary : BasePage
         int selectedRows = Convert.ToInt32(ViewState["Count"]);
         int rowCount = 0;
         decimal amount = 0;
+        bool isGridRowsEmpty = false;
 
         foreach (GridViewRow row in grdPaymentTransit.Rows)
         {
+            if (string.IsNullOrEmpty(((Label)row.FindControl("lblAmount")).Text))
+            {
+                isGridRowsEmpty = true;
+                break;
+            }
+
             if (chkAll.Checked == true)
             {
                 selectedAmount = 0;
@@ -119,14 +127,22 @@ public partial class Collection_DayCollectionCounterSummary : BasePage
             }
         }
 
-        if (selectedAmount > 0)
+        if (isGridRowsEmpty)
         {
-            amount = selectedAmount;
-            rowCount = selectedRows;
+            base.ShowBlankRowInGrid<PaymentCollectionDTO>(grdPaymentTransit);
+            base.ShowBlankRowInGrid<BatchTransferDTO>(grdBatchPayments);
         }
+        else
+        {
+            if (selectedAmount > 0)
+            {
+                amount = selectedAmount;
+                rowCount = selectedRows;
+            }
 
-        ViewState["Count"] = rowCount;
-        SetAmountToTransitValue(amount);
+            ViewState["Count"] = rowCount;
+            SetAmountToTransitValue(amount);
+        }
     }
 
     protected void chkItem_CheckedChanged(object sender, EventArgs e)

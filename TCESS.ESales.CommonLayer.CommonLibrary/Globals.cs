@@ -85,6 +85,12 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             FORSUPERVISORSCREEN = 2
         }
 
+        public enum ChequeStatus
+        {
+            ACCEPTED = 1,
+            REJECTED = 3
+        }
+
         /// <summary>
         /// Config variables to read from web.config files
         /// </summary>

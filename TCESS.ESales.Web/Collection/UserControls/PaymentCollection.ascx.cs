@@ -180,6 +180,8 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
     protected void btnValidateAmount_Click(object sender, EventArgs e)
     {
         CurrencyConvertor currencyConvertor = new CurrencyConvertor();
+        //IndianCurrencyCovnertor currencyConvertor = new IndianCurrencyCovnertor();
+
         string amountInWords = currencyConvertor.Convertor(string.Format("{0:0.00}", Convert.ToDecimal(txtAmount.Text.Trim())));
         string message = string.Concat(amountInWords, "<br/><br/>Do you want to continue");
         ucYesNoMessageBox.ShowMessage(message);

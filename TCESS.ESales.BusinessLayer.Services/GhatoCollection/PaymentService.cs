@@ -243,6 +243,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                            BatchStatus = batchItem.BT_Status,
                                                            CounterName = counterItem.Counter_Name,
                                                            CreatedBy = batchItem.BT_CreatedBy,
+                                                           CreatedDate = batchItem.BT_CreatedDate,
                                                            PaymentMode = payColItem.PC_PaymentMode
                                                        }
                                                        group payColItem by item into groupByItem
@@ -253,6 +254,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                            Amount = groupByItem.Sum(sum => sum.PC_PreviousAmount ?? sum.PC_Amount),
                                                            BT_CreatedBy = groupByItem.Key.CreatedBy,
                                                            BT_Status = groupByItem.Key.BatchStatus,
+                                                           BT_CreatedDate = groupByItem.Key.CreatedDate,
                                                            PaymentMode = groupByItem.Key.PaymentMode
                                                        }).ToList();
 
@@ -280,8 +282,12 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
         IList<BatchTransferDTO> IPaymentService.GetBatchDetailsForCollectionScreen(
             Nullable<int> userId, Nullable<int> paymentMode)
         {
+            DateTime currentDate = DateTime.Now.Date;
+
             //To retrive payment collection from database for transit to head cashier
-            List<BatchTransferDTO> lstBatchTransfer = (from batchItem in base.BatchTransferRepository.GetQuery()
+            List<BatchTransferDTO> lstBatchTransfer = (from batchItem in base.BatchTransferRepository.GetQuery().
+                                                       Where(item => ((item.BT_Status == 1 && item.BT_CreatedDate <= currentDate.Date) 
+                                                           || (item.BT_Status == 2 && item.BT_CreatedDate == currentDate.Date)))
                                                        join payTransit in base.PaymentTransitRepository.GetQuery()
                                                        on batchItem.BT_ID equals payTransit.PaymentTransit_BatchId
                                                        join payColItem in base.PaymentCollectionRepository.GetQuery()
@@ -297,6 +303,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                            BatchStatus = batchItem.BT_Status,
                                                            CounterName = counterItem.Counter_Name,
                                                            CreatedBy = batchItem.BT_CreatedBy,
+                                                           CreatedDate = batchItem.BT_CreatedDate,
                                                            PaymentMode = payColItem.PC_PaymentMode
                                                        }
                                                        group payColItem by item into groupByItem
@@ -307,6 +314,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                            Amount = groupByItem.Sum(sum => sum.PC_PreviousAmount ?? sum.PC_Amount),
                                                            BT_CreatedBy = groupByItem.Key.CreatedBy,
                                                            BT_Status = groupByItem.Key.BatchStatus,
+                                                           BT_CreatedDate = groupByItem.Key.CreatedDate,
                                                            PaymentMode = groupByItem.Key.PaymentMode
                                                        }).ToList();
 

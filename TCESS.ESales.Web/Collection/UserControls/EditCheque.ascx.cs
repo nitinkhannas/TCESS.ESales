@@ -1,8 +1,8 @@
 ﻿#region Using directives
 
 using System;
+using System.Configuration;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Microsoft.Practices.Unity;
 using Resources;
 using TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection;
@@ -24,6 +24,7 @@ public partial class Collection_UserControls_EditCheque : BaseUserControl
                .GetCollectionDetailsById(collectionId);
         txtChequeNumber.Text = collectionDetails.PC_InstrumentNo;
         txtChequeDate.Text = String.Format("{0:dd/MM/yyyy}", collectionDetails.PC_InstrumentDate);
+        ViewState[Globals.StateMgmtVariables.INSTRUMENTTYPE] = collectionDetails.PC_InstrumentDate;
         txtCustomerCode.Text = collectionDetails.CustomerCode;
         txtCustomerName.Text = collectionDetails.CustomerName;
         txtBankName.Text = collectionDetails.BankName;
@@ -119,6 +120,8 @@ public partial class Collection_UserControls_EditCheque : BaseUserControl
         }
         else if (ddlChequeStatus.SelectedItem.Value == "1")
         {
+            decimal chequeAmountDifference = Convert.ToDecimal(ConfigurationManager.AppSettings["ChequeAmountDifference"]);
+            
             if (ddlBank.SelectedItem.Value == "0")
             {
                 customValidator.IsValid = false;
@@ -143,6 +146,18 @@ public partial class Collection_UserControls_EditCheque : BaseUserControl
                 ucMessageBox.ShowMessage(ErrorMessages.AMOUNTCREDITEDMUSTBELESSCHEQUEAMOUNT);
                 result = false;
             }
+            else if (Convert.ToDateTime(txtDateOfCredit.Text) < Convert.ToDateTime(ViewState[Globals.StateMgmtVariables.INSTRUMENTTYPE]))
+            {
+                customValidator.IsValid = false;
+                ucMessageBox.ShowMessage(ErrorMessages.IncorrectDateOfCredit);
+                result = false;
+            }
+            else if ((Convert.ToDecimal(txtAmount.Text) - Convert.ToDecimal(txtAmountCredited.Text)) > chequeAmountDifference) 
+            {
+                customValidator.IsValid = false;
+                ucMessageBox.ShowMessage(string.Format(ErrorMessages.InvalidAmountCreditedFigure, chequeAmountDifference.ToString()));
+                result = false;
+            }
         }            
         return result;
     }
@@ -154,5 +169,18 @@ public partial class Collection_UserControls_EditCheque : BaseUserControl
         ddlRejectionReason.SelectedValue = "0";
         txtDateOfCredit.Text = string.Empty;
         txtAmountCredited.Text = string.Empty;
+    }
+
+    protected void ddlChequeStatus_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (Convert.ToInt32(ddlChequeStatus.SelectedValue) ==
+            (int)Globals.ChequeStatus.REJECTED)
+        {
+            ddlRejectionReason.Enabled = true;
+        }
+        else
+        {
+            ddlRejectionReason.Enabled = false;
+        }
     }
 }

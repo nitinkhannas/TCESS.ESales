@@ -1362,4 +1362,7 @@
   <data name="BatchNo" xml:space="preserve">
     <value>Batch No</value>
   </data>
+  <data name="CompanyBankName" xml:space="preserve">
+    <value>Company Bank Name</value>
+  </data>
 </root>

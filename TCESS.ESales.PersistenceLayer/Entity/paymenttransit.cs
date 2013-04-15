@@ -74,6 +74,21 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         #endregion
         #region Navigation Properties
     
+        public virtual batchtransfer batchtransfer
+        {
+            get { return _batchtransfer; }
+            set
+            {
+                if (!ReferenceEquals(_batchtransfer, value))
+                {
+                    var previousValue = _batchtransfer;
+                    _batchtransfer = value;
+                    Fixupbatchtransfer(previousValue);
+                }
+            }
+        }
+        private batchtransfer _batchtransfer;
+    
         public virtual paymentcollection paymentcollection
         {
             get { return _paymentcollection; }
@@ -120,44 +135,9 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<smspaymentregistration> _smspaymentregistrations;
-    
-        public virtual batchtransfer batchtransfer
-        {
-            get { return _batchtransfer; }
-            set
-            {
-                if (!ReferenceEquals(_batchtransfer, value))
-                {
-                    var previousValue = _batchtransfer;
-                    _batchtransfer = value;
-                    Fixupbatchtransfer(previousValue);
-                }
-            }
-        }
-        private batchtransfer _batchtransfer;
 
         #endregion
         #region Association Fixup
-    
-        private void Fixuppaymentcollection(paymentcollection previousValue)
-        {
-            if (previousValue != null && previousValue.paymenttransits.Contains(this))
-            {
-                previousValue.paymenttransits.Remove(this);
-            }
-    
-            if (paymentcollection != null)
-            {
-                if (!paymentcollection.paymenttransits.Contains(this))
-                {
-                    paymentcollection.paymenttransits.Add(this);
-                }
-                if (PaymentTransit_CollectionId != paymentcollection.PC_Id)
-                {
-                    PaymentTransit_CollectionId = paymentcollection.PC_Id;
-                }
-            }
-        }
     
         private void Fixupbatchtransfer(batchtransfer previousValue)
         {
@@ -175,6 +155,26 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (PaymentTransit_BatchId != batchtransfer.BT_ID)
                 {
                     PaymentTransit_BatchId = batchtransfer.BT_ID;
+                }
+            }
+        }
+    
+        private void Fixuppaymentcollection(paymentcollection previousValue)
+        {
+            if (previousValue != null && previousValue.paymenttransits.Contains(this))
+            {
+                previousValue.paymenttransits.Remove(this);
+            }
+    
+            if (paymentcollection != null)
+            {
+                if (!paymentcollection.paymenttransits.Contains(this))
+                {
+                    paymentcollection.paymenttransits.Add(this);
+                }
+                if (PaymentTransit_CollectionId != paymentcollection.PC_Id)
+                {
+                    PaymentTransit_CollectionId = paymentcollection.PC_Id;
                 }
             }
         }

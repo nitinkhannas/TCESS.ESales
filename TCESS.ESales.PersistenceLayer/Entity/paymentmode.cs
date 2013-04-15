@@ -128,38 +128,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<paymentcollection> _paymentcollections;
     
-        public virtual ICollection<userpaymentmodemapping> userpaymentmodemappings
-        {
-            get
-            {
-                if (_userpaymentmodemappings == null)
-                {
-                    var newCollection = new FixupCollection<userpaymentmodemapping>();
-                    newCollection.CollectionChanged += Fixupuserpaymentmodemappings;
-                    _userpaymentmodemappings = newCollection;
-                }
-                return _userpaymentmodemappings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_userpaymentmodemappings, value))
-                {
-                    var previousValue = _userpaymentmodemappings as FixupCollection<userpaymentmodemapping>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupuserpaymentmodemappings;
-                    }
-                    _userpaymentmodemappings = value;
-                    var newValue = value as FixupCollection<userpaymentmodemapping>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupuserpaymentmodemappings;
-                    }
-                }
-            }
-        }
-        private ICollection<userpaymentmodemapping> _userpaymentmodemappings;
-    
         public virtual ICollection<paymentrefund> paymentrefunds
         {
             get
@@ -191,6 +159,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<paymentrefund> _paymentrefunds;
+    
+        public virtual ICollection<userpaymentmodemapping> userpaymentmodemappings
+        {
+            get
+            {
+                if (_userpaymentmodemappings == null)
+                {
+                    var newCollection = new FixupCollection<userpaymentmodemapping>();
+                    newCollection.CollectionChanged += Fixupuserpaymentmodemappings;
+                    _userpaymentmodemappings = newCollection;
+                }
+                return _userpaymentmodemappings;
+            }
+            set
+            {
+                if (!ReferenceEquals(_userpaymentmodemappings, value))
+                {
+                    var previousValue = _userpaymentmodemappings as FixupCollection<userpaymentmodemapping>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupuserpaymentmodemappings;
+                    }
+                    _userpaymentmodemappings = value;
+                    var newValue = value as FixupCollection<userpaymentmodemapping>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupuserpaymentmodemappings;
+                    }
+                }
+            }
+        }
+        private ICollection<userpaymentmodemapping> _userpaymentmodemappings;
 
         #endregion
         #region Association Fixup
@@ -239,28 +239,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
     
-        private void Fixupuserpaymentmodemappings(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (userpaymentmodemapping item in e.NewItems)
-                {
-                    item.paymentmode = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (userpaymentmodemapping item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.paymentmode, this))
-                    {
-                        item.paymentmode = null;
-                    }
-                }
-            }
-        }
-    
         private void Fixuppaymentrefunds(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -274,6 +252,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (paymentrefund item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.paymentmode, this))
+                    {
+                        item.paymentmode = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupuserpaymentmodemappings(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (userpaymentmodemapping item in e.NewItems)
+                {
+                    item.paymentmode = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (userpaymentmodemapping item in e.OldItems)
                 {
                     if (ReferenceEquals(item.paymentmode, this))
                     {

@@ -322,6 +322,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<agentmaterialpercentage> _agentmaterialpercentages;
     
+        public virtual ICollection<booking> bookings
+        {
+            get
+            {
+                if (_bookings == null)
+                {
+                    var newCollection = new FixupCollection<booking>();
+                    newCollection.CollectionChanged += Fixupbookings;
+                    _bookings = newCollection;
+                }
+                return _bookings;
+            }
+            set
+            {
+                if (!ReferenceEquals(_bookings, value))
+                {
+                    var previousValue = _bookings as FixupCollection<booking>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupbookings;
+                    }
+                    _bookings = value;
+                    var newValue = value as FixupCollection<booking>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupbookings;
+                    }
+                }
+            }
+        }
+        private ICollection<booking> _bookings;
+    
         public virtual ICollection<counter> counters
         {
             get
@@ -449,38 +481,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<useragentmapping> _useragentmappings;
-    
-        public virtual ICollection<booking> bookings
-        {
-            get
-            {
-                if (_bookings == null)
-                {
-                    var newCollection = new FixupCollection<booking>();
-                    newCollection.CollectionChanged += Fixupbookings;
-                    _bookings = newCollection;
-                }
-                return _bookings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_bookings, value))
-                {
-                    var previousValue = _bookings as FixupCollection<booking>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupbookings;
-                    }
-                    _bookings = value;
-                    var newValue = value as FixupCollection<booking>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupbookings;
-                    }
-                }
-            }
-        }
-        private ICollection<booking> _bookings;
 
         #endregion
         #region Association Fixup
@@ -538,6 +538,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (agentmaterialpercentage item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.agentdetail, this))
+                    {
+                        item.agentdetail = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (booking item in e.NewItems)
+                {
+                    item.agentdetail = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (booking item in e.OldItems)
                 {
                     if (ReferenceEquals(item.agentdetail, this))
                     {
@@ -626,28 +648,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (useragentmapping item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.agentdetail, this))
-                    {
-                        item.agentdetail = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (booking item in e.NewItems)
-                {
-                    item.agentdetail = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (booking item in e.OldItems)
                 {
                     if (ReferenceEquals(item.agentdetail, this))
                     {

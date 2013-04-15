@@ -654,4 +654,10 @@
   <data name="AMOUNTCREDITEDMUSTBELESSCHEQUEAMOUNT" xml:space="preserve">
     <value>Amount Credited must be less than cheque amount.</value>
   </data>
+  <data name="IncorrectDateOfCredit" xml:space="preserve">
+    <value>Date of credit cannot be lower than Cheque Date</value>
+  </data>
+  <data name="InvalidAmountCreditedFigure" xml:space="preserve">
+    <value>The difference between amount credited and cheque amount cannot be greater than {0}</value>
+  </data>
 </root>

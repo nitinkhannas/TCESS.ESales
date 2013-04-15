@@ -460,6 +460,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<authrepdetail> _authrepdetails;
     
+        public virtual ICollection<booking> bookings
+        {
+            get
+            {
+                if (_bookings == null)
+                {
+                    var newCollection = new FixupCollection<booking>();
+                    newCollection.CollectionChanged += Fixupbookings;
+                    _bookings = newCollection;
+                }
+                return _bookings;
+            }
+            set
+            {
+                if (!ReferenceEquals(_bookings, value))
+                {
+                    var previousValue = _bookings as FixupCollection<booking>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupbookings;
+                    }
+                    _bookings = value;
+                    var newValue = value as FixupCollection<booking>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupbookings;
+                    }
+                }
+            }
+        }
+        private ICollection<booking> _bookings;
+    
         public virtual businesstype businesstype
         {
             get { return _businesstype; }
@@ -744,6 +776,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<paymentcollection> _paymentcollections;
     
+        public virtual ICollection<paymentrefund> paymentrefunds
+        {
+            get
+            {
+                if (_paymentrefunds == null)
+                {
+                    var newCollection = new FixupCollection<paymentrefund>();
+                    newCollection.CollectionChanged += Fixuppaymentrefunds;
+                    _paymentrefunds = newCollection;
+                }
+                return _paymentrefunds;
+            }
+            set
+            {
+                if (!ReferenceEquals(_paymentrefunds, value))
+                {
+                    var previousValue = _paymentrefunds as FixupCollection<paymentrefund>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixuppaymentrefunds;
+                    }
+                    _paymentrefunds = value;
+                    var newValue = value as FixupCollection<paymentrefund>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixuppaymentrefunds;
+                    }
+                }
+            }
+        }
+        private ICollection<paymentrefund> _paymentrefunds;
+    
         public virtual ICollection<smspaymentregistration> smspaymentregistrations
         {
             get
@@ -839,70 +903,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<truckdetail> _truckdetails;
-    
-        public virtual ICollection<paymentrefund> paymentrefunds
-        {
-            get
-            {
-                if (_paymentrefunds == null)
-                {
-                    var newCollection = new FixupCollection<paymentrefund>();
-                    newCollection.CollectionChanged += Fixuppaymentrefunds;
-                    _paymentrefunds = newCollection;
-                }
-                return _paymentrefunds;
-            }
-            set
-            {
-                if (!ReferenceEquals(_paymentrefunds, value))
-                {
-                    var previousValue = _paymentrefunds as FixupCollection<paymentrefund>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixuppaymentrefunds;
-                    }
-                    _paymentrefunds = value;
-                    var newValue = value as FixupCollection<paymentrefund>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixuppaymentrefunds;
-                    }
-                }
-            }
-        }
-        private ICollection<paymentrefund> _paymentrefunds;
-    
-        public virtual ICollection<booking> bookings
-        {
-            get
-            {
-                if (_bookings == null)
-                {
-                    var newCollection = new FixupCollection<booking>();
-                    newCollection.CollectionChanged += Fixupbookings;
-                    _bookings = newCollection;
-                }
-                return _bookings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_bookings, value))
-                {
-                    var previousValue = _bookings as FixupCollection<booking>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupbookings;
-                    }
-                    _bookings = value;
-                    var newValue = value as FixupCollection<booking>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupbookings;
-                    }
-                }
-            }
-        }
-        private ICollection<booking> _bookings;
 
         #endregion
         #region Association Fixup
@@ -1052,6 +1052,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (authrepdetail item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.customer, this))
+                    {
+                        item.customer = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (booking item in e.NewItems)
+                {
+                    item.customer = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (booking item in e.OldItems)
                 {
                     if (ReferenceEquals(item.customer, this))
                     {
@@ -1215,6 +1237,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
     
+        private void Fixuppaymentrefunds(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (paymentrefund item in e.NewItems)
+                {
+                    item.customer = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (paymentrefund item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.customer, this))
+                    {
+                        item.customer = null;
+                    }
+                }
+            }
+        }
+    
         private void Fixupsmspaymentregistrations(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -1272,50 +1316,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (truckdetail item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.customer, this))
-                    {
-                        item.customer = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixuppaymentrefunds(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (paymentrefund item in e.NewItems)
-                {
-                    item.customer = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (paymentrefund item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.customer, this))
-                    {
-                        item.customer = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixupbookings(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (booking item in e.NewItems)
-                {
-                    item.customer = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (booking item in e.OldItems)
                 {
                     if (ReferenceEquals(item.customer, this))
                     {

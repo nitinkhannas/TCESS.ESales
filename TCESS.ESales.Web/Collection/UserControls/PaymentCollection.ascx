@@ -14,6 +14,7 @@
             <td class="style1" nowrap="nowrap">
                 <asp:Label ID="lblSMSId" runat="server" Text="<%$Resources:Labels, SMSId%>" />
                 <asp:TextBox ID="txtSMSId" runat="server" CssClass="textbox" Wrap="False" />
+                <ajax:FilteredTextBoxExtender TargetControlID="txtSMSId" runat="server" ID="FilteredSMSExtender" FilterType="Numbers" />
                 <asp:RequiredFieldValidator ID="SMSIdValidator" runat="server" ControlToValidate="txtSMSId"
                     CssClass="failureNotification" Display="Dynamic" ErrorMessage="<%$ Resources:ErrorMessages, RequiredSMSId %>"
                     SetFocusOnError="true" Text="*" ValidationGroup="ValidateGroup" />
@@ -180,7 +181,7 @@
             </td>
             <td nowrap="nowrap" colspan="4">
                 <asp:TextBox ID="txtMobileNo" onkeypress="return runScript(event)" runat="server"
-                    CssClass="textbox" MaxLength="13" />
+                    CssClass="textbox" MaxLength="10" />
                 <asp:RegularExpressionValidator ID="MobileExpressionValidator" runat="server" ControlToValidate="txtMobileNo"
                     Display="Dynamic" SetFocusOnError="true" Text="*" ValidationGroup="SaveGroup"
                     ErrorMessage="<%$ Resources:ErrorMessages, InvalidMobileNumber %>" CssClass="failureNotification"
