@@ -305,6 +305,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
     {
         if (lstCustomer.Count > 0)
         {
+            btnValidateAmount.Enabled = false;
             if (lstCustomer[0].Cust_IsBlacklisted == true)
             {
                 ucMessageBoxForGrid.ShowMessage(Messages.CustomerIsBlackListed);
@@ -339,8 +340,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         }
     }
 
-    private void 
-        ResetControls(bool clearSearchParameters)
+    private void ResetControls(bool clearSearchParameters)
     {
         if (clearSearchParameters)
         {
@@ -361,7 +361,12 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         txtAmount.ReadOnly = false;
         txtAmount.Text = string.Empty;
         txtInstrumentNumber.Text = string.Empty;
-        ddlBankDrawn.SelectedValue = "0";
+        
+        if (ddlBankDrawn.Items.Count > 0)
+        {
+            ddlBankDrawn.SelectedValue = "0";
+        }
+        
         txtInstrumentDate.Text = string.Empty;
         txtPayerName.Text = string.Empty;
         txtMobileNo.Text = string.Empty;
@@ -401,7 +406,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             {
                 trIFSCCode.Visible = true;
                 trPayeeType.Visible = false;
-                lblInstrumentNumber.Text = "RGTS Number";
+                lblInstrumentNumber.Text = "RTGS Number";
                 lblInstrumentDate.Text = "RTGS Date";
                 CheckValidation(false);
             }
@@ -421,6 +426,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             tdVal3.Visible = true;
             tdVal4.Visible = true;
             tdVal5.Visible = true;
+            tdVal6.Visible = true;
         }
         else
         {
@@ -429,8 +435,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
             tdVal3.Visible = false;
             tdVal4.Visible = false;
             tdVal5.Visible = false;
-            txtValidationValue.Visible = false;
-            txtValidationValue.Text = "0";
+            tdVal6.Visible = false;
         }
     }
 
