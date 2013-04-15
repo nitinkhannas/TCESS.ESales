@@ -12,7 +12,7 @@ using Resources;
 
 #endregion
 
-public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl 
+public partial class Bookings_UserControls_IssueMoneyReceipt : BaseUserControl
 {
     public event CloseScreenEventHandler Event_CloseScreen;
     public event ShowDataByIdEventHandler Event_PrintLoadingAdvice;
