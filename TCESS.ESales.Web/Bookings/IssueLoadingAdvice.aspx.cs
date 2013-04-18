@@ -426,8 +426,8 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
                 }
 
                 string englishMessage = Messages.BookingConfirmation.FormatWith(truckNo, txtCurrentQty.Text.Trim());
-                //string hindiMessage = " ने ";
-                //+truckNo + " ने " + txtCurrentQty.Text.Trim() + "टन  Tailings बुक किया  है .इस  बुकिंग  के लिए  धन्यवाद् .";
+                //string hindiMessage = " ?? ";
+                //+truckNo + " ?? " + txtCurrentQty.Text.Trim() + "??  Tailings ??? ????  ?? .??  ??????  ?? ???  ???????? .";
 
                 SmsUtility.SendSMS(txtMobileNo.Text.Trim(), englishMessage + " .DCA Ghato");
                 lblCounterNo.Visible = true;
@@ -696,18 +696,20 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         decimal totalAmountCollected = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentMadeByCustomer(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"]));
 
         decimal totalRefundAmount = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerPaymentRefundList(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID])).Sum(f => f.PR_Amount);
-        
+
         //get Total exp amount
         decimal totalMaterialLiftedAmount = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetMaterialAmountLiftedByCustomer(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"]));
         //Get InTransit amount
-        decimal InTransitAmount = GetAmount(ESalesUnityContainer.Container.Resolve<IBookingService>().GetIntransisCustomerQty(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"])).Sum(item => item.Booking_Qty));
+        decimal InTransitLoad = ESalesUnityContainer.Container.Resolve<IBookingService>().GetIntransisCustomerQty(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"])).Sum(item => item.Booking_Qty);
+        InTransitLoad = InTransitLoad + (Convert.ToDecimal(InTransitLoad) * Convert.ToDecimal(ConfigurationManager.AppSettings["OverLiftingPercentage"]) / 100);
+        // decimal InTransitAmount = GetAmount(ESalesUnityContainer.Container.Resolve<IBookingService>().GetIntransisCustomerQty(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"])).Sum(item => item.Booking_Qty));
+        decimal InTransitAmount = GetAmount(InTransitLoad);
 
-        
         decimal currentLoad = (Convert.ToDecimal(txtCarryCapacity.Text.Trim()) + (Convert.ToDecimal(txtCarryCapacity.Text.Trim()) * Convert.ToDecimal(ConfigurationManager.AppSettings["OverLiftingPercentage"]) / 100));
         decimal currentAmount = GetAmount(currentLoad);
         if (totalAmountCollected >= (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount))
         {
-            
+
             decimal balanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
             decimal balanceAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount);
             txtAdvanceAmount.Text = string.Format("{0:N2}", currentAmount);
@@ -799,9 +801,9 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
 
             //if ((ViewState[Globals.StateMgmtVariables.CUSTOMERBUSINESSTYPE]).ToString() != "Bricks ")
             //{
-                //txtAdvanceAmount.Text = "0";
-                txtAdvanceAmount.ReadOnly = true;
-               // ucMessageBox.ShowMessage("Hardcoke customer, Advance Amount is 0");
+            //txtAdvanceAmount.Text = "0";
+            txtAdvanceAmount.ReadOnly = true;
+            // ucMessageBox.ShowMessage("Hardcoke customer, Advance Amount is 0");
             //}
 
             //Get customer document details by customer id
