@@ -173,6 +173,9 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
                 txtAmount.Text = smsPaymentDetails.SMSPay_Amount.ToString();
                 txtAmount.ReadOnly = true;
                 btnAccept.Enabled = true;
+                txtRemarks.Text = string.Empty;
+                txtPayerName.Text = string.Empty;
+                txtMobileNo.Text = string.Empty;
             }
         }
     }

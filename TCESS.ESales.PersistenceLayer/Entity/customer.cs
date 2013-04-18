@@ -744,38 +744,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private ICollection<form27c_history> _form27c_history;
     
-        public virtual ICollection<paymentcollection> paymentcollections
-        {
-            get
-            {
-                if (_paymentcollections == null)
-                {
-                    var newCollection = new FixupCollection<paymentcollection>();
-                    newCollection.CollectionChanged += Fixuppaymentcollections;
-                    _paymentcollections = newCollection;
-                }
-                return _paymentcollections;
-            }
-            set
-            {
-                if (!ReferenceEquals(_paymentcollections, value))
-                {
-                    var previousValue = _paymentcollections as FixupCollection<paymentcollection>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixuppaymentcollections;
-                    }
-                    _paymentcollections = value;
-                    var newValue = value as FixupCollection<paymentcollection>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixuppaymentcollections;
-                    }
-                }
-            }
-        }
-        private ICollection<paymentcollection> _paymentcollections;
-    
         public virtual ICollection<paymentrefund> paymentrefunds
         {
             get
@@ -903,6 +871,38 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<truckdetail> _truckdetails;
+    
+        public virtual ICollection<paymentcollection> paymentcollections
+        {
+            get
+            {
+                if (_paymentcollections == null)
+                {
+                    var newCollection = new FixupCollection<paymentcollection>();
+                    newCollection.CollectionChanged += Fixuppaymentcollections;
+                    _paymentcollections = newCollection;
+                }
+                return _paymentcollections;
+            }
+            set
+            {
+                if (!ReferenceEquals(_paymentcollections, value))
+                {
+                    var previousValue = _paymentcollections as FixupCollection<paymentcollection>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixuppaymentcollections;
+                    }
+                    _paymentcollections = value;
+                    var newValue = value as FixupCollection<paymentcollection>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixuppaymentcollections;
+                    }
+                }
+            }
+        }
+        private ICollection<paymentcollection> _paymentcollections;
 
         #endregion
         #region Association Fixup
@@ -1215,28 +1215,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
     
-        private void Fixuppaymentcollections(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (paymentcollection item in e.NewItems)
-                {
-                    item.customer = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (paymentcollection item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.customer, this))
-                    {
-                        item.customer = null;
-                    }
-                }
-            }
-        }
-    
         private void Fixuppaymentrefunds(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -1316,6 +1294,28 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             if (e.OldItems != null)
             {
                 foreach (truckdetail item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.customer, this))
+                    {
+                        item.customer = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixuppaymentcollections(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (paymentcollection item in e.NewItems)
+                {
+                    item.customer = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (paymentcollection item in e.OldItems)
                 {
                     if (ReferenceEquals(item.customer, this))
                     {

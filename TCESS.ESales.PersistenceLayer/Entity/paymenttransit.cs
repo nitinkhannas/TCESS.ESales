@@ -89,21 +89,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private batchtransfer _batchtransfer;
     
-        public virtual paymentcollection paymentcollection
-        {
-            get { return _paymentcollection; }
-            set
-            {
-                if (!ReferenceEquals(_paymentcollection, value))
-                {
-                    var previousValue = _paymentcollection;
-                    _paymentcollection = value;
-                    Fixuppaymentcollection(previousValue);
-                }
-            }
-        }
-        private paymentcollection _paymentcollection;
-    
         public virtual ICollection<smspaymentregistration> smspaymentregistrations
         {
             get
@@ -135,6 +120,21 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
         private ICollection<smspaymentregistration> _smspaymentregistrations;
+    
+        public virtual paymentcollection paymentcollection
+        {
+            get { return _paymentcollection; }
+            set
+            {
+                if (!ReferenceEquals(_paymentcollection, value))
+                {
+                    var previousValue = _paymentcollection;
+                    _paymentcollection = value;
+                    Fixuppaymentcollection(previousValue);
+                }
+            }
+        }
+        private paymentcollection _paymentcollection;
 
         #endregion
         #region Association Fixup

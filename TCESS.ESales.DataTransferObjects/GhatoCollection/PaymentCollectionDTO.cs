@@ -41,10 +41,11 @@ namespace TCESS.ESales.DataTransferObjects.GhatoCollection
         public string PC_Remark { get; set; }
         public string PC_PayerName { get; set; }
         public string PC_MobileNumber { get; set; }
-        public Nullable<int> PC_InstrumentStatus { get; set; }
         public Nullable<DateTime> PC_DateOfCredit { get; set; }
         public Nullable<decimal> PC_PreviousAmount { get; set; }
         public Nullable<DateTime> PC_InstrumentRealizationDate { get; set; }
+        public Nullable<int> PC_InstrumentStatus { get; set; }
+        public Nullable<int> PC_CompanyBankName { get; set; }
         public Nullable<int> PC_Status { get; set; }
         public Nullable<int> PC_OldReceiptId { get; set; }
         public Nullable<int> PC_NewReceiptId { get; set; }

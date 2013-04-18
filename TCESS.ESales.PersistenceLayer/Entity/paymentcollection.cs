@@ -119,12 +119,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             set;
         }
     
-        public virtual Nullable<int> PC_InstrumentStatus
-        {
-            get;
-            set;
-        }
-    
         public virtual Nullable<System.DateTime> PC_InstrumentRealizationDate
         {
             get;
@@ -137,7 +131,19 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             set;
         }
     
+        public virtual Nullable<int> PC_CompanyBankName
+        {
+            get;
+            set;
+        }
+    
         public virtual Nullable<decimal> PC_PreviousAmount
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<int> PC_InstrumentStatus
         {
             get;
             set;

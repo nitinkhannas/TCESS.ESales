@@ -313,12 +313,6 @@ namespace TCESS.ESales.PersistenceLayer.EF
         }
         private ObjectSet<pagesinrole> _pagesinroles;
     
-        public ObjectSet<paymentcollection> paymentcollections
-        {
-            get { return _paymentcollections  ?? (_paymentcollections = CreateObjectSet<paymentcollection>("paymentcollections")); }
-        }
-        private ObjectSet<paymentcollection> _paymentcollections;
-    
         public ObjectSet<paymentmode> paymentmodes
         {
             get { return _paymentmodes  ?? (_paymentmodes = CreateObjectSet<paymentmode>("paymentmodes")); }
@@ -528,6 +522,12 @@ namespace TCESS.ESales.PersistenceLayer.EF
             get { return _vwnonchequepayments  ?? (_vwnonchequepayments = CreateObjectSet<vwnonchequepayment>("vwnonchequepayments")); }
         }
         private ObjectSet<vwnonchequepayment> _vwnonchequepayments;
+    
+        public ObjectSet<paymentcollection> paymentcollections
+        {
+            get { return _paymentcollections  ?? (_paymentcollections = CreateObjectSet<paymentcollection>("paymentcollections")); }
+        }
+        private ObjectSet<paymentcollection> _paymentcollections;
 
         #endregion
     }

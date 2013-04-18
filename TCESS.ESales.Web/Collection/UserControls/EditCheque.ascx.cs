@@ -65,9 +65,13 @@ public partial class Collection_UserControls_EditCheque : BaseUserControl
 
             int chequeStatus = Convert.ToInt32(ddlChequeStatus.SelectedItem.Value);
             paymentCollection.PC_InstrumentStatus = chequeStatus;
-            paymentCollection.PC_InstrumentRealizationDate = chequeStatus == 1 ? DateTime.Now : (DateTime?)null;            
-            paymentCollection.PC_DateOfCredit = chequeStatus == 1 ? DateTime.Now : (DateTime?)null;
-            
+            paymentCollection.PC_InstrumentRealizationDate = chequeStatus == 1 ? 
+                DateTime.Now : (DateTime?)null;            
+            paymentCollection.PC_DateOfCredit = chequeStatus == 1 ? 
+                DateTime.Now : (DateTime?)null;
+            paymentCollection.PC_CompanyBankName = chequeStatus == 1 ? 
+                Convert.ToInt32(ddlBank.SelectedItem.Value) : (int?)null;
+
             ////Checks if there are some deductions in cheque during realization
             ////If so, use amount credited field
             paymentCollection.PC_Amount = chequeStatus == 1 ?
@@ -177,10 +181,18 @@ public partial class Collection_UserControls_EditCheque : BaseUserControl
             (int)Globals.ChequeStatus.REJECTED)
         {
             ddlRejectionReason.Enabled = true;
+            txtAmountCredited.Enabled = false;
+            txtDateOfCredit.Enabled = false;
+            ddlBank.Enabled = false;
+            AmountCreditedValidator.Enabled = false;
         }
         else
         {
             ddlRejectionReason.Enabled = false;
+            txtAmountCredited.Enabled = true;
+            txtDateOfCredit.Enabled = true;
+            ddlBank.Enabled = true;
+            AmountCreditedValidator.Enabled = true;
         }
     }
 }
