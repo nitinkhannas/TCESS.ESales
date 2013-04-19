@@ -17,11 +17,12 @@
                 CssClass="textbox" ReadOnly="true" Enabled="false"></asp:TextBox>
         </td>
         <td>
-            <asp:Label ID="lbltotalcash" runat="server" Text="Total Amount" Font-Bold="true" />
+            <asp:Label ID="lbltotalcash" runat="server" Text="Total Amount" 
+                Font-Bold="True" Visible="False" />
         </td>
         <td class="style1">
             <asp:TextBox ID="lblTotalcashcollected" runat="server" BorderStyle="Solid" BorderColor="Black"
-                CssClass="textbox" ReadOnly="true" Enabled="false"></asp:TextBox>
+                CssClass="textbox" ReadOnly="true" Enabled="false" Visible="false"></asp:TextBox>
         </td>
     </tr>
     <tr align="left">
@@ -257,10 +258,10 @@
     </tr>
     <tr align="left">
         <td>
-            <asp:Label ID="lblAmtDeposited" runat="server" Text="<%$Resources:Labels, TotalBookingAdvance%>" />
-        </td>
+            <asp:Label ID="Label2" runat="server" Text="<%$Resources:Labels, AdvanceReceived%>" /></td>
         <td>
-            <asp:TextBox ID="txtAmtDeposited" runat="server" CssClass="textbox" ReadOnly="true" />
+            <asp:TextBox ID="txtBlockedAmount" runat="server" CssClass="textbox" 
+                ReadOnly="true" />
         </td>
         <td>
             <asp:Label ID="lblHndHigherEducationCess" runat="server" Text="<%$Resources:Labels, HigherEducationCess%>" />
@@ -271,16 +272,32 @@
     </tr>
     <tr align="left">
         <td>
-            <asp:Label ID="lblBalance" runat="server" Text="<%$Resources:Labels, BalanceAdvance%>" />
-        </td>
+            <asp:Label ID="Label3" runat="server" Text="<%$Resources:Labels, Balance%>" /></td>
         <td>
-            <asp:TextBox ID="txtBalance" runat="server" CssClass="textbox" ReadOnly="true" />
+            <asp:TextBox ID="txtBalanceBlockedAmount" runat="server" CssClass="textbox" 
+                ReadOnly="true" />
         </td>
         <td>
             <asp:Label ID="lblTotalHndAmount" runat="server" Text="<%$Resources:Labels, TotalHandlingAmount%>" />
         </td>
         <td class="style1">
             <asp:TextBox ID="txtTotalHndAmount" runat="server" CssClass="textbox" ReadOnly="true" />
+        </td>
+    </tr>
+    <tr align="left">
+        <td>
+            <asp:Label ID="lblAmtDeposited" runat="server" Text="<%$Resources:Labels, TotalBookingAdvance%>" Font-Bold="true" />
+        </td>
+        <td>
+            <asp:TextBox ID="txtAmtDeposited" runat="server" BorderStyle="Solid" BorderColor="Black"
+                CssClass="textbox" ReadOnly="true" Enabled="false" />
+        </td>
+        <td>
+            <asp:Label ID="lblBalance" runat="server" Text="<%$Resources:Labels, BalanceAdvance%>" Font-Bold="true" />
+        </td>
+        <td class="style1">
+            <asp:TextBox ID="txtBalance" runat="server" BorderStyle="Solid" BorderColor="Black"
+                CssClass="textbox" ReadOnly="true" Enabled="false" />
         </td>
     </tr>
     <tr>

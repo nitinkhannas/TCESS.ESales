@@ -252,7 +252,8 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
                 else
                 {
                     BookingDTO rejBookingDetails = InitializeBookingDetails(0);
-                    ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAndUpdateBookingDetail(rejBookingDetails);
+                    rejBookingDetails.Booking_IsDeleted = true;
+                    ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAllRejectedBookingInfo(rejBookingDetails,Convert.ToInt32(txtSmsRegNo.Text.Trim()));
                 }
 
                 //Reset controls on page to default state
@@ -569,6 +570,9 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         string CustomerBusinessType = string.Empty;
         string CustomerTruckType = string.Empty;
         string customerTruckTypeName = string.Empty;
+        txtTotalBookingAdvance.Text = string.Empty;
+        txtBalanceAdvance.Text = string.Empty;
+        txtAdvanceAmount.Text = string.Empty;
 
         List<CounterDTO> lstCounterData = ESalesUnityContainer.Container.Resolve<ICounterService>().GetCounterList().ToList();
         List<CounterDetailsDTO> lstCounterDetailsData = ESalesUnityContainer.Container.Resolve<ICounterService>().GetCounterDetailsListForCurrentDate().ToList();

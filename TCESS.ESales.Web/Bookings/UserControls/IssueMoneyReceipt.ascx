@@ -113,7 +113,7 @@
             <ajax:ValidatorCalloutExtender ID="PaymentModeValidatorCallout" runat="server" TargetControlID="PaymentModeValidator" />
         </td>
     </tr>
-    <tr align="left"  visible="false">
+    <tr align="left" runat="server" visible="false">
         <td>
             <asp:Label ID="lblInstrumentNo" runat="server" Text="<%$Resources:Labels, InstrumentNo%>" />
         </td>

@@ -39,12 +39,12 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
 
     protected void btnCalculate_Click(object sender, EventArgs e)
     {
-        Boolean flagMonth = false;        
+        Boolean flagMonth = false;
         Boolean flagTSLAcceptedDate = false;
-        int currentMonth = DateTime.Now.Month;  
+        int currentMonth = DateTime.Now.Month;
         int currentYear = DateTime.Now.Year;
         DateTime now = DateTime.Now;
-        string month = now.ToString("MMMM");        
+        string month = now.ToString("MMMM");
 
         string Form27CCheck = ConfigurationManager.AppSettings["Form27CCheck"].ToLower();
         string Form27CActive = ConfigurationManager.AppSettings["Form27CActive"].ToLower();
@@ -157,7 +157,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
             decimal higherEducationCess = serviceTax * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.HEDUCATIONCESS]) / 100);
             decimal netAmount = grossAmount + serviceTax + educationCess + higherEducationCess;
             decimal balance = netAmount - Convert.ToDecimal(txtAmtDeposited.Text);
-
+            decimal blockedBalance = netAmount - Convert.ToDecimal(txtBlockedAmount.Text);
             txtGrossAmount.Text = Convert.ToString(Math.Round(tiscoRate, 2));
             txtHndGrossAmount.Text = Convert.ToString(Math.Round(handlingRate, 2));
             txtTotalMatAmount.Text = Convert.ToString(Math.Round(tiscoRate, 2));
@@ -167,6 +167,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
             txtHndHigherEducationCess.Text = Convert.ToString(Math.Round(higherEducationCess, 2));
             txtTotalAmount.Text = Convert.ToString(Math.Round(netAmount, 2));
             txtBalance.Text = Convert.ToString(Math.Round(balance, 2));
+            txtBalanceBlockedAmount.Text = Convert.ToString(Math.Round(blockedBalance, 2));
 
             //Set enabled property of save button to true
             btnSave.Enabled = true;
@@ -181,12 +182,18 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
 
         //get Total refund amount
         decimal totalRefundAmount = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerPaymentRefundList(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID])).Sum(f => f.PR_Amount);
-        
+
 
         decimal rate = 0;
         decimal currentLoad = Convert.ToDecimal(txtQuantity.Text.Trim());
         decimal currentAmount = GetAmount(currentLoad);
-        if (totalAmountCollected >= (totalMaterialLiftedAmount + currentAmount + totalRefundAmount))
+
+        decimal InTransitLoad = ESalesUnityContainer.Container.Resolve<IBookingService>().GetIntransisCustomerQty(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"])).Sum(item => item.Booking_Qty);
+        InTransitLoad = InTransitLoad + (Convert.ToDecimal(InTransitLoad) * Convert.ToDecimal(ConfigurationManager.AppSettings["OverLiftingPercentage"]) / 100);
+        // decimal InTransitAmount = GetAmount(ESalesUnityContainer.Container.Resolve<IBookingService>().GetIntransisCustomerQty(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"])).Sum(item => item.Booking_Qty));
+        decimal InTransitAmount = GetAmount(InTransitLoad) - Convert.ToDecimal(txtBlockedAmount.Text.Trim());
+
+        if (totalAmountCollected >= (totalMaterialLiftedAmount + currentAmount + totalRefundAmount + InTransitAmount))
         {
             txtAmtDeposited.Text = Convert.ToString(totalAmountCollected - totalMaterialLiftedAmount);
             return true;
@@ -194,7 +201,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
         else
         {
             //Reset controls on page to default state
-            ucMessageBox.ShowMessage("In adequate funds");
+            ucMessageBox.ShowMessage("In adequate funds.Please deposit amount");
             ResetControls();
             return false;
         }
@@ -235,7 +242,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
                 //Get advance amount deposited details
                 MoneyReceiptDTO moneyReceiptDetails = ESalesUnityContainer.Container.Resolve<IMoneyReceiptService>()
                     .GetMoneyReceiptById(0, bookingDetails.Booking_Id);
-                txtAmtDeposited.Text = Convert.ToString(moneyReceiptDetails.MoneyReceipt_AmountPaid);
+                txtBlockedAmount.Text = Convert.ToString(moneyReceiptDetails.MoneyReceipt_AmountPaid);
 
                 //Set values in viewstate
                 ViewState[Globals.StateMgmtVariables.SERVICETAX] = bookingDetails.Booking_MaterialType_ServiceTax;
@@ -287,6 +294,14 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
         txtGatePassNo.Text = string.Empty;
         txtBalance.Text = string.Empty;
         txtCFormNo.Text = string.Empty;
+        txtBlockedAmount.Text = string.Empty;
+        txtBalanceBlockedAmount.Text = string.Empty;
+        txtTotalMatAmount.Text = string.Empty;
+        txtHndGrossAmount.Text = string.Empty;
+        txtHndServiceTax.Text = string.Empty;
+        txtHndEducationCess.Text = string.Empty;
+        txtTotalHndAmount.Text = string.Empty;
+        txtHndHigherEducationCess.Text = string.Empty;
     }
 
     protected void btnPrint_Click(object sender, EventArgs e)
@@ -306,18 +321,18 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
             {
                 //Initializes Settlement of Account
                 SettlementOfAccount();
-                
+
             }
             else
             {
                 ucMessageBox.ShowMessage("Please submit Form 27C for the current month, Settlement of account cannot be done");
-                
+
             }
         }
         else
         {
             SettlementOfAccount();
-            
+
         }
     }
 
@@ -351,14 +366,14 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
         settlementOfAcct.Account_InvoiceNumber = txtInvoiceNo.Text.Trim();
         settlementOfAcct.Account_RoadPermitNo = txtRoadPermitNo.Text.Trim();
         settlementOfAcct.Account_GatePassNo = txtGatePassNo.Text.Trim();
-        settlementOfAcct.Account_AdvanceReceived = Convert.ToDecimal(txtAmtDeposited.Text);
+        settlementOfAcct.Account_AdvanceReceived = Convert.ToDecimal(txtBlockedAmount.Text);
         settlementOfAcct.Account_TiscoRate = Convert.ToDecimal(txtTiscoRate.Text);
         settlementOfAcct.Account_HandlingServiceTax = Convert.ToDecimal(txtHndServiceTax.Text);
         settlementOfAcct.Account_HandlingRate = Convert.ToDecimal(txtHandlingRate.Text);
         settlementOfAcct.Account_HandlingECess = Convert.ToDecimal(txtHndEducationCess.Text);
         settlementOfAcct.Account_HandlingHECess = Convert.ToDecimal(txtHndHigherEducationCess.Text);
         settlementOfAcct.Account_TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-        settlementOfAcct.Account_Balance = Convert.ToDecimal(txtBalance.Text);
+        settlementOfAcct.Account_Balance = Convert.ToDecimal(txtBalanceBlockedAmount.Text);
         settlementOfAcct.Account_CreatedBy = base.GetCurrentUserId();
         settlementOfAcct.Account_CreatedDate = DateTime.Now;
         settlementOfAcct.Account_Form27CId = Convert.ToInt32(ViewState["form27ID"]);
@@ -425,7 +440,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
                 //Get advance amount deposited details
                 MoneyReceiptDTO moneyReceiptDetails = ESalesUnityContainer.Container.Resolve<IMoneyReceiptService>()
                     .GetMoneyReceiptById(0, bookingDetails.Booking_Id);
-               // txtAmtDeposited.Text = Convert.ToString(moneyReceiptDetails.MoneyReceipt_AmountPaid);
+                // txtAmtDeposited.Text = Convert.ToString(moneyReceiptDetails.MoneyReceipt_AmountPaid);
 
                 //Set values in viewstate
                 ViewState[Globals.StateMgmtVariables.SERVICETAX] = bookingDetails.Booking_MaterialType_ServiceTax;

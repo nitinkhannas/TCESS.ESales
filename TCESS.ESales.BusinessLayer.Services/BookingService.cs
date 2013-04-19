@@ -306,5 +306,23 @@ namespace TCESS.ESales.BusinessLayer.Services
             AutoMapper.Mapper.Map(lstBookingEntity, lstBookingDetails);
             return lstBookingDetails;
         }
+
+
+        public void SaveAllRejectedBookingInfo(BookingDTO bookingDetails, int smsRegId)
+        {
+            using (TransactionScope transactionScope = new TransactionScope())
+            {
+
+                //Save Booking Details
+                int savedBookingID = SaveAndUpdateBookingDetail(bookingDetails);
+                if (smsRegId > 0)
+                {
+                    SMSRegistrationDTO smsRegdetails = ESalesUnityContainer.Container.Resolve<ISMSService>().GetTodaysSMSDetailsById(smsRegId, DateTime.Now.Date.AddDays(-1));
+                    smsRegdetails.SMSReg_Booking_Id = savedBookingID;
+                    ESalesUnityContainer.Container.Resolve<ISMSService>().SaveAndUpdateSMSDetails(smsRegdetails);
+                }
+                transactionScope.Complete();
+            }
+        }
     }
 }

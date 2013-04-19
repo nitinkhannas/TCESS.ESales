@@ -24,5 +24,6 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
 		BookingDTO GetBookingDetailForReprint(int bookingId);
         BookingDTO GetBookingDetailBySmsId(int smsId);
         IList<BookingDTO> GetIntransisCustomerQty(int customerId,DateTime fromDate,DateTime toDate);
+        void SaveAllRejectedBookingInfo(BookingDTO bookingDetails,int smsRegId);
     }
 }
