@@ -89,38 +89,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private batchtransfer _batchtransfer;
     
-        public virtual ICollection<smspaymentregistration> smspaymentregistrations
-        {
-            get
-            {
-                if (_smspaymentregistrations == null)
-                {
-                    var newCollection = new FixupCollection<smspaymentregistration>();
-                    newCollection.CollectionChanged += Fixupsmspaymentregistrations;
-                    _smspaymentregistrations = newCollection;
-                }
-                return _smspaymentregistrations;
-            }
-            set
-            {
-                if (!ReferenceEquals(_smspaymentregistrations, value))
-                {
-                    var previousValue = _smspaymentregistrations as FixupCollection<smspaymentregistration>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupsmspaymentregistrations;
-                    }
-                    _smspaymentregistrations = value;
-                    var newValue = value as FixupCollection<smspaymentregistration>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupsmspaymentregistrations;
-                    }
-                }
-            }
-        }
-        private ICollection<smspaymentregistration> _smspaymentregistrations;
-    
         public virtual paymentcollection paymentcollection
         {
             get { return _paymentcollection; }
@@ -175,28 +143,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                 if (PaymentTransit_CollectionId != paymentcollection.PC_Id)
                 {
                     PaymentTransit_CollectionId = paymentcollection.PC_Id;
-                }
-            }
-        }
-    
-        private void Fixupsmspaymentregistrations(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (smspaymentregistration item in e.NewItems)
-                {
-                    item.paymenttransit = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (smspaymentregistration item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.paymenttransit, this))
-                    {
-                        item.paymenttransit = null;
-                    }
                 }
             }
         }

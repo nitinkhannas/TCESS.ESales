@@ -56,12 +56,6 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             set;
         }
     
-        public virtual Nullable<int> SMSPay_CollectionId
-        {
-            get;
-            set;
-        }
-    
         public virtual decimal SMSPay_Amount
         {
             get;
@@ -84,9 +78,9 @@ namespace TCESS.ESales.PersistenceLayer.Entity
                     _settingFK = true;
                     if (_sMSPay_Payment_Id != value)
                     {
-                        if (paymenttransit != null && paymenttransit.PaymentTransit_Id != value)
+                        if (paymentcollection != null && paymentcollection.PC_Id != value)
                         {
-                            paymenttransit = null;
+                            paymentcollection = null;
                         }
                         _sMSPay_Payment_Id = value;
                     }
@@ -153,20 +147,20 @@ namespace TCESS.ESales.PersistenceLayer.Entity
         }
         private customer _customer;
     
-        public virtual paymenttransit paymenttransit
+        public virtual paymentcollection paymentcollection
         {
-            get { return _paymenttransit; }
+            get { return _paymentcollection; }
             set
             {
-                if (!ReferenceEquals(_paymenttransit, value))
+                if (!ReferenceEquals(_paymentcollection, value))
                 {
-                    var previousValue = _paymenttransit;
-                    _paymenttransit = value;
-                    Fixuppaymenttransit(previousValue);
+                    var previousValue = _paymentcollection;
+                    _paymentcollection = value;
+                    Fixuppaymentcollection(previousValue);
                 }
             }
         }
-        private paymenttransit _paymenttransit;
+        private paymentcollection _paymentcollection;
 
         #endregion
         #region Association Fixup
@@ -193,22 +187,22 @@ namespace TCESS.ESales.PersistenceLayer.Entity
             }
         }
     
-        private void Fixuppaymenttransit(paymenttransit previousValue)
+        private void Fixuppaymentcollection(paymentcollection previousValue)
         {
             if (previousValue != null && previousValue.smspaymentregistrations.Contains(this))
             {
                 previousValue.smspaymentregistrations.Remove(this);
             }
     
-            if (paymenttransit != null)
+            if (paymentcollection != null)
             {
-                if (!paymenttransit.smspaymentregistrations.Contains(this))
+                if (!paymentcollection.smspaymentregistrations.Contains(this))
                 {
-                    paymenttransit.smspaymentregistrations.Add(this);
+                    paymentcollection.smspaymentregistrations.Add(this);
                 }
-                if (SMSPay_Payment_Id != paymenttransit.PaymentTransit_Id)
+                if (SMSPay_Payment_Id != paymentcollection.PC_Id)
                 {
-                    SMSPay_Payment_Id = paymenttransit.PaymentTransit_Id;
+                    SMSPay_Payment_Id = paymentcollection.PC_Id;
                 }
             }
             else if (!_settingFK)

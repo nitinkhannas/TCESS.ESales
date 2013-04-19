@@ -570,7 +570,7 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         if (smsPaymentDetails.SMSPay_Id > 0)
         {
             smsPaymentDetails.SMSPay_Status = true;
-            smsPaymentDetails.SMSPay_CollectionId = newCollectionId;
+            smsPaymentDetails.SMSPay_Payment_Id = newCollectionId;
         }
 
         ESalesUnityContainer.Container.Resolve<IPaymentService>()
