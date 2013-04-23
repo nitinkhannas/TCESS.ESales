@@ -253,7 +253,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
                 {
                     BookingDTO rejBookingDetails = InitializeBookingDetails(0);
                     rejBookingDetails.Booking_IsDeleted = true;
-                    ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAllRejectedBookingInfo(rejBookingDetails,Convert.ToInt32(txtSmsRegNo.Text.Trim()));
+                    ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAllRejectedBookingInfo(rejBookingDetails, Convert.ToInt32(txtSmsRegNo.Text.Trim()));
                 }
 
                 //Reset controls on page to default state
@@ -601,7 +601,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
                             where F.Cust_Code == smsRegDetails.SMSReg_Cust_Code
                             select F).FirstOrDefault();
             }
-            if (customer.Cust_Id > 0 && smsRegDetails.SMSReg_Id > 0)
+            if (customer.Cust_Id > 0 && smsRegDetails.SMSReg_Id > 0 && smsRegDetails.SMSReg_Booking_Id == null)
             {
                 string TruckTypeCheck = ConfigurationManager.AppSettings["TruckTypeCheck"].ToLower();
 
@@ -682,7 +682,14 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
             {
                 //Reset controls on page to default state
                 ResetFields();
-                ucMessageBox.ShowMessage(Messages.CustomerNotFound);
+                if (customer.Cust_Id > 0)
+                {
+                    ucMessageBox.ShowMessage("SMS ID already used");
+                }
+                else
+                {
+                    ucMessageBox.ShowMessage(Messages.CustomerNotFound);
+                }
             }
         }
         else
@@ -725,7 +732,14 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         {
             //Reset controls on page to default state
             ResetFields();
-            ucMessageBox.ShowMessage("In adequate funds");
+            decimal msgBalanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
+            decimal msgBalanceAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount);
+            msgBalanceAmount = msgBalanceAmount * -1;
+            if (msgBalanceAvlAmount < 0)
+            {
+                msgBalanceAvlAmount = 0;
+            }
+            ucMessageBox.ShowMessage("BAL: " + string.Format("{0:N2}",msgBalanceAvlAmount) + " ;REQD: " + string.Format("{0:N2}",msgBalanceAmount) + " .Insufficent Fund.");
         }
     }
     private decimal GetAmount(decimal qty)
@@ -1124,6 +1138,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         else
         {
             btnSave.Enabled = false;
+            ResetFields();
             ucMessageBox.ShowMessage(Messages.DuplicateTruck);
         }
     }
@@ -1152,6 +1167,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
             else
             {
                 btnSave.Enabled = false;
+                ResetFields();
                 ucMessageBox.ShowMessage(Messages.DuplicateTruck);
             }
         }

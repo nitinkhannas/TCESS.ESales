@@ -22,7 +22,7 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
 
         //Write all your code in this section
         //1. Trap all query string variables
-        if ((Request.QueryString["userid"] == null) || (Request.QueryString["pno"] == null) || (Request.QueryString["msg"] == null))
+        if ((Request.QueryString["scid"] == null) || (Request.QueryString["pno"] == null) || (Request.QueryString["msg"] == null))
         {
             return;
         }
@@ -52,7 +52,7 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
         }
 
         //print simple text using "Response.Write" what ever u want in response.
-        if (strKeyword.ToUpper() == "BOOK" && strSubKeyword.ToUpper() == "A")
+        if (strKeyword.ToUpper() == "CASH" && strSubKeyword.ToUpper() == "A")
         {
             strAmount = strAmount.Trim();  //Regex.Replace(strAmount, "[^0-9a-zA-Z]+", "");
             double dblAmount;
