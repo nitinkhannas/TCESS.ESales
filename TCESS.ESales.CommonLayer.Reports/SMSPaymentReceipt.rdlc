@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Midas Mineral Logistic Pvt. LTD.-Ghatotand</Value>
+                <Value>Midas Mineral Logistics Pvt. Ltd.-Ghatotand</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontSize>12pt</FontSize>
@@ -47,7 +47,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Please Preserve This Receipt For Further Use </Value>
+                <Value>Please Preserve This ID Slip For Further Use </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>

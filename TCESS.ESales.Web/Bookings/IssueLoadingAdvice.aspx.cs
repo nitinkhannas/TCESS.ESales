@@ -703,6 +703,8 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
 
     private void CheckCurrentBalance()
     {
+        string BalanceAmt;
+        
         //get total deposit amount Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID])
         decimal totalAmountCollected = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentMadeByCustomer(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"]));
 
@@ -718,6 +720,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
 
         decimal currentLoad = (Convert.ToDecimal(txtCarryCapacity.Text.Trim()) + (Convert.ToDecimal(txtCarryCapacity.Text.Trim()) * Convert.ToDecimal(ConfigurationManager.AppSettings["OverLiftingPercentage"]) / 100));
         decimal currentAmount = GetAmount(currentLoad);
+    
         if (totalAmountCollected >= (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount))
         {
 
@@ -730,6 +733,9 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         }
         else
         {
+            decimal balanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
+            decimal balanceAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount);
+            BalanceAmt = string.Format("{0:N2}", balanceAmount);
             //Reset controls on page to default state
             ResetFields();
             decimal msgBalanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
@@ -742,6 +748,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
             ucMessageBox.ShowMessage("BAL: " + string.Format("{0:N2}",msgBalanceAvlAmount) + " ;REQD: " + string.Format("{0:N2}",msgBalanceAmount) + " .Insufficent Fund.");
         }
     }
+
     private decimal GetAmount(decimal qty)
     {
         MaterialTypeDTO materialTypeDetails = new MaterialTypeDTO();

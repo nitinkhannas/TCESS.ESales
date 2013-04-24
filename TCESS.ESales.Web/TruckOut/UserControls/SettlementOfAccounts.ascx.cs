@@ -195,7 +195,8 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
 
         if (totalAmountCollected >= (totalMaterialLiftedAmount + currentAmount + totalRefundAmount + InTransitAmount))
         {
-            txtAmtDeposited.Text = Convert.ToString(totalAmountCollected - totalMaterialLiftedAmount);
+            txtAmtDeposited.Text = string.Format("{0:N2}",(totalAmountCollected - (totalMaterialLiftedAmount +InTransitAmount)));
+           // =string.Format("{0:N2}",
             return true;
         }
         else
@@ -209,8 +210,8 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
     private decimal GetAmount(decimal qty)
     {
 
-        decimal handlingRate = Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtHandlingRate.Text);
-        decimal tiscoRate = Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtTiscoRate.Text);
+        decimal handlingRate = Convert.ToDecimal(qty) * Convert.ToDecimal(txtHandlingRate.Text);
+        decimal tiscoRate = Convert.ToDecimal(qty) * Convert.ToDecimal(txtTiscoRate.Text);
         decimal grossAmount = handlingRate + tiscoRate;
         decimal serviceTax = handlingRate * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.SERVICETAX]) / 100);
         decimal educationCess = serviceTax * (Convert.ToDecimal(ViewState[Globals.StateMgmtVariables.EDUCATIONCESS]) / 100);
