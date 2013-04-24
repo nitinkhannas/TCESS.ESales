@@ -51,8 +51,8 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
             strAmount = Convert.ToString(arrKeywords[3]);
         }
 
-        //print simple text using "Response.Write" what ever u want in response.
-        if (strKeyword.ToUpper() == "CASH" && strSubKeyword.ToUpper() == "A")
+        //print simple text using "Response.Write" what ever u want in response. 
+        if (strKeyword.ToUpper() == "CASH" && strSubKeyword.ToUpper() == "A") //Cash keyword for payment and A for Advance.
         {
             strAmount = strAmount.Trim();  //Regex.Replace(strAmount, "[^0-9a-zA-Z]+", "");
             double dblAmount;
