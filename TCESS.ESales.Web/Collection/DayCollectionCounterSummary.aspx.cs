@@ -130,7 +130,6 @@ public partial class Collection_DayCollectionCounterSummary : BasePage
         if (isGridRowsEmpty)
         {
             base.ShowBlankRowInGrid<PaymentCollectionDTO>(grdPaymentTransit);
-            base.ShowBlankRowInGrid<BatchTransferDTO>(grdBatchPayments);
         }
         else
         {
@@ -143,6 +142,8 @@ public partial class Collection_DayCollectionCounterSummary : BasePage
             ViewState["Count"] = rowCount;
             SetAmountToTransitValue(amount);
         }
+
+        LoadBatchDetails();
     }
 
     protected void chkItem_CheckedChanged(object sender, EventArgs e)
@@ -173,6 +174,8 @@ public partial class Collection_DayCollectionCounterSummary : BasePage
             ViewState["Count"] = count - 1;
         }
         SetAmountToTransitValue(amount);
+
+        LoadBatchDetails();
     }
 
     protected IEnumerable grdPaymentTransit_MustAddARow(IEnumerable data)
