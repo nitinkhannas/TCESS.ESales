@@ -289,7 +289,7 @@
             <asp:Label ID="lblAmtDeposited" runat="server" Text="<%$Resources:Labels, TotalBookingAdvance%>" Font-Bold="true" />
         </td>
         <td>
-            <asp:TextBox ID="txtAmtDeposited" runat="server" BorderStyle="Solid" BorderColor="Black"
+            <asp:TextBox ID="txtAmtDepositedActual" runat="server" BorderStyle="Solid" BorderColor="Black"
                 CssClass="textbox" ReadOnly="true" Enabled="false" />
         </td>
         <td>
@@ -303,6 +303,8 @@
     <tr>
         <td colspan="4" align="center">
             <uc1:MessageBox ID="ucMessageBox" runat="server" />
+            <asp:TextBox ID="txtAmtDeposited" runat="server" BorderStyle="Solid" BorderColor="Black"
+                CssClass="textbox" ReadOnly="true" Enabled="false" Visible="False" />
         </td>
     </tr>
     <tr>

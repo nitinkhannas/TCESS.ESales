@@ -195,8 +195,9 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
 
         if (totalAmountCollected >= (totalMaterialLiftedAmount + currentAmount + totalRefundAmount + InTransitAmount))
         {
-            txtAmtDeposited.Text = string.Format("{0:N2}",(totalAmountCollected - (totalMaterialLiftedAmount +InTransitAmount)));
-           // =string.Format("{0:N2}",
+            txtAmtDeposited.Text = string.Format("{0:N2}", (totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount)));
+            txtAmtDepositedActual.Text = string.Format("{0:N2}", (totalAmountCollected - (totalMaterialLiftedAmount)));
+            // =string.Format("{0:N2}",
             return true;
         }
         else
@@ -286,6 +287,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
         txtTruckNo.Text = string.Empty;
         txtHandlingRate.Text = string.Empty;
         txtAmtDeposited.Text = string.Empty;
+        txtAmtDepositedActual.Text = string.Empty;
         txtGrossAmount.Text = string.Empty;
         txtFormDNo.Text = string.Empty;
         txtHologramNumber.Text = string.Empty;
