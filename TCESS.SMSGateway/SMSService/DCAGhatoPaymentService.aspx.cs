@@ -27,7 +27,7 @@ public partial class SMSService_DCAGhatoPaymentService : System.Web.UI.Page
             return;
         }
 
-        strSource = Request.QueryString["userid"].ToString();
+        strSource = Request.QueryString["scid"].ToString();
         strPhoneNumber = Request.QueryString["pno"].ToString();
         strMessage = Request.QueryString["msg"].ToString();
 
