@@ -745,7 +745,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
             {
                 msgBalanceAvlAmount = 0;
             }
-            ucMessageBox.ShowMessage("BAL: " + string.Format("{0:N2}",msgBalanceAvlAmount) + " ;REQD: " + string.Format("{0:N2}",msgBalanceAmount) + " .Insufficent Fund.");
+            ucMessageBox.ShowMessage("BAL: " + string.Format("{0:N2}",msgBalanceAvlAmount) + " ;SHORT: " + string.Format("{0:N2}",msgBalanceAmount) + " .Insufficent Fund.");
         }
     }
 

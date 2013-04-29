@@ -166,6 +166,7 @@ public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserContro
             txtHndEducationCess.Text = Convert.ToString(Math.Round(educationCess, 2));
             txtHndHigherEducationCess.Text = Convert.ToString(Math.Round(higherEducationCess, 2));
             txtTotalAmount.Text = Convert.ToString(Math.Round(netAmount, 2));
+            balance = balance * -1;
             txtBalance.Text = Convert.ToString(Math.Round(balance, 2));
             txtBalanceBlockedAmount.Text = Convert.ToString(Math.Round(blockedBalance, 2));
 
