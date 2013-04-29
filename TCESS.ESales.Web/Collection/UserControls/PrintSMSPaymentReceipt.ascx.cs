@@ -102,7 +102,16 @@ public partial class Collection_UserControls_PrintSMSPaymentReceipt : BaseUserCo
         }
         else
         {
-            ucMessageBoxForGrid.ShowMessage("SMS Details Not  Found");
+            SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
+                 .Resolve<IPaymentService>().GetSMSPaymentDetailsByID(Convert.ToInt32(txtValidationID.Text.Trim()));
+            if (smsPaymentDetails != null && smsPaymentDetails.SMSPay_Status == true)
+            {
+                ucMessageBoxForGrid.ShowMessage(Messages.SMSIdUsed);
+            }
+            else
+            {
+                ucMessageBoxForGrid.ShowMessage(Messages.SMSIdNotFound);
+            }
             ResetControls(false);
         }
     }

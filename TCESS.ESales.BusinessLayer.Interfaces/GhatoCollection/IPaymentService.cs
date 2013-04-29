@@ -42,6 +42,7 @@ namespace TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection
         IList<PaymentCollectionDTO> GetCollectionDetailsForPrint(string searchValue, bool? isNumeric, int? userId);
         IList<PaymentCollectionDTO> GetCollectionDetailsForCancelAndReIssue(string searchValue, bool? isNumeric, int? userId);
         PaymentCollectionDTO GetCollectionDetailsByOldReceiptNo(int oldReceiptNo);
+        SMSPaymentRegistrationDTO GetSMSPaymentDetailsByID(int smsID);
         /// <summary>
         /// 
         /// </summary>

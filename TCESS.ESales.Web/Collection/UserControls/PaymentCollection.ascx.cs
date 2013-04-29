@@ -334,7 +334,16 @@ public partial class GhatoCollection_UserControls_PaymentCollection : BaseUserCo
         {
             if (smsValidation)
             {
-                ucMessageBoxForGrid.ShowMessage(Messages.SMSIdNotFound);
+                SMSPaymentRegistrationDTO smsPaymentDetails = ESalesUnityContainer.Container
+                 .Resolve<IPaymentService>().GetSMSPaymentDetailsByID(Convert.ToInt32(txtSMSId.Text.Trim()));
+                if (smsPaymentDetails != null && smsPaymentDetails.SMSPay_Status == true)
+                {
+                    ucMessageBoxForGrid.ShowMessage(Messages.SMSIdUsed);
+                }
+                else
+                {
+                    ucMessageBoxForGrid.ShowMessage(Messages.SMSIdNotFound);
+                }
                 ResetControls(false);
             }
             else

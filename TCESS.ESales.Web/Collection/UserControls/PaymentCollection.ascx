@@ -89,6 +89,11 @@
                         <%# Container.DataItemIndex + 1 %>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="<%$Resources:Labels, CustomerCode%>" >
+                    <ItemTemplate>
+                        <asp:Label ID="lblCustCode" runat="server" Text='<%# Bind("Cust_Code") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="<%$Resources:Labels, TradeName%>" ItemStyle-HorizontalAlign="Left">
                     <ItemTemplate>
                         <asp:Label ID="lblDefaultFees" runat="server" Text='<%# Bind("Cust_TradeName") %>' />

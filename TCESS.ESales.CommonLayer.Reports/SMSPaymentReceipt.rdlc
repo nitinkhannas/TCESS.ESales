@@ -698,7 +698,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!SMSPay_Date.Value</Value>
+                    <Value>=CDate(Parameters!SMSPay_Date.Value).ToString("dd/MM/yyyy")</Value>
                     <Style>
                       <Format>dd-MMM-yy</Format>
                     </Style>

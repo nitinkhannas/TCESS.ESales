@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CashSMSInvalid" xml:space="preserve">
-    <value>SMS sahi nahi hai. Phir se bhejein. Is prakar type kare BOOK 'CODE' A 'AMOUNT' jaise BOOK A0123 A 15000.MMLGhato</value>
+    <value>SMS sahi nahi hai. Phir se bhejein. Is prakar type kare CASH 'CODE' A 'AMOUNT' jaise CASH A0123 A 15000.MMLGhato</value>
   </data>
   <data name="InvalidAmount" xml:space="preserve">
     <value>Enter a Valid Amount.</value>
