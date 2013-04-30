@@ -184,7 +184,7 @@
                                 <%# Container.DataItemIndex + 1 %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="<%$Resources:Labels, BatchNo%>">
+                        <asp:TemplateField HeaderText="<%$Resources:Labels, RITNo%>">
                             <ItemTemplate>
                                 <asp:Label ID="lblFirmName" runat="server" Text='<%# Bind("BT_Id") %>' />
                             </ItemTemplate>

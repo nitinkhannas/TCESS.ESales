@@ -72,19 +72,12 @@ public partial class Collection_UserControls_EditCheque : BaseUserControl
             paymentCollection.PC_CompanyBankName = chequeStatus == 1 ? 
                 Convert.ToInt32(ddlBank.SelectedItem.Value) : (int?)null;
 
-            ////Checks if there are some deductions in cheque during realization
-            ////If so, use amount credited field
-            paymentCollection.PC_Amount = chequeStatus == 1 ?
-                string.IsNullOrEmpty(Convert.ToString(txtAmountCredited.Text)) ?
-                Convert.ToDecimal(txtAmount.Text) :
-                Convert.ToDecimal(txtAmountCredited.Text) : Convert.ToDecimal(txtAmount.Text);
-
-            ////If there are some deductions in cheque during realization
-            ////store the cheque amount in previous amount field in database
+            ////30th April 2013
+            ////As per request raised by Nitin and Mr Arora,
+            ////Amount credited will always contain the difference amount beteen cheque submitted and amount realized
+            ////This is only for records and system will not affected by this change
             paymentCollection.PC_PreviousAmount = chequeStatus == 1 ?
-                !string.IsNullOrEmpty(Convert.ToString(txtAmountCredited.Text)) ? 
-                Convert.ToDecimal(txtAmountCredited.Text) : 
-                Convert.ToDecimal(txtAmount.Text) : (decimal?)null;
+                Convert.ToDecimal(txtAmountCredited.Text) : (decimal?)null;
             paymentCollection.PC_LastUpdateDate = DateTime.Now;
             paymentCollection.PC_LastUpdatedBy = base.GetCurrentUserId();
 
