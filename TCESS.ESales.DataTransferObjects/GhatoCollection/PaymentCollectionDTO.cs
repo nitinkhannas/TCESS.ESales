@@ -52,7 +52,7 @@ namespace TCESS.ESales.DataTransferObjects.GhatoCollection
         public int PC_ReprintCount { get; set; }
         public Nullable<DateTime> PC_LastPrintDate { get; set; }
         public Nullable<int> PC_CreatedBy { get; set; }
-        public DateTime PC_CreatedDate { get; set; }
+        public Nullable<DateTime> PC_CreatedDate { get; set; }
         public Nullable<int> PC_LastUpdatedBy { get; set; }
         public Nullable<DateTime> PC_LastUpdateDate { get; set; }
         public bool PC_IsDeleted { get; set; }

@@ -147,6 +147,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                              PC_BankBranch = pcItem.PC_BankBranch,
                              PC_BankIFSCCode = pcItem.PC_BankIFSCCode,
                              PC_InstrumentDate = pcItem.PC_InstrumentDate,
+                             PC_CreatedDate = pcItem.PC_CreatedDate,
                              PC_Remark = pcItem.PC_Remark,
                              PC_PayerName = pcItem.PC_PayerName,
                              PC_MobileNumber = pcItem.PC_MobileNumber,
