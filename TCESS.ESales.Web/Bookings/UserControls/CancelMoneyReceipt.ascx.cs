@@ -1,13 +1,19 @@
 ﻿#region Using directives
 
 using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using Microsoft.Practices.Unity;
+using Resources;
 using TCESS.ESales.BusinessLayer.Interfaces;
 using TCESS.ESales.CommonLayer.CommonLibrary;
+using TCESS.ESales.CommonLayer.Exception;
 using TCESS.ESales.CommonLayer.Unity;
 using TCESS.ESales.DataTransferObjects;
-using System.Web.UI.WebControls;
-using Resources;
+using TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection;
 
 #endregion
 
@@ -38,6 +44,7 @@ public partial class Bookings_UserControls_CancelMoneyReceipt : BaseUserControl
             txtReceiptNo.Text = moneyReceiptDetails.MoneyReceipt_AgentShortName + "-MR-" + moneyReceiptDetails.MoneyReceipt_Id;
             txtBookingNo.Text = moneyReceiptDetails.MoneyReceipt_InvoiceNo;
             ViewState["BOOKINGID"] = moneyReceiptDetails.MoneyReceipt_Booking_Id;
+            ViewState[Globals.StateMgmtVariables.CUSTOMERID] = moneyReceiptDetails.MoneyReceipt_Cust_ID;
             ViewState[Globals.StateMgmtVariables.MONEYRECEIPTID] = moneyReceiptDetails.MoneyReceipt_Id;
             txtCustName.Text = moneyReceiptDetails.MoneyReceipt_Cust_FirmName;
             txtMaterialType.Text = moneyReceiptDetails.MoneyReceipt_MaterialName;
@@ -48,7 +55,53 @@ public partial class Bookings_UserControls_CancelMoneyReceipt : BaseUserControl
             txtDriverName.Text = moneyReceiptDetails.MoneyReceipt_Truck_DriverName;
             txtTruckOwner.Text = moneyReceiptDetails.MoneyReceipt_Truck_OwnerName;
             txtRemarks.Text = moneyReceiptDetails.MoneyReceipt_Remarks;
+            txtRefundAmt.Text = moneyReceiptDetails.MoneyReceipt_AmountPaid.ToString();
+            txtRefundAmt.ReadOnly = true;
+            CheckCurrentBalance(moneyReceiptDetails.MoneyReceipt_MaterialID);
         }
+    }
+
+
+    private void CheckCurrentBalance(int materialType)
+    {
+        string BalanceAmt;
+
+        //get total deposit amount Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID])
+        decimal totalAmountCollected = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentMadeByCustomer(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"]));
+
+        decimal totalRefundAmount = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerPaymentRefundList(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID])).Sum(f => f.PR_Amount);
+
+        //get Total exp amount
+        decimal totalMaterialLiftedAmount = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetMaterialAmountLiftedByCustomer(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"]));
+        //Get InTransit amount
+        decimal InTransitLoad = ESalesUnityContainer.Container.Resolve<IBookingService>().GetIntransisCustomerQty(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"])).Sum(item => item.Booking_Qty);
+        InTransitLoad = InTransitLoad + (Convert.ToDecimal(InTransitLoad) * Convert.ToDecimal(ConfigurationManager.AppSettings["OverLiftingPercentage"]) / 100);
+        // decimal InTransitAmount = GetAmount(ESalesUnityContainer.Container.Resolve<IBookingService>().GetIntransisCustomerQty(Convert.ToInt32(ViewState[Globals.StateMgmtVariables.CUSTOMERID]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentStartDate"]), Convert.ToDateTime(ConfigurationManager.AppSettings["PaymentEndDate"])).Sum(item => item.Booking_Qty));
+        decimal InTransitAmount = GetAmount(InTransitLoad, materialType);
+
+        decimal currentAmount = Convert.ToDecimal(txtRefundAmt.Text);
+        {
+            decimal balanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
+            decimal balanceAmount = balanceAvlAmount + currentAmount;
+            BalanceAmt = string.Format("{0:N2}", balanceAmount);
+            txtBalRefundAmount.Text = BalanceAmt;
+        }
+    }
+
+    private decimal GetAmount(decimal qty, int materialType)
+    {
+        MaterialTypeDTO materialTypeDetails = new MaterialTypeDTO();
+        materialTypeDetails = ESalesUnityContainer.Container.Resolve<IMaterialTypeService>()
+            .GetMaterialTypeById(materialType);
+
+        decimal handlingRate = Convert.ToDecimal(qty) * Convert.ToDecimal(materialTypeDetails.MaterialType_HandlingRate);
+        decimal tiscoRate = Convert.ToDecimal(qty) * Convert.ToDecimal(materialTypeDetails.MaterialType_TiscoRate);
+        decimal grossAmount = handlingRate + tiscoRate;
+        decimal serviceTax = handlingRate * (Convert.ToDecimal(materialTypeDetails.MaterialType_ServiceTax) / 100);
+        decimal educationCess = serviceTax * (Convert.ToDecimal(materialTypeDetails.MaterialType_EducationCess) / 100);
+        decimal higherEducationCess = serviceTax * (Convert.ToDecimal(materialTypeDetails.MaterialType_HigherEducationCess) / 100);
+        decimal netAmount = grossAmount + serviceTax + educationCess + higherEducationCess;
+        return netAmount;
     }
     /// <summary>
     /// Event for save button click
@@ -59,7 +112,7 @@ public partial class Bookings_UserControls_CancelMoneyReceipt : BaseUserControl
     {
         int bookingId = Convert.ToInt32(ViewState["BOOKINGID"]);
         int moneyReceiptId = Convert.ToInt32(ViewState[Globals.StateMgmtVariables.MONEYRECEIPTID]);
-        
+
         if (Page.IsValid)
         {
             MoneyReceiptDTO moneyReceiptDetails = MasterList.GetMoneyReceiptById(moneyReceiptId, 0);
@@ -77,6 +130,7 @@ public partial class Bookings_UserControls_CancelMoneyReceipt : BaseUserControl
                 BookingDTO bookingDetails = MasterList.GetBookingDetailByBookingId(bookingId, true);
                 bookingDetails.Booking_MoneyReceiptIssued = false;
                 bookingDetails.Booking_LastUpdatedDate = DateTime.Now;
+                bookingDetails.Booking_IsDeleted = true;
 
                 //Update booking details to re-issue the money receipt
                 ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAndUpdateBookingDetail(bookingDetails);

@@ -48,7 +48,7 @@ namespace TCESS.ESales.BusinessLayer.Services
 
             List<moneyreceipt> lstMoneyReceiptEntity = ESalesUnityContainer.Container
                 .Resolve<IGenericRepository<moneyreceipt>>().GetQuery()
-                .Where(item => item.MoneyReceipt_IsDeleted == false && item.booking.Booking_Agent_Id == agentId).ToList();
+                .Where(item => item.MoneyReceipt_IsDeleted == false && item.booking.Booking_Agent_Id == agentId && item.booking.Booking_AccountSettled==false).ToList();
 
             AutoMapper.Mapper.Map(lstMoneyReceiptEntity, lstMoneyReceipt);
             return lstMoneyReceipt;

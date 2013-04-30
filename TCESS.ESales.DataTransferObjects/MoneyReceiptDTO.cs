@@ -173,6 +173,16 @@ namespace TCESS.ESales.DataTransferObjects
             get;
             set;
         }
+        public int MoneyReceipt_Cust_ID
+        {
+            get;
+            set;
+        }
+        public int MoneyReceipt_MaterialID
+        {
+            get;
+            set;
+        }
         
         #endregion
 
@@ -195,15 +205,17 @@ namespace TCESS.ESales.DataTransferObjects
                     MoneyReceipt_Cust_FirmName = value.Booking_Cust_UnitName;
                     MoneyReceipt_District = value.Booking_Cust_District_Name;
                     MoneyReceipt_Truck_RegNo = value.Booking_TruckType == false ? value.Booking_Truck_RegNo : value.Booking_StandaloneTruck_RegNo;
-                    MoneyReceipt_Truck_DriverName = value.Booking_TruckType == false ? value.Booking_Truck_RegNo : value.Booking_StandaloneTruck_RegNo;
-                    MoneyReceipt_Truck_OwnerName = value.Booking_TruckType == false ? value.Booking_Truck_RegNo : value.Booking_StandaloneTruck_RegNo;
+                    MoneyReceipt_Truck_DriverName = value.Booking_TruckType == false ? value.Booking_Truck_DriverName : value.Booking_StandaloneTruck_DriverName;
+                    MoneyReceipt_Truck_OwnerName = value.Booking_TruckType == false ? value.Booking_Truck_OwnerName : value.Booking_StandaloneTruck_OwnerName;
                     MoneyReceipt_InvoiceNo = value.Booking_Agent_AgentShortName + "-" + value.Booking_Id;
                     MoneyReceipt_BookingAdvance = (decimal)value.Booking_AdvanceAmount;
                     MoneyReceipt_AgentName = value.Booking_Agent_AgentName;
                     MoneyReceipt_AgentShortName = value.Booking_Agent_AgentShortName;
                     MoneyReceipt_MaterialName = value.Booking_MaterialType_MaterialName;
                     MoneyReceipt_AgentShortName = value.Booking_Agent_AgentShortName;
-                    MoneyReceipt_AgentName = value.Booking_Agent_AgentName;                   
+                    MoneyReceipt_AgentName = value.Booking_Agent_AgentName;
+                    MoneyReceipt_MaterialID = value.Booking_MaterialType_Id;
+                    MoneyReceipt_Cust_ID = value.Booking_Cust_Id;
                    
                 }
             }

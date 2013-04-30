@@ -122,6 +122,20 @@
                     runat="server" TargetControlID="txtCancellationRemarksValidator" />
             </td>
         </tr>
+        <tr align="left">
+            <td>
+                <asp:Label ID="lblBalRefundAmount" runat="server" 
+                    Text="Balance After Refund" />
+            </td>
+            <td>
+                <asp:TextBox ID="txtBalRefundAmount" runat="server" CssClass="textbox" />
+                
+            </td>
+            <td>
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
         <tr>
             <td colspan="4">
                 &nbsp;
@@ -132,7 +146,7 @@
                 <asp:Button ID="btnSave" runat="server" ValidationGroup="CancelGroup" Text="<%$Resources:Labels, Save%>"
                     CssClass="button" OnClick="btnSave_Click" />
                 &nbsp;
-                <asp:Button ID="btnReset" runat="server" Text="<%$Resources:Labels, Reset%>" CssClass="button"
+                <asp:Button ID="btnReset" runat="server" Visible=false Text="<%$Resources:Labels, Reset%>" CssClass="button"
                     OnClick="btnReset_Click" />
                 &nbsp;
                 <asp:Button ID="btnCancel" runat="server" Text="<%$Resources:Labels, Cancel%>" CssClass="button"

@@ -5,7 +5,7 @@
     <tr>
         <td align="center">
             <Custom:GridViewAlwaysShow ID="grdManageMoneyReceipt" runat="server" AutoGenerateColumns="False"
-                DataKeyNames="MoneyReceipt_Id" AllowPaging="true" PageSize="10" BorderColor="#397dbc"
+                DataKeyNames="MoneyReceipt_Id" BorderColor="#397dbc"
                 BorderStyle="Solid" BorderWidth="1px" Font-Size="Small" Width="100%" HorizontalAlign="Center"
                 CellPadding="5" OnRowCommand="grdManageMoneyReceipt_RowCommand">
                 <EmptyDataTemplate>
