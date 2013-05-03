@@ -65,7 +65,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                                    CustomerName = custItem.Cust_TradeName,
                                                                    PaymentModeName = payModeItem.Paymentmode_Name,
                                                                    PC_InstrumentNo = pcItem.PC_InstrumentNo ?? "NA",
-                                                                   PC_Amount = pcItem.PC_PreviousAmount ?? pcItem.PC_Amount,
+                                                                   PC_Amount = pcItem.PC_Amount,
                                                                    PC_BankDrawn = pcItem.PC_BankDrawn,
                                                                    BankName = subItem == null ? "NA" : subItem.Bank_Name,
                                                                    PC_BankBranch = pcItem.PC_BankBranch ?? "NA",
@@ -141,7 +141,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                              PC_PaymentMode = pcItem.PC_PaymentMode,
                              PaymentModeName = pcItem.paymentmode.Paymentmode_Name,
                              PC_InstrumentNo = pcItem.PC_InstrumentNo,
-                             PC_Amount = pcItem.PC_PreviousAmount ?? pcItem.PC_Amount,
+                             PC_Amount = pcItem.PC_Amount,
                              PC_BankDrawn = pcItem.PC_BankDrawn,
                              BankName = subItem == null ? string.Empty : subItem.Bank_Name,
                              PC_BankBranch = pcItem.PC_BankBranch,
@@ -188,7 +188,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                              PC_PaymentMode = pcItem.PC_PaymentMode,
                              PaymentModeName = pcItem.paymentmode.Paymentmode_Name,
                              PC_InstrumentNo = pcItem.PC_InstrumentNo,
-                             PC_Amount = pcItem.PC_PreviousAmount ?? pcItem.PC_Amount,
+                             PC_Amount = pcItem.PC_Amount,
                              PC_BankDrawn = pcItem.PC_BankDrawn,
                              BankName = subItem == null ? string.Empty : subItem.Bank_Name,
                              PC_BankBranch = pcItem.PC_BankBranch,
@@ -252,7 +252,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                        {
                                                            BT_Id = groupByItem.Key.BatchId,
                                                            CounterName = groupByItem.Key.CounterName,
-                                                           Amount = groupByItem.Sum(sum => sum.PC_PreviousAmount ?? sum.PC_Amount),
+                                                           Amount = groupByItem.Sum(sum => sum.PC_Amount),
                                                            BT_CreatedBy = groupByItem.Key.CreatedBy,
                                                            BT_Status = groupByItem.Key.BatchStatus,
                                                            BT_CreatedDate = groupByItem.Key.CreatedDate,
@@ -312,7 +312,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                        {
                                                            BT_Id = groupByItem.Key.BatchId,
                                                            CounterName = groupByItem.Key.CounterName,
-                                                           Amount = groupByItem.Sum(sum => sum.PC_PreviousAmount ?? sum.PC_Amount),
+                                                           Amount = groupByItem.Sum(sum => sum.PC_Amount),
                                                            BT_CreatedBy = groupByItem.Key.CreatedBy,
                                                            BT_Status = groupByItem.Key.BatchStatus,
                                                            BT_CreatedDate = groupByItem.Key.CreatedDate,
@@ -362,7 +362,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                                       CustomerName = transitItem.paymentcollection.customer.Cust_TradeName,
                                                                       PaymentModeName = transitItem.paymentcollection.paymentmode.Paymentmode_Name ?? "NA",
                                                                       PC_InstrumentNo = transitItem.paymentcollection.PC_InstrumentNo ?? "NA",
-                                                                      PC_Amount = transitItem.paymentcollection.PC_PreviousAmount ?? transitItem.paymentcollection.PC_Amount,
+                                                                      PC_Amount = transitItem.paymentcollection.PC_Amount,
                                                                       BankName = subItem == null ? "NA" : subItem.Bank_Name,
                                                                       PC_BankBranch = transitItem.paymentcollection.PC_BankBranch ?? "NA",
                                                                       PC_InstrumentDate = transitItem.paymentcollection.PC_InstrumentDate
@@ -431,7 +431,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                                                                     CustomerCode = custItem.Cust_Code,
                                                                     CustomerName = custItem.Cust_TradeName,
                                                                     PC_InstrumentNo = pcItem.PC_InstrumentNo,
-                                                                    PC_Amount = pcItem.PC_PreviousAmount ?? pcItem.PC_Amount,
+                                                                    PC_Amount = pcItem.PC_Amount,
                                                                     BankName = bankItem.Bank_Name,
                                                                     PC_BankBranch = pcItem.PC_BankBranch,
                                                                     PC_InstrumentDate = pcItem.PC_InstrumentDate
@@ -600,7 +600,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             if (lstPaymentCollection.Count > 0)
             {
                 //Sum of cash in hand at counter
-                cashInHand = lstPaymentCollection.Where(item => item.PC_Status == null).Select(item => item.PC_PreviousAmount ?? item.PC_Amount).Sum();
+                cashInHand = lstPaymentCollection.Where(item => item.PC_Status == null).Select(item => item.PC_Amount).Sum();
 
                 //Transit amount sent to head cashier
                 transitAmount = lstPaymentCollection.Where(item => item.PC_Status == (int)Globals.CollectionStatus.SENTTOCASHIER)
@@ -611,7 +611,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                     .Select(item => item.PC_Amount).Sum();
 
                 //Total amount recieved at payment counter
-                totalAmount = lstPaymentCollection.Select(item => item.PC_PreviousAmount ?? item.PC_Amount).Sum();
+                totalAmount = lstPaymentCollection.Select(item => item.PC_Amount).Sum();
 
                 //Total transactions done at payment counter
                 totalTransactions = lstPaymentCollection.Select(item => item.PC_Id).Count();
@@ -701,7 +701,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                      CustomerName = custItem.Cust_TradeName,
                      PaymentModeName = payModeItem.Paymentmode_Name,
                      PC_InstrumentNo = pcItem.PC_InstrumentNo ?? "NA",
-                     PC_Amount = pcItem.PC_PreviousAmount ?? pcItem.PC_Amount,
+                     PC_Amount = pcItem.PC_Amount,
                      PC_BankDrawn = pcItem.PC_BankDrawn,
                      BankName = subItem == null ? "NA" : subItem.Bank_Name,
                      PC_BankBranch = pcItem.PC_BankBranch ?? "NA",
@@ -763,7 +763,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                      PC_PaymentMode = pcItem.PC_PaymentMode,
                      PaymentModeName = payModeItem.Paymentmode_Name,
                      PC_InstrumentNo = pcItem.PC_InstrumentNo ?? "NA",
-                     PC_Amount = pcItem.PC_PreviousAmount ?? pcItem.PC_Amount,
+                     PC_Amount = pcItem.PC_Amount,
                      PC_BankDrawn = pcItem.PC_BankDrawn,
                      BankName = subItem == null ? "NA" : subItem.Bank_Name,
                      PC_BankBranch = pcItem.PC_BankBranch ?? "NA",
