@@ -620,7 +620,6 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
                                 ViewState[Globals.StateMgmtVariables.CUSTOMERTRUCKTYPE] = l.LiftingLimit_TruckRegType_Id;
                                 ViewState[Globals.StateMgmtVariables.CUSTOMERTRUCKTYPENAME] = l.LiftingLimit_TruckRegType_Name;
                             }
-
                         }
 
                         if (ViewState[Globals.StateMgmtVariables.CUSTOMERTRUCKTYPE] != null)
@@ -735,9 +734,7 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
         {
             decimal balanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
             decimal balanceAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount);
-            BalanceAmt = string.Format("{0:N2}", balanceAmount);
-            //Reset controls on page to default state
-            ResetFields();
+            BalanceAmt = string.Format("{0:N2}", balanceAmount);            
             decimal msgBalanceAvlAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + totalRefundAmount);
             decimal msgBalanceAmount = totalAmountCollected - (totalMaterialLiftedAmount + InTransitAmount + currentAmount + totalRefundAmount);
             msgBalanceAmount = msgBalanceAmount * -1;
@@ -745,7 +742,9 @@ public partial class Bookings_IssueLoadingAdvice : BasePage
             {
                 msgBalanceAvlAmount = 0;
             }
-            ucMessageBox.ShowMessage("BAL: " + string.Format("{0:N2}",msgBalanceAvlAmount) + " ;SHORT: " + string.Format("{0:N2}",msgBalanceAmount) + " .Insufficent Fund.");
+            ucMessageBox.ShowMessage("BAL: " + string.Format("{0:N2}", msgBalanceAvlAmount) + "; REQD: " + string.Format("{0:N2}", currentAmount) + "; SHORT: " + string.Format("{0:N2}", msgBalanceAmount) + ". Insufficent Fund."); //REQD Added.
+            //Reset controls on page to default state
+            ResetFields();
         }
     }
 
