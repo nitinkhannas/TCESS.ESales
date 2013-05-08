@@ -385,7 +385,7 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             
             foreach (BookingDTO item in listUnPaidBooking)
             {
-                item.Booking_IsDeleted = true;
+                item.Booking_IsDeleted = true; 
                 ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAndUpdateBookingDetail(item);
             }
             return listUnPaidBooking.Count().ToString();

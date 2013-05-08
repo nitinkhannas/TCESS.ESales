@@ -97,6 +97,6 @@ public partial class Bookings_InsertDailyDCAMaterial : BasePage
 	}
     protected void RejectBooking_Click(object sender, EventArgs e)
     {
-        SmsUtility.RejectUnPaidBooking();
+        SmsUtility.RejectUnPaidBooking(); 
     }
 }

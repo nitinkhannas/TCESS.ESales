@@ -335,7 +335,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                     item.Booking_Status == true && item.Booking_MoneyReceiptIssued==false && item.Booking_Date <= toDate).ToList();
 
             AutoMapper.Mapper.Map(lstBookingEntity, lstBookingDetails);
-            return lstBookingDetails;
+            return lstBookingDetails; 
         }
     }
 }

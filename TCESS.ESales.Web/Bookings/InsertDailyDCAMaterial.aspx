@@ -23,7 +23,7 @@
                     <td align="center">
                         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" CssClass="button"
                             Text="Initialize DCA Percentage" />
-                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp; &nbsp;
                         <asp:Button ID="RejectBooking" runat="server" CssClass="button" 
                              Text="Reject UnPaid Booking" onclick="RejectBooking_Click" />
                     </td>
