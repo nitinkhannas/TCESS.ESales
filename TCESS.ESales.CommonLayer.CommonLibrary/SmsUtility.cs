@@ -377,5 +377,18 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             smsPayDetails.SMSPay_Date = DateTime.Now.Date;
             return smsPayDetails;
         }
+
+        public string RejectUnPaidBooking()
+        {
+            IList<BookingDTO> listUnPaidBooking = ESalesUnityContainer.Container.Resolve<IBookingService>()
+                    .GetUnpaidBooking().ToList();
+            
+            foreach (BookingDTO item in listUnPaidBooking)
+            {
+                item.Booking_IsDeleted = true;
+                ESalesUnityContainer.Container.Resolve<IBookingService>().SaveAndUpdateBookingDetail(item);
+            }
+            return listUnPaidBooking.Count().ToString();
+        }
     }
 }

@@ -324,5 +324,18 @@ namespace TCESS.ESales.BusinessLayer.Services
                 transactionScope.Complete();
             }
         }
+
+
+        public IList<BookingDTO> GetUnpaidBooking()
+        {
+            List<BookingDTO> lstBookingDetails = new List<BookingDTO>();
+            DateTime toDate = DateTime.Now.AddDays(-1);
+            List<booking> lstBookingEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<booking>>()
+                .GetQuery().Where(item => item.Booking_IsDeleted == false &&
+                    item.Booking_Status == true && item.Booking_Date <= toDate).ToList();
+
+            AutoMapper.Mapper.Map(lstBookingEntity, lstBookingDetails);
+            return lstBookingDetails;
+        }
     }
 }
