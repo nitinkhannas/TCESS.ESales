@@ -95,4 +95,8 @@ public partial class Bookings_InsertDailyDCAMaterial : BasePage
 		//ESalesUnityContainer.Container.Resolve<IDcaMaterialAllocationService>()
 		//                    .SaveAndUpdateDCAMaterialDetails(listMaterialAllocations);
 	}
+    protected void RejectBooking_Click(object sender, EventArgs e)
+    {
+        SmsUtility.RejectUnPaidBooking();
+    }
 }

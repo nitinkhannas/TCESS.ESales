@@ -332,7 +332,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             DateTime toDate = DateTime.Now.AddDays(-1);
             List<booking> lstBookingEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<booking>>()
                 .GetQuery().Where(item => item.Booking_IsDeleted == false &&
-                    item.Booking_Status == true && item.Booking_Date <= toDate).ToList();
+                    item.Booking_Status == true && item.Booking_MoneyReceiptIssued==false && item.Booking_Date <= toDate).ToList();
 
             AutoMapper.Mapper.Map(lstBookingEntity, lstBookingDetails);
             return lstBookingDetails;

@@ -378,7 +378,7 @@ namespace TCESS.ESales.CommonLayer.CommonLibrary
             return smsPayDetails;
         }
 
-        public string RejectUnPaidBooking()
+        public static string RejectUnPaidBooking()
         {
             IList<BookingDTO> listUnPaidBooking = ESalesUnityContainer.Container.Resolve<IBookingService>()
                     .GetUnpaidBooking().ToList();
