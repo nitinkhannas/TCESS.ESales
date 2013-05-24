@@ -27,6 +27,7 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         IList<CustomerDTO> GetReValidatedCustomersByCustomer();
 		IList<CustomerDTO> GetCustomerForDCAAssociation();
 		IList<CustomerDTO> GetCustomerForSMSSending();
+        IList<CustomerDTO> GetActiveCustomerList();
 		void UpdateCustomerDetails(CustomerDTO customerDetails);
         IList<CustomerDTO> GetNewCustomerForSMSSending();
         CustomerDTO GetActiveCustomerDetailsByCode(string customerCode);

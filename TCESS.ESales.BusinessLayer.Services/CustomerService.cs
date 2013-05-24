@@ -553,5 +553,17 @@ namespace TCESS.ESales.BusinessLayer.Services
             AutoMapper.Mapper.Map(lstCustomerPartnerEntity, lstCustomerPartner);
             return lstCustomerPartner;
         }
+
+
+        public IList<CustomerDTO> GetActiveCustomerList()
+        {
+            List<CustomerDTO> lstCustomers = new List<CustomerDTO>();
+            List<customer> lstCustomerEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<customer>>().GetQuery()
+                    .Where(item => item.Cust_IsDeleted == false && item.Cust_Status == true && item.Cust_RegCustType == true && item.Cust_Code != null
+                            && item.Cust_IsBlacklisted == false).OrderBy(order => order.Cust_FirmName).ToList();
+
+            AutoMapper.Mapper.Map(lstCustomerEntity, lstCustomers);
+            return lstCustomers;
+        }
     }
 }

@@ -9,7 +9,8 @@ using TCESS.ESales.CommonLayer.Unity;
 using TCESS.ESales.DataTransferObjects;
 using TCESS.ESales.PersistenceLayer.Entity;
 using TCESS.ESales.PersistenceLayer.Interfaces;
-
+using TCESS.ESales.DataTransferObjects.GhatoCollection;
+using TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection;
 #endregion
 
 namespace TCESS.ESales.BusinessLayer.Services
@@ -96,12 +97,12 @@ namespace TCESS.ESales.BusinessLayer.Services
         {
             toDate = toDate.AddDays(1);
             List<MoneyReceiptDTO> lstCashCollectionRpt = new List<MoneyReceiptDTO>();
-            
+
             List<moneyreceipt> lstCashCollectionRptEntity = ESalesUnityContainer.Container
                 .Resolve<IGenericRepository<moneyreceipt>>().GetQuery().Where(item => item.booking.Booking_Agent_Id == agentId && item.MoneyReceipt_IsDeleted == false &&
                 (item.MoneyReceipt_CreateDate >= fromDate.Date && item.MoneyReceipt_CreateDate <= toDate.Date))
                 .OrderBy(order => order.MoneyReceipt_CreateDate).ToList();
-            
+
             AutoMapper.Mapper.Map(lstCashCollectionRptEntity, lstCashCollectionRpt);
             return lstCashCollectionRpt;
         }
@@ -115,7 +116,7 @@ namespace TCESS.ESales.BusinessLayer.Services
         public IList<BookingDTO> GetPendingBookingReport(int agentId, DateTime fromDate, DateTime toDate)
         {
             List<BookingDTO> lstBookingDTO = new List<BookingDTO>();
-            
+
             List<booking> lstBookingEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<booking>>().GetQuery().
                 Where(item => item.Booking_Agent_Id == agentId && item.Booking_AccountSettled == false && item.Booking_Status == true
                     && (item.Booking_Date <= toDate.Date && item.Booking_Date >= fromDate.Date)
@@ -165,11 +166,11 @@ namespace TCESS.ESales.BusinessLayer.Services
         /// <returns>returns Loading sms booking report for the provided date range</returns>
         public IList<SMSRegistrationDTO> GetLoadingSMSBookingReport(int agentId, DateTime fromDate, DateTime toDate)
         {
-            List<SMSRegistrationDTO> lstLoadingSMSBookingRpt = new List<SMSRegistrationDTO>();            
+            List<SMSRegistrationDTO> lstLoadingSMSBookingRpt = new List<SMSRegistrationDTO>();
             List<smsregistration> lstLoadingSMSBookingRptEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smsregistration>>()
                 .GetQuery().Where(item => (item.SMSReg_Date >= fromDate.Date && item.SMSReg_Date <= toDate.Date)
                ).OrderBy(order => order.SMSReg_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(lstLoadingSMSBookingRptEntity, lstLoadingSMSBookingRpt);
             return lstLoadingSMSBookingRpt;
         }
@@ -266,7 +267,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             {
                 truckOuts = lstSettlementofAccountEntity.Count;
             }
-            
+
             //Added by ansharma 09-28-2012
             List<booking> lstPrevBookingEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<booking>>()
                 .GetQuery().Where(item => (item.Booking_CreatedDate <= smsToDate.Date && item.Booking_CreatedDate >= smsFromDate.Date
@@ -364,7 +365,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Booking_Agent_Id == agentId && item.Booking_Status == true &&
                (item.Booking_Date >= fromDate.Date && item.Booking_Date <= toDate.Date)
                && item.Booking_IsDeleted == false).OrderBy(order => order.Booking_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstLoadingAdivceRpt);
             return lstLoadingAdivceRpt;
         }
@@ -383,7 +384,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Booking_Cust_Id == custId && item.Booking_Status == true &&
                (item.Booking_Date >= fromDate.Date && item.Booking_Date <= toDate.Date)
                && item.Booking_IsDeleted == false).OrderBy(order => order.Booking_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstLoadingAdivceRpt);
             return lstLoadingAdivceRpt;
         }
@@ -402,7 +403,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Account_Booking_Id == account_Id &&
                (item.Account_CreatedDate >= fromDate.Date && item.Account_CreatedDate <= toDate.Date)
                && item.Account_IsDeleted == false).OrderBy(order => order.Account_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(settlementOfAccountsRptEntity, settlementOfAccounts);
             return settlementOfAccounts;
         }
@@ -421,7 +422,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Account_Booking_Id == account_Id &&
                (((DateTime)item.Account_CreatedDate).Month == month && ((DateTime)item.Account_CreatedDate).Year == year)
                && item.Account_IsDeleted == false).OrderBy(order => order.Account_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(settlementOfAccountsRptEntity, settlementOfAccounts);
             return settlementOfAccounts;
 
@@ -437,7 +438,7 @@ namespace TCESS.ESales.BusinessLayer.Services
         public IList<DispatchReportDTO> GetMonthlyDispatchReport(int agentId, int month, int year)
         {
             List<DispatchReportDTO> lstDispatchReportDTO = new List<DispatchReportDTO>();
-            
+
             if (agentId == 0)
             {
                 List<dispatchreport> lstBookingEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<dispatchreport>>().GetQuery().
@@ -469,7 +470,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Booking_Agent_Id == agentId && item.Booking_Status == true &&
                (((DateTime)item.Booking_Date).Month <= (fromDate.Month) - 3 && ((DateTime)item.Booking_Date).Month <= (toDate.Month) - 3)
                && item.Booking_IsDeleted == false).OrderBy(order => order.Booking_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstLoadingAdivceRpt);
             return lstLoadingAdivceRpt;
         }
@@ -484,7 +485,7 @@ namespace TCESS.ESales.BusinessLayer.Services
         {
             int priviousmonth = (month - 1);
             List<BookingDTO> lstLoadingAdivceRpt = new List<BookingDTO>();
-           
+
             if (agentId == 0)
             {
                 List<booking> lstLoadingAdivceRptEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<booking>>()
@@ -499,10 +500,10 @@ namespace TCESS.ESales.BusinessLayer.Services
                   .OrderBy(order => order.Booking_CreatedDate).ToList();
                 AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstLoadingAdivceRpt);
             }
-            
+
             List<String> lst = lstLoadingAdivceRpt.GroupBy(f => f.Booking_Cust_District_Name).Select(f => f.Key).ToList<String>();
             List<SalesReportDTO> lstSalesData = new List<SalesReportDTO>();
-            
+
             foreach (var distName in lst)
             {
                 SalesReportDTO distSalesData = new SalesReportDTO();
@@ -537,7 +538,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstSalesData);
 
             IList<object> lst = new List<object>();
-            
+
             foreach (CustomerwiseSalesReportDTO item in lstSalesData)
             {
                 lst = GetBookingsByMonth(month, year, item.Cust_Id);
@@ -562,7 +563,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             toDate = toDate.AddDays(1);
             IList<AgentDTO> lstAgent = ESalesUnityContainer.Container.Resolve<IAgentService>().GetAgentList();
             IList<SaleSummaryDTO> lstSalesSummry = new List<SaleSummaryDTO>();
-            
+
             foreach (AgentDTO agent in lstAgent)
             {
                 SaleSummaryDTO salesSummry = new SaleSummaryDTO();
@@ -604,7 +605,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Booking_Agent_Id == agentId && item.Booking_Status == true &&
                (item.Booking_Date >= fromDate.Date && item.Booking_Date <= toDate.Date)
                && item.Booking_IsDeleted == false).OrderBy(order => order.Booking_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstLoadingAdivceRpt);
 
             foreach (BookingDTO booking in lstLoadingAdivceRpt)
@@ -653,7 +654,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Booking_Status == true &&
                (item.Booking_Date >= fromDate.Date && item.Booking_Date <= toDate.Date)
                && item.Booking_IsDeleted == false).OrderBy(order => order.Booking_CreatedDate).ToList();
-           
+
             AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstLoadingAdivceRpt);
             return lstLoadingAdivceRpt;
         }
@@ -677,7 +678,7 @@ namespace TCESS.ESales.BusinessLayer.Services
 
             List<String> lst = lstLoadingAdivceRpt.GroupBy(f => f.Booking_Agent_AgentName).Select(f => f.Key).ToList<String>();
             List<SalesReportDTO> lstSalesData = new List<SalesReportDTO>();
-           
+
             foreach (var Name in lst)
             {
                 SalesReportDTO distSalesData = new SalesReportDTO();
@@ -714,7 +715,7 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.Booking_Status == true &&
                (item.Booking_Date >= fromDate.Date && item.Booking_Date <= toDate.Date)
                && item.Booking_IsDeleted == false).OrderBy(order => order.Booking_CreatedDate).ToList();
-            
+
             AutoMapper.Mapper.Map(lstLoadingAdivceRptEntity, lstLoadingAdivceRpt);
 
             foreach (BookingDTO booking in lstLoadingAdivceRpt)
@@ -753,7 +754,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             List<settlementofaccount> settlementOfAccountsRptEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<settlementofaccount>>()
                 .GetQuery().Where(data => data.Account_CreatedDate >= fromDate && data.Account_CreatedDate <= toDate
                 && data.Account_IsDeleted == false).OrderBy(order => order.Account_FormDNumber).ToList();
-           
+
             AutoMapper.Mapper.Map(settlementOfAccountsRptEntity, settlementOfAccounts);
             return settlementOfAccounts;
         }
@@ -769,7 +770,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             List<settlementofaccount> settlementOfAccountsRptEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<settlementofaccount>>()
                 .GetQuery().Where(data => data.Account_CreatedDate >= fromDate && data.Account_CreatedDate <= toDate
                 && data.Account_IsDeleted == false).OrderBy(order => order.Account_RoadPermitNo).ToList();
-            
+
             AutoMapper.Mapper.Map(settlementOfAccountsRptEntity, settlementOfAccounts);
             return settlementOfAccounts;
         }
@@ -883,6 +884,41 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.SMSReg_IsDeleted == false && item.SMSReg_BookingStatus == true && item.SMSReg_Date == PreviousDate && item.SMSReg_Booking_Id == null).ToList();
             AutoMapper.Mapper.Map(lstSmsEntity, smsRegistration);
             return smsRegistration;
+        }
+        public IList<ConsolidatedCustomerCollectionReportDTO> GetConsolidatedCustomerCollection(DateTime fromDate, DateTime toDate)
+        {
+            List<ConsolidatedCustomerCollectionReportDTO> lstConsolidatedCustomerCollectionReportDTO = new List<ConsolidatedCustomerCollectionReportDTO>();
+            IList<CustomerDTO> lstCustomer = ESalesUnityContainer.Container.Resolve<ICustomerService>().GetActiveCustomerList();
+            IList<SettlementOfAccountsDTO> lstSettlementOfAccounts = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetSettlementDetailsForDay(toDate);
+            IList<PaymentCollectionDTO> lstPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetActiveCollectionForDay(toDate);
+            IList<BookingDTO> lstBooking = ESalesUnityContainer.Container.Resolve<IBookingService>().GetHoldPendingBooking(toDate);
+            IList<PaymentCollectionDTO> lstHoldPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetHoldActiveCollectionForDay(toDate);
+            foreach (CustomerDTO item in lstCustomer)
+            {
+                ConsolidatedCustomerCollectionReportDTO consolidatedCustomerRep = new ConsolidatedCustomerCollectionReportDTO();
+                consolidatedCustomerRep.CustomerId = item.Cust_Id;
+                consolidatedCustomerRep.CustomerName = item.Cust_TradeName;
+                consolidatedCustomerRep.CustomerCode = item.Cust_Code;
+                consolidatedCustomerRep.CustomerDistrict = item.Cust_District_Name;
+                consolidatedCustomerRep.OpeningBalance = GetOpeningBalance(item.Cust_Id, fromDate, toDate);
+                consolidatedCustomerRep.CollectionActive = lstPaymentCollection.Where(f => f.PC_CustId == item.Cust_Id).Sum(f => f.PC_Amount);
+                consolidatedCustomerRep.TotalSettlement = lstSettlementOfAccounts.Where(f => f.Account_Booking_Cust_Id == item.Cust_Id).Sum(f => f.Account_TotalAmount);
+                consolidatedCustomerRep.HoldForPendingBooking = lstBooking.Where(f => f.Booking_Cust_Id == item.Cust_Id).Sum(f => f.Booking_AdvanceAmount);
+                consolidatedCustomerRep.HoldForActivation = lstHoldPaymentCollection.Where(f => f.PC_CustId == item.Cust_Id).Sum(f => f.PC_Amount);
+            }
+
+            return lstConsolidatedCustomerCollectionReportDTO;
+        }
+
+        private decimal GetOpeningBalance(int pCustId, DateTime fromDate, DateTime toDate)
+        {
+            decimal BalanceAmt;
+            decimal totalAmountCollected = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentMadeByCustomer(pCustId, fromDate, toDate);
+            decimal totalRefundAmount = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerPaymentRefundList(pCustId).Sum(f => f.PR_Amount);
+            //get Total exp amount
+            decimal totalMaterialLiftedAmount = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetMaterialAmountLiftedByCustomer(pCustId, fromDate, toDate);
+            BalanceAmt = totalAmountCollected - (totalMaterialLiftedAmount + totalRefundAmount);
+            return BalanceAmt;
         }
     }
 }

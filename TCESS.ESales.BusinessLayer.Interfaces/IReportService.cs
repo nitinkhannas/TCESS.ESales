@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using TCESS.ESales.DataTransferObjects;
-
+using TCESS.ESales.DataTransferObjects.GhatoCollection;
 #endregion
 
 namespace TCESS.ESales.BusinessLayer.Interfaces
@@ -228,5 +228,6 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         /// </summary>
         /// <returns></returns>
         IList<SMSRegistrationDTO> GetPendingSMSList();
+        IList<ConsolidatedCustomerCollectionReportDTO> GetConsolidatedCustomerCollection(DateTime fromDate, DateTime toDate);
     }
 }

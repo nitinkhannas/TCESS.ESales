@@ -857,5 +857,31 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             AutoMapper.Mapper.Map(smsPaymentRegEntity, smsPaymentRegDetails);
             return smsPaymentRegDetails;
         }
+
+
+        public IList<PaymentCollectionDTO> GetActiveCollectionForDay(DateTime todayDate)
+        {
+            List<PaymentCollectionDTO> lstPaymentCollection =new List<PaymentCollectionDTO>();
+            List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
+                 .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
+                      item.PC_Status == 2
+                     && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1 &&
+                     (item.PC_LastUpdateDate <= todayDate))).ToList();
+
+            AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
+            return lstPaymentCollection;
+        }
+        public IList<PaymentCollectionDTO> GetHoldActiveCollectionForDay(DateTime todayDate)
+        {
+            List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
+            List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
+                 .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
+                      item.PC_Status == 1
+                     && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2 &&
+                     (item.PC_LastUpdateDate <= todayDate))).ToList();
+
+            AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
+            return lstPaymentCollection;
+        }
     }
 }
