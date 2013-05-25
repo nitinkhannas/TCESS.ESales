@@ -66,6 +66,7 @@
     <Compile Include="Form27CViewDTO.cs" />
     <Compile Include="GhatoCollection\BatchTransferDTO.cs" />
     <Compile Include="GhatoCollection\CollectionSummaryDTO.cs" />
+    <Compile Include="GhatoCollection\ConsolidatedCustomerCollectionReportDTO.cs" />
     <Compile Include="GhatoCollection\ConsolidatedReportDTO.cs" />
     <Compile Include="GhatoCollection\PaymentCollectionDTO.cs" />
     <Compile Include="GhatoCollection\PaymentRefundDTO.cs" />

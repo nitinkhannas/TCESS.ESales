@@ -13,7 +13,7 @@ namespace TCESS.ESales.DataTransferObjects.GhatoCollection
         public string CustomerDistrict { get; set; }
         public Nullable<decimal> OpeningBalance { get; set; }
         public Nullable<decimal> CollectionActive { get; set; }
-        public Nullable<decimal> TotalBalActive { get; set; }
+        public Nullable<decimal> TotalBalAvailable { get; set; }
         public Nullable<decimal> TotalSettlement { get; set; }
         public Nullable<decimal> HoldForPendingBooking { get; set; }
         public Nullable<decimal> HoldForPendingLA { get; set; }

@@ -902,11 +902,12 @@ namespace TCESS.ESales.BusinessLayer.Services
                 consolidatedCustomerRep.CustomerDistrict = item.Cust_District_Name;
                 consolidatedCustomerRep.OpeningBalance = GetOpeningBalance(item.Cust_Id, fromDate, toDate);
                 consolidatedCustomerRep.CollectionActive = lstPaymentCollection.Where(f => f.PC_CustId == item.Cust_Id).Sum(f => f.PC_Amount);
+                consolidatedCustomerRep.TotalBalAvailable = consolidatedCustomerRep.OpeningBalance + consolidatedCustomerRep.CollectionActive;
                 consolidatedCustomerRep.TotalSettlement = lstSettlementOfAccounts.Where(f => f.Account_Booking_Cust_Id == item.Cust_Id).Sum(f => f.Account_TotalAmount);
                 consolidatedCustomerRep.HoldForPendingBooking = lstBooking.Where(f => f.Booking_Cust_Id == item.Cust_Id).Sum(f => f.Booking_AdvanceAmount);
                 consolidatedCustomerRep.HoldForActivation = lstHoldPaymentCollection.Where(f => f.PC_CustId == item.Cust_Id).Sum(f => f.PC_Amount);
+                lstConsolidatedCustomerCollectionReportDTO.Add(consolidatedCustomerRep);
             }
-
             return lstConsolidatedCustomerCollectionReportDTO;
         }
 

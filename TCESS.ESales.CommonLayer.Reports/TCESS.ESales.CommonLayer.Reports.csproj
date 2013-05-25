@@ -70,6 +70,7 @@
     <EmbeddedResource Include="ConsolidatedBookingandSaleReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsolidatedCustomerCollectionReport.rdlc" />
     <EmbeddedResource Include="ConsolidatedSMSReport.rdlc" />
     <EmbeddedResource Include="Form27CReport.rdlc">
       <SubType>Designer</SubType>
@@ -82,7 +83,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerWiseSalesReport.rdlc" />
-    <EmbeddedResource Include="DailyBookingPendingReportForAll.rdlc" />
+    <EmbeddedResource Include="DailyBookingPendingReportForAll.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="DailyBookingReportforall.rdlc" />
     <EmbeddedResource Include="DailyBookingReportforallDCAs.rdlc" />
     <EmbeddedResource Include="DailyBookingReportforCustomer.rdlc" />
