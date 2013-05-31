@@ -18,5 +18,7 @@ namespace TCESS.ESales.DataTransferObjects.GhatoCollection
         public Nullable<decimal> HoldForPendingBooking { get; set; }
         public Nullable<decimal> HoldForPendingLA { get; set; }
         public Nullable<decimal> HoldForActivation { get; set; }
+        public Nullable<decimal> Refund { get; set; }
+        public Nullable<decimal> ClosingBalance { get; set; }
     }
 }

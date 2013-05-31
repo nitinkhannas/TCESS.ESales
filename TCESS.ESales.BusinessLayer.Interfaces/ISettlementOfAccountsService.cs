@@ -18,5 +18,7 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         SettlementOfAccountsDTO GetLastSettlementOfAccountsByTruckNo(string truckNo);
         decimal GetQtySum(int customerID);
         decimal GetMaterialAmountLiftedByCustomer(int customerID, DateTime fromDate, DateTime toDate);
+        IList<SettlementOfAccountsDTO> GetSettlementDetailsForPeriod(DateTime fromDate, DateTime toDate);
+        IList<SettlementOfAccountsDTO> GetListOfMaterialLiftedByCustomer(int customerID, DateTime fromDate, DateTime toDate);
 	}
 }

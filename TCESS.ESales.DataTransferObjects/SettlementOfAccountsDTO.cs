@@ -203,6 +203,12 @@ namespace TCESS.ESales.DataTransferObjects
             set;
         }
 
+        public DateTime Account_Booking_Date
+        {
+            get;
+            set;
+        }
+
         public Nullable<int> Account_Form27CId
         {
             get;
@@ -234,6 +240,7 @@ namespace TCESS.ESales.DataTransferObjects
                     Account_Booking_Cust_OwnerName = value.Booking_Cust_OwnerName;
                     Account_Booking_Cust_FirmName = value.Booking_Cust_FirmName;
                     Account_Booking_CounterName = value.Booking_CounterName;
+                    Account_Booking_Date = value.Booking_Date;
 
                 }
             }

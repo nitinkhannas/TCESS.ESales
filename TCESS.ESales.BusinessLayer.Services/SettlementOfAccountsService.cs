@@ -156,5 +156,29 @@ namespace TCESS.ESales.BusinessLayer.Services
                 .GetQuery().Where(item => item.booking.Booking_Cust_Id == customerID && (item.Account_CreatedDate <= toDate && item.Account_CreatedDate >= fromDate)).ToList();
             return lstSettlementOfAcctDetail.Sum(amt => amt.Account_TotalAmount);
         }
+
+        public IList<SettlementOfAccountsDTO> GetSettlementDetailsForPeriod(DateTime fromDate, DateTime toDate)
+        {
+            IList<SettlementOfAccountsDTO> lstSettlementOfAcct = new List<SettlementOfAccountsDTO>();
+
+            List<settlementofaccount> lstSettlementOfAcctDetail = ESalesUnityContainer.Container
+                    .Resolve<IGenericRepository<settlementofaccount>>().GetQuery()
+                    .Where(item => item.booking.Booking_IsDeleted == false 
+                            && item.Account_IsDeleted == false 
+                            && (item.Account_CreatedDate <= toDate && item.Account_CreatedDate >= fromDate)).ToList();
+            AutoMapper.Mapper.Map(lstSettlementOfAcctDetail, lstSettlementOfAcct);
+
+            //return the value
+            return lstSettlementOfAcct;
+        }
+
+        public IList<SettlementOfAccountsDTO> GetListOfMaterialLiftedByCustomer(int customerID, DateTime fromDate, DateTime toDate)
+        {
+            IList<SettlementOfAccountsDTO> lstSettlementOfAcct = new List<SettlementOfAccountsDTO>();
+            List<settlementofaccount> lstSettlementOfAcctDetail = ESalesUnityContainer.Container.Resolve<IGenericRepository<settlementofaccount>>()
+                .GetQuery().Where(item => item.booking.Booking_Cust_Id == customerID && (item.Account_CreatedDate <= toDate && item.Account_CreatedDate >= fromDate)).ToList();
+            AutoMapper.Mapper.Map(lstSettlementOfAcctDetail, lstSettlementOfAcct);
+            return lstSettlementOfAcct;
+        }
     }
 }

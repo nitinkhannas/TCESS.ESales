@@ -50,9 +50,11 @@ namespace TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection
         /// <returns></returns>
         int SaveAndUpdateSMSPaymentDetails(SMSPaymentRegistrationDTO smsPaymentDetails);
         IList<SMSPaymentRegistrationDTO> GetCustomerSMSPaymentList(int? customerID, int? smsPaymentID, int validDays);
+        IList<PaymentCollectionDTO> GetPaymentByCustomer(int customerID, DateTime fromDate, DateTime toDate);
 
         SMSPaymentRegistrationDTO GetSMSPaymentDetails(int smsPaymentId, int validDays);
-        IList<PaymentCollectionDTO> GetActiveCollectionForDay(DateTime todayDate);
-        IList<PaymentCollectionDTO> GetHoldActiveCollectionForDay(DateTime todayDate);
+        IList<PaymentCollectionDTO> GetActiveCollectionForPeriod(DateTime fromDate, DateTime toDate);
+        IList<PaymentCollectionDTO> GetHoldActiveCollectionForPeriod(DateTime fromDate, DateTime toDate);
+        IList<PaymentRefundDTO> GetCustomerRefundList(int customerID, DateTime fromDate, DateTime toDate);
     }
 }

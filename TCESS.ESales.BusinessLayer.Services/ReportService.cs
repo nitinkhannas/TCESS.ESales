@@ -887,12 +887,13 @@ namespace TCESS.ESales.BusinessLayer.Services
         }
         public IList<ConsolidatedCustomerCollectionReportDTO> GetConsolidatedCustomerCollection(DateTime fromDate, DateTime toDate)
         {
+            DateTime reportStartDate = DateTime.Now;
             List<ConsolidatedCustomerCollectionReportDTO> lstConsolidatedCustomerCollectionReportDTO = new List<ConsolidatedCustomerCollectionReportDTO>();
             IList<CustomerDTO> lstCustomer = ESalesUnityContainer.Container.Resolve<ICustomerService>().GetActiveCustomerList();
-            IList<SettlementOfAccountsDTO> lstSettlementOfAccounts = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetSettlementDetailsForDay(toDate);
-            IList<PaymentCollectionDTO> lstPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetActiveCollectionForDay(toDate);
-            IList<BookingDTO> lstBooking = ESalesUnityContainer.Container.Resolve<IBookingService>().GetHoldPendingBooking(toDate);
-            IList<PaymentCollectionDTO> lstHoldPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetHoldActiveCollectionForDay(toDate);
+            IList<SettlementOfAccountsDTO> lstSettlementOfAccounts = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetSettlementDetailsForPeriod(reportStartDate, toDate);
+            IList<PaymentCollectionDTO> lstPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetActiveCollectionForPeriod(reportStartDate, toDate);
+            IList<BookingDTO> lstBooking = ESalesUnityContainer.Container.Resolve<IBookingService>().GetHoldPendingBooking(reportStartDate, toDate);
+            IList<PaymentCollectionDTO> lstHoldPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetHoldActiveCollectionForPeriod(reportStartDate, toDate);
             foreach (CustomerDTO item in lstCustomer)
             {
                 ConsolidatedCustomerCollectionReportDTO consolidatedCustomerRep = new ConsolidatedCustomerCollectionReportDTO();
@@ -920,6 +921,61 @@ namespace TCESS.ESales.BusinessLayer.Services
             decimal totalMaterialLiftedAmount = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetMaterialAmountLiftedByCustomer(pCustId, fromDate, toDate);
             BalanceAmt = totalAmountCollected - (totalMaterialLiftedAmount + totalRefundAmount);
             return BalanceAmt;
+        }
+
+
+        public IList<CustomerCollectionSettlementDTO> GetConsolidatedCollectionReport(int customerID, DateTime fromDate, DateTime toDate)
+        {
+            IList<CustomerCollectionSettlementDTO> lstCustomerCollectionSettlement = new List<CustomerCollectionSettlementDTO>();
+
+            //Collection
+            IList<PaymentCollectionDTO> lstPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentByCustomer(customerID, fromDate, toDate);
+            foreach (PaymentCollectionDTO item in lstPaymentCollection)
+            {
+                CustomerCollectionSettlementDTO customerCollectionSettlement = new CustomerCollectionSettlementDTO();
+                customerCollectionSettlement.DateReceived = item.PC_ReceiptDate.ToString("dd.MM.yyyy");
+                customerCollectionSettlement.DateActivated = item.PC_CreatedDate.ToString();//   .ToString();
+                customerCollectionSettlement.TransactionType = item.PaymentModeName.ToString();
+                customerCollectionSettlement.InstTruckNo = item.PC_InstrumentNo.ToString();
+                customerCollectionSettlement.ReceiptNo = item.PC_InstrumentNo.ToString();
+                customerCollectionSettlement.Refund = 0;
+                customerCollectionSettlement.Settlement = 0;
+                customerCollectionSettlement.Amount = item.PC_Amount;
+                lstCustomerCollectionSettlement.Add(customerCollectionSettlement);
+            }
+
+            //Settlement 
+            IList<SettlementOfAccountsDTO> lstSettlementLsit = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetListOfMaterialLiftedByCustomer(customerID, fromDate, toDate);
+            foreach (SettlementOfAccountsDTO item in lstSettlementLsit)
+            {
+                CustomerCollectionSettlementDTO customerCollectionSettlement = new CustomerCollectionSettlementDTO();
+                customerCollectionSettlement.DateReceived = item.Account_Booking_Date.ToString("dd.MM.yyyy");
+                customerCollectionSettlement.DateActivated = item.Account_CreatedDate.ToString();//   .ToString();
+                customerCollectionSettlement.TransactionType = "Bill";
+                customerCollectionSettlement.InstTruckNo = item.Account_Booking_StandaloneTruck_RegNo.ToString() != null ? item.Account_Booking_StandaloneTruck_RegNo.ToString() : item.Account_Booking_Truck_RegNo.ToString();
+                customerCollectionSettlement.ReceiptNo = item.Account_Booking_Id.ToString();
+                customerCollectionSettlement.Refund = 0;
+                customerCollectionSettlement.Settlement = item.Account_TotalAmount;
+                customerCollectionSettlement.Amount = 0;
+                lstCustomerCollectionSettlement.Add(customerCollectionSettlement);
+            }
+
+            //Refund
+            IList<PaymentRefundDTO> lstRefund = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerRefundList(customerID, fromDate, toDate);
+            foreach (PaymentRefundDTO item in lstRefund)
+            {
+                CustomerCollectionSettlementDTO customerCollectionSettlement = new CustomerCollectionSettlementDTO();
+                customerCollectionSettlement.DateReceived = item.PR_CreatedDate.ToString();
+                customerCollectionSettlement.DateActivated = item.PR_CreatedDate.ToString();//   .ToString();
+                customerCollectionSettlement.TransactionType = "Refund" + item.PaymentModeName.ToString();
+                customerCollectionSettlement.InstTruckNo = item.PR_InstrumentNo.ToString();
+                customerCollectionSettlement.ReceiptNo = item.PR_ID.ToString();
+                customerCollectionSettlement.Refund = item.PR_Amount;
+                customerCollectionSettlement.Settlement =0;
+                customerCollectionSettlement.Amount = 0;
+                lstCustomerCollectionSettlement.Add(customerCollectionSettlement);
+            }
+            return lstCustomerCollectionSettlement;
         }
     }
 }

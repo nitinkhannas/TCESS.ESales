@@ -287,7 +287,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
 
             //To retrive payment collection from database for transit to head cashier
             List<BatchTransferDTO> lstBatchTransfer = (from batchItem in base.BatchTransferRepository.GetQuery().
-                                                       Where(item => ((item.BT_Status == 1 && item.BT_CreatedDate <= currentDate.Date) 
+                                                       Where(item => ((item.BT_Status == 1 && item.BT_CreatedDate <= currentDate.Date)
                                                            || (item.BT_Status == 2 && item.BT_CreatedDate == currentDate.Date)))
                                                        join payTransit in base.PaymentTransitRepository.GetQuery()
                                                        on batchItem.BT_ID equals payTransit.PaymentTransit_BatchId
@@ -668,6 +668,16 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             return paymentRefund;
         }
 
+        IList<PaymentRefundDTO> IPaymentService.GetCustomerRefundList(int customerID, DateTime fromDate, DateTime toDate)
+        {
+            IList<PaymentRefundDTO> paymentRefund = new List<PaymentRefundDTO>();
+            List<paymentrefund> lstPaymentRefundEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<paymentrefund>>()
+                                                       .GetQuery().Where(item => item.PR_CustID == customerID && ((item.PR_CreatedDate >= fromDate && item.PR_CreatedDate <= toDate))).ToList();
+
+            AutoMapper.Mapper.Map(lstPaymentRefundEntity, paymentRefund);
+            return paymentRefund;
+        }
+
         PaymentRefundDTO IPaymentService.GetPaymentRefundDetails(int refundID)
         {
             PaymentRefundDTO paymentRefundDetails = new PaymentRefundDTO();
@@ -742,7 +752,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             List<PaymentCollectionDTO> lstPaymentCollection =
                 (from pcItem in base.PaymentCollectionRepository.GetQuery()
                      .Where(item => (item.PC_Status == null ||
-                         item.PC_Status == (int)Globals.CollectionStatus.CANCELLED) 
+                         item.PC_Status == (int)Globals.CollectionStatus.CANCELLED)
                          && item.PC_PaymentMode != (int)Globals.PaymentModes.CASH)
                  join custItem in base.CustomerRepository.GetQuery()
                  .Where(item => item.Cust_IsDeleted == false)
@@ -830,7 +840,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                 lstPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
                                                          .GetQuery().Where(item => item.SMSPay_Id == smsPaymentID && item.SMSPay_Date >= previousday.Date && item.SMSPay_Status == false).ToList();
             }
-            AutoMapper.Mapper.Map(lstPaymentRegEntity,smsPaymentRegDetails);
+            AutoMapper.Mapper.Map(lstPaymentRegEntity, smsPaymentRegDetails);
             return smsPaymentRegDetails;
         }
 
@@ -848,38 +858,51 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
         }
         public SMSPaymentRegistrationDTO GetSMSPaymentDetailsByID(int smsID)
         {
-           
+
 
             SMSPaymentRegistrationDTO smsPaymentRegDetails = new SMSPaymentRegistrationDTO();
             smspaymentregistration smsPaymentRegEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<smspaymentregistration>>()
-                                                        .GetSingle(item => item.SMSPay_Id == smsID );
+                                                        .GetSingle(item => item.SMSPay_Id == smsID);
 
             AutoMapper.Mapper.Map(smsPaymentRegEntity, smsPaymentRegDetails);
             return smsPaymentRegDetails;
         }
 
 
-        public IList<PaymentCollectionDTO> GetActiveCollectionForDay(DateTime todayDate)
+        public IList<PaymentCollectionDTO> GetActiveCollectionForPeriod(DateTime fromDate, DateTime toDate)
         {
-            List<PaymentCollectionDTO> lstPaymentCollection =new List<PaymentCollectionDTO>();
+            List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
             List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
                  .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
                       item.PC_Status == 2
                      && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1 &&
-                     (item.PC_LastUpdateDate <= todayDate))).ToList();
+                     (item.PC_LastUpdateDate >= fromDate && item.PC_LastUpdateDate <= toDate))).ToList();
 
             AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
             return lstPaymentCollection;
         }
-        public IList<PaymentCollectionDTO> GetHoldActiveCollectionForDay(DateTime todayDate)
+        public IList<PaymentCollectionDTO> GetHoldActiveCollectionForPeriod(DateTime fromDate, DateTime toDate)
         {
             List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
             List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
                  .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
                       item.PC_Status == 1
                      && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2 &&
-                     (item.PC_LastUpdateDate <= todayDate))).ToList();
+                     (item.PC_LastUpdateDate >= fromDate && item.PC_LastUpdateDate <= toDate))).ToList();
 
+            AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
+            return lstPaymentCollection;
+        }
+
+
+        public IList<PaymentCollectionDTO> GetPaymentByCustomer(int customerID, DateTime fromDate, DateTime toDate)
+        {
+            List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
+            List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
+                .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
+                    item.PC_CustId == customerID && item.PC_Status == 2
+                    && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1) &&
+                    (item.PC_CreatedDate <= toDate && item.PC_CreatedDate >= fromDate)).ToList();
             AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
             return lstPaymentCollection;
         }
