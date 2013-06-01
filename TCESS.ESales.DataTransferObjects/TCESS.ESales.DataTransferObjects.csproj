@@ -68,6 +68,7 @@
     <Compile Include="GhatoCollection\CollectionSummaryDTO.cs" />
     <Compile Include="GhatoCollection\ConsolidatedCustomerCollectionReportDTO.cs" />
     <Compile Include="GhatoCollection\ConsolidatedReportDTO.cs" />
+    <Compile Include="GhatoCollection\CustomerCollectionSettlementDTO.cs" />
     <Compile Include="GhatoCollection\PaymentCollectionDTO.cs" />
     <Compile Include="GhatoCollection\PaymentRefundDTO.cs" />
     <Compile Include="GhatoCollection\PaymentTransitDTO.cs" />
