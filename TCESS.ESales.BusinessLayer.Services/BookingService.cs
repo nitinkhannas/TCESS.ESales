@@ -325,7 +325,6 @@ namespace TCESS.ESales.BusinessLayer.Services
             }
         }
 
-
         public IList<BookingDTO> GetUnpaidBooking()
         {
             List<BookingDTO> lstBookingDetails = new List<BookingDTO>();
@@ -344,6 +343,17 @@ namespace TCESS.ESales.BusinessLayer.Services
             List<booking> lstBookingEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<booking>>()
                 .GetQuery().Where(item => item.Booking_IsDeleted == false &&
                     item.Booking_Status == true && item.Booking_AccountSettled == false && (item.Booking_Date >= fromDate && item.Booking_Date <= toDate)).ToList();
+
+            AutoMapper.Mapper.Map(lstBookingEntity, lstBookingDetails);
+            return lstBookingDetails;
+        }
+
+        public IList<BookingDTO> TotalLoadingAdviceIssued(DateTime toDate)
+        {
+            List<BookingDTO> lstBookingDetails = new List<BookingDTO>();
+            List<booking> lstBookingEntity = ESalesUnityContainer.Container.Resolve<IGenericRepository<booking>>()
+                .GetQuery().Where(item => item.Booking_IsDeleted == false &&
+                    item.Booking_Status == true && item.Booking_Date == toDate.Date).ToList();
 
             AutoMapper.Mapper.Map(lstBookingEntity, lstBookingDetails);
             return lstBookingDetails;

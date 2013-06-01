@@ -17,8 +17,8 @@ namespace TCESS.ESales.DataTransferObjects
         public Nullable<decimal> Amount { get; set; }
         public Nullable<decimal> Recd_Amount { get; set; }
         public Nullable<decimal> Bk_Chges { get; set; }
-        public Nullable<string> Rejected { get; set; }
-        public Nullable<string> Reason { get; set; }
+        public string Rejected { get; set; }
+        public string Reason { get; set; }
         public Nullable<DateTime> InstrumentDate { get; set; }
         
     }

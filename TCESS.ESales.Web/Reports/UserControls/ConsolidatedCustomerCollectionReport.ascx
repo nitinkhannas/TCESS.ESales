@@ -6,12 +6,6 @@
     <table width="100%">
         <tr>
             <td align="center">
-               <asp:Button ID="btnGenerate" CssClass="button" Text="Generate Report" 
-                    runat="server" onclick="btnGenerate_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
                 <rsweb:ReportViewer BorderColor="Black" BorderWidth="1px" ID="reportViewer" runat="server"
                     Font-Names="Verdana" Font-Size="8pt" Width="860px">
                 </rsweb:ReportViewer>

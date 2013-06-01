@@ -17,7 +17,7 @@ using TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection;
 
 #endregion
 
-public partial class TruckOut_UserControls_SettlementOfAccounts : BaseUserControl
+public partial class TruckOut_SettlementOfAccount : BaseUserControl
 {
     public ShowDataByIdEventHandler Event_ShowHandlingBillReport;
 

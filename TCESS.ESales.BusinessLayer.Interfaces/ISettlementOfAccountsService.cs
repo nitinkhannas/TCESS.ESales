@@ -8,17 +8,17 @@ using System;
 
 namespace TCESS.ESales.BusinessLayer.Interfaces
 {
-	public interface ISettlementOfAccountsService
-	{
-		int SaveSettlementOfAccounts(SettlementOfAccountsDTO settlementOfAccountsDetail);
-		SettlementOfAccountsDTO GetSettlementOfAccountsById(int accountId);
+    public interface ISettlementOfAccountsService
+    {
+        int SaveSettlementOfAccounts(SettlementOfAccountsDTO settlementOfAccountsDetail);
+        SettlementOfAccountsDTO GetSettlementOfAccountsById(int accountId);
         IList<SettlementOfAccountsDTO> GetSettlementDetailsForDay(DateTime fromDate);
-		SettlementOfAccountsDTO GetSettlementOfAccountsByBookingId(int bookingID);
+        SettlementOfAccountsDTO GetSettlementOfAccountsByBookingId(int bookingID);
         IList<object> GetSettlementOfAccountsCount(int userID);
         SettlementOfAccountsDTO GetLastSettlementOfAccountsByTruckNo(string truckNo);
         decimal GetQtySum(int customerID);
         decimal GetMaterialAmountLiftedByCustomer(int customerID, DateTime fromDate, DateTime toDate);
         IList<SettlementOfAccountsDTO> GetSettlementDetailsForPeriod(DateTime fromDate, DateTime toDate);
         IList<SettlementOfAccountsDTO> GetListOfMaterialLiftedByCustomer(int customerID, DateTime fromDate, DateTime toDate);
-	}
+    }
 }

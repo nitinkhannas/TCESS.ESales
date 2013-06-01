@@ -1365,4 +1365,25 @@
   <data name="CompanyBankName" xml:space="preserve">
     <value>Company Bank Name</value>
   </data>
+  <data name="ClosingBalance" xml:space="preserve">
+    <value>Closing Balance</value>
+  </data>
+  <data name="CollectionActive" xml:space="preserve">
+    <value>Collection Active</value>
+  </data>
+  <data name="HoldForActivation" xml:space="preserve">
+    <value>Hold For Activation</value>
+  </data>
+  <data name="HoldForPendingBooking" xml:space="preserve">
+    <value>Hold For Pending Booking</value>
+  </data>
+  <data name="OpeningBalance" xml:space="preserve">
+    <value>Opening Balance</value>
+  </data>
+  <data name="TotalBalAvailable" xml:space="preserve">
+    <value>Total Bal Available</value>
+  </data>
+  <data name="TotalLoadingAdviceIssued" xml:space="preserve">
+    <value>Total Loading Advice Issued</value>
+  </data>
 </root>

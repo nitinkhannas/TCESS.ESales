@@ -27,5 +27,6 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         void SaveAllRejectedBookingInfo(BookingDTO bookingDetails,int smsRegId);
         IList<BookingDTO> GetUnpaidBooking();
         IList<BookingDTO> GetHoldPendingBooking(DateTime fromDate, DateTime toDate);
+        IList<BookingDTO> TotalLoadingAdviceIssued(DateTime toDate);
     }
 }

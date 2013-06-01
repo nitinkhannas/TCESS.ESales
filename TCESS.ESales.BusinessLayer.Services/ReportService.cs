@@ -885,15 +885,17 @@ namespace TCESS.ESales.BusinessLayer.Services
             AutoMapper.Mapper.Map(lstSmsEntity, smsRegistration);
             return smsRegistration;
         }
+
         public IList<ConsolidatedCustomerCollectionReportDTO> GetConsolidatedCustomerCollection(DateTime fromDate, DateTime toDate)
         {
             DateTime reportStartDate = DateTime.Now;
             List<ConsolidatedCustomerCollectionReportDTO> lstConsolidatedCustomerCollectionReportDTO = new List<ConsolidatedCustomerCollectionReportDTO>();
-            IList<CustomerDTO> lstCustomer = ESalesUnityContainer.Container.Resolve<ICustomerService>().GetActiveCustomerList();
-            IList<SettlementOfAccountsDTO> lstSettlementOfAccounts = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetSettlementDetailsForPeriod(reportStartDate, toDate);
-            IList<PaymentCollectionDTO> lstPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetActiveCollectionForPeriod(reportStartDate, toDate);
-            IList<BookingDTO> lstBooking = ESalesUnityContainer.Container.Resolve<IBookingService>().GetHoldPendingBooking(reportStartDate, toDate);
-            IList<PaymentCollectionDTO> lstHoldPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetHoldActiveCollectionForPeriod(reportStartDate, toDate);
+            IList<CustomerDTO> lstCustomer = ESalesUnityContainer.Container.Resolve<ICustomerService>().GetActiveCustomerList().OrderBy(item => item.Cust_Code).ToList();
+            IList<PaymentCollectionDTO> lstPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetActiveCollectionForPeriod(DateTime.Now, toDate);
+            IList<BookingDTO> lstBooking = ESalesUnityContainer.Container.Resolve<IBookingService>().TotalLoadingAdviceIssued(toDate);
+            IList<SettlementOfAccountsDTO> lstSettlementOfAccounts = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetSettlementDetailsForPeriod(DateTime.Now, toDate);
+            IList<PaymentCollectionDTO> lstHoldPaymentCollection = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetHoldActiveCollectionForPeriod(DateTime.Now, toDate);
+            
             foreach (CustomerDTO item in lstCustomer)
             {
                 ConsolidatedCustomerCollectionReportDTO consolidatedCustomerRep = new ConsolidatedCustomerCollectionReportDTO();
@@ -904,8 +906,9 @@ namespace TCESS.ESales.BusinessLayer.Services
                 consolidatedCustomerRep.OpeningBalance = GetOpeningBalance(item.Cust_Id, fromDate, toDate);
                 consolidatedCustomerRep.CollectionActive = lstPaymentCollection.Where(f => f.PC_CustId == item.Cust_Id).Sum(f => f.PC_Amount);
                 consolidatedCustomerRep.TotalBalAvailable = consolidatedCustomerRep.OpeningBalance + consolidatedCustomerRep.CollectionActive;
-                consolidatedCustomerRep.TotalSettlement = lstSettlementOfAccounts.Where(f => f.Account_Booking_Cust_Id == item.Cust_Id).Sum(f => f.Account_TotalAmount);
-                consolidatedCustomerRep.HoldForPendingBooking = lstBooking.Where(f => f.Booking_Cust_Id == item.Cust_Id).Sum(f => f.Booking_AdvanceAmount);
+                consolidatedCustomerRep.TotalLoadingAdviceIssued = lstBooking.Where(f => f.Booking_Cust_Id == item.Cust_Id).Sum(f => f.Booking_AdvanceAmount);
+                consolidatedCustomerRep.TotalSettlement = lstSettlementOfAccounts.Where(f => f.Account_Booking_Cust_Id == item.Cust_Id).Sum(f => f.Account_Balance);
+                consolidatedCustomerRep.ClosingBalance = consolidatedCustomerRep.TotalBalAvailable - consolidatedCustomerRep.TotalLoadingAdviceIssued - consolidatedCustomerRep.TotalSettlement;
                 consolidatedCustomerRep.HoldForActivation = lstHoldPaymentCollection.Where(f => f.PC_CustId == item.Cust_Id).Sum(f => f.PC_Amount);
                 lstConsolidatedCustomerCollectionReportDTO.Add(consolidatedCustomerRep);
             }
@@ -915,10 +918,11 @@ namespace TCESS.ESales.BusinessLayer.Services
         private decimal GetOpeningBalance(int pCustId, DateTime fromDate, DateTime toDate)
         {
             decimal BalanceAmt;
-            decimal totalAmountCollected = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentMadeByCustomer(pCustId, fromDate, toDate);
+            DateTime previousDay = toDate.AddDays(-1);
+            decimal totalAmountCollected = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetPaymentMadeByCustomer(pCustId, fromDate, previousDay);
             decimal totalRefundAmount = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetCustomerPaymentRefundList(pCustId).Sum(f => f.PR_Amount);
             //get Total exp amount
-            decimal totalMaterialLiftedAmount = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetMaterialAmountLiftedByCustomer(pCustId, fromDate, toDate);
+            decimal totalMaterialLiftedAmount = ESalesUnityContainer.Container.Resolve<ISettlementOfAccountsService>().GetMaterialAmountLiftedByCustomer(pCustId, fromDate, previousDay);
             BalanceAmt = totalAmountCollected - (totalMaterialLiftedAmount + totalRefundAmount);
             return BalanceAmt;
         }

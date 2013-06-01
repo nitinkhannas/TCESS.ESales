@@ -106,6 +106,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                 {
                     PaymentCollectionDTO paymentCollectionDTO = GetCollectionDetailsById(item.PaymentTransit_CollectionId);
                     paymentCollectionDTO.PC_Status = (int)Globals.CollectionStatus.SENTTOCASHIER;
+                    paymentCollectionDTO.PC_LastUpdateDate = DateTime.Now;
 
                     paymentcollection paymentcollectionEntity = new paymentcollection();
                     AutoMapper.Mapper.Map(paymentCollectionDTO, paymentcollectionEntity);
@@ -390,6 +391,7 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                 {
                     PaymentCollectionDTO paymentCollectionDTO = GetCollectionDetailsById(item.PaymentTransit_CollectionId);
                     paymentCollectionDTO.PC_Status = (int)Globals.CollectionStatus.ACCEPTEDBYCASHIER;
+                    paymentCollectionDTO.PC_LastUpdateDate = DateTime.Now;
 
                     ////Instrument status and Instrument Realization date to be updated
                     ////in case payment mode is cheque
@@ -644,8 +646,8 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
                 .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
                     item.PC_CustId == customerID && item.PC_Status == 2
-                    && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1 &&
-                    (item.PC_CreatedDate <= toDate && item.PC_CreatedDate >= fromDate))).ToList();
+                    && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1) &&
+                    item.PC_ReceiptDate >= fromDate.Date && item.PC_ReceiptDate <= toDate.Date).ToList();
 
             return lstPaymentCollectionEntity.Sum(total => total.PC_Amount);
         }
@@ -874,26 +876,25 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
             List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
                  .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
-                      item.PC_Status == 2
-                     && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1 &&
-                     (item.PC_LastUpdateDate >= fromDate && item.PC_LastUpdateDate <= toDate))).ToList();
+                      item.PC_Status == 2 && 
+                      (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1) &&
+                      item.PC_LastUpdateDate >= fromDate.Date && item.PC_LastUpdateDate <= toDate.Date).ToList();
 
             AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
             return lstPaymentCollection;
         }
+
         public IList<PaymentCollectionDTO> GetHoldActiveCollectionForPeriod(DateTime fromDate, DateTime toDate)
         {
             List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
             List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
                  .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
-                      item.PC_Status == 1
-                     && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2) &&
-                     (item.PC_LastUpdateDate >= fromDate && item.PC_LastUpdateDate <= toDate)).ToList();
+                      item.PC_Status == 1 && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2) &&
+                     (item.PC_LastUpdateDate >= fromDate.Date && item.PC_LastUpdateDate <= toDate.Date)).ToList();
 
             AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
             return lstPaymentCollection;
         }
-
 
         public IList<PaymentCollectionDTO> GetPaymentByCustomer(int customerID, DateTime fromDate, DateTime toDate)
         {
