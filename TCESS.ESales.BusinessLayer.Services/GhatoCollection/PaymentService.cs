@@ -887,8 +887,8 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
                  .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
                       item.PC_Status == 1
-                     && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2 &&
-                     (item.PC_LastUpdateDate >= fromDate && item.PC_LastUpdateDate <= toDate))).ToList();
+                     && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2) &&
+                     (item.PC_LastUpdateDate >= fromDate && item.PC_LastUpdateDate <= toDate)).ToList();
 
             AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
             return lstPaymentCollection;
