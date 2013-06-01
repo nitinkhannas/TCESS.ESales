@@ -229,6 +229,6 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         /// <returns></returns>
         IList<SMSRegistrationDTO> GetPendingSMSList();
         IList<ConsolidatedCustomerCollectionReportDTO> GetConsolidatedCustomerCollection(DateTime fromDate, DateTime toDate);
-        IList<ConsolidatedCustomerCollectionReportDTO> GetConsolidatedCollectionReport(DateTime fromDate, DateTime toDate);
+        IList<CustomerCollectionSettlementDTO> GetConsolidatedCollectionReport(DateTime fromDate, DateTime toDate);
     }
 }

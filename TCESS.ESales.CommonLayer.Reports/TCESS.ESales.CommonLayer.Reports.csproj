@@ -72,6 +72,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsolidatedCustomerCollectionReport.rdlc" />
     <EmbeddedResource Include="ConsolidatedSMSReport.rdlc" />
+    <EmbeddedResource Include="CustomerCollectionAndSettlement.rdlc" />
     <EmbeddedResource Include="Form27CReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
