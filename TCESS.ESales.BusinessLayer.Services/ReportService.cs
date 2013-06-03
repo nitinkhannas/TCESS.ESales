@@ -940,8 +940,8 @@ namespace TCESS.ESales.BusinessLayer.Services
                 customerCollectionSettlement.DateReceived = item.PC_ReceiptDate.ToString("dd.MM.yyyy");
                 customerCollectionSettlement.DateActivated = item.PC_CreatedDate.ToString();//   .ToString();
                 customerCollectionSettlement.TransactionType = item.PaymentModeName.ToString();
-                customerCollectionSettlement.InstTruckNo = item.PC_InstrumentNo.ToString();
-                customerCollectionSettlement.ReceiptNo = item.PC_InstrumentNo.ToString();
+                customerCollectionSettlement.InstTruckNo = Convert.ToString(item.PC_InstrumentNo);
+                customerCollectionSettlement.ReceiptNo =  Convert.ToString(item.PC_InstrumentNo);
                 customerCollectionSettlement.Refund = 0;
                 customerCollectionSettlement.Settlement = 0;
                 customerCollectionSettlement.Amount = item.PC_Amount;

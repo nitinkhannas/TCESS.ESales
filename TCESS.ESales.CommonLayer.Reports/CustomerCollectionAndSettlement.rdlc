@@ -286,31 +286,31 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.00633in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.94784in</Width>
+              <Width>0.95417in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.04167in</Width>
+              <Width>1.04799in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.96465in</Width>
+              <Width>0.97098in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.76937in</Width>
+              <Width>0.7757in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.00633in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.00633in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.94938in</Width>
+              <Width>0.95571in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.00633in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -748,7 +748,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -781,7 +780,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -814,7 +812,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -847,7 +844,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -880,7 +876,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -892,7 +887,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=RunningValue(Fields!Amount.Value-(Fields!Settlement.Value + Fields!Refund.Value),sum,Nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -913,7 +908,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1080,7 +1074,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=sum(Fields!Refund.Value,"")</Value>
+                              <Value>=sum(Fields!Refund.Value,"dsCustomerCollectionSettlement")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1110,7 +1104,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=sum(Fields!Settlement.Value,"dsCustomerCollectionSettlement")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1140,7 +1134,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=sum(Fields!Amount.Value,"dsCustomerCollectionSettlement")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1225,7 +1219,7 @@
         <Top>1.15292in</Top>
         <Left>0.1875in</Left>
         <Height>0.94792in</Height>
-        <Width>8.67291in</Width>
+        <Width>8.72986in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
