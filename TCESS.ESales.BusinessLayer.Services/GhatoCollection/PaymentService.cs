@@ -884,11 +884,12 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
             return lstPaymentCollection;
         }
 
-        public IList<PaymentCollectionDTO> GetHoldActiveCollectionForPeriod(DateTime fromDate, DateTime toDate)
+        public IList<PaymentCollectionDTO> GetHoldActiveCollectionForPeriodByCustomer(int customerID, DateTime fromDate, DateTime toDate)
         {
             List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
             List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
                  .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
+                      item.PC_CustId == customerID && 
                       item.PC_Status == 1 && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2) &&
                      (item.PC_LastUpdateDate >= fromDate.Date && item.PC_LastUpdateDate <= toDate.Date)).ToList();
 
@@ -904,6 +905,19 @@ namespace TCESS.ESales.BusinessLayer.Services.GhatoCollection
                     item.PC_CustId == customerID && item.PC_Status == 2
                     && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 1) &&
                     (item.PC_CreatedDate <= toDate && item.PC_CreatedDate >= fromDate)).ToList();
+            AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
+            return lstPaymentCollection;
+        }
+
+
+        public IList<PaymentCollectionDTO> GetHoldActiveCollectionForPeriod(DateTime fromDate, DateTime toDate)
+        {
+            List<PaymentCollectionDTO> lstPaymentCollection = new List<PaymentCollectionDTO>();
+            List<paymentcollection> lstPaymentCollectionEntity = ESalesUnityContainer.Container
+                 .Resolve<IGenericRepository<paymentcollection>>().GetQuery().Where(item =>
+                      item.PC_Status == 1 && (item.PC_InstrumentStatus == 0 || item.PC_InstrumentStatus == 2) &&
+                     (item.PC_LastUpdateDate >= fromDate.Date && item.PC_LastUpdateDate <= toDate.Date)).ToList();
+
             AutoMapper.Mapper.Map(lstPaymentCollectionEntity, lstPaymentCollection);
             return lstPaymentCollection;
         }

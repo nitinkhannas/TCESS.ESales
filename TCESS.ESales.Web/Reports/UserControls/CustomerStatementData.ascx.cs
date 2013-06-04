@@ -9,6 +9,7 @@ using TCESS.ESales.DataTransferObjects;
 using System.Web.UI.WebControls;
 using TCESS.ESales.CommonLayer.CommonLibrary;
 using TCESS.ESales.DataTransferObjects.GhatoCollection;
+using TCESS.ESales.BusinessLayer.Interfaces.GhatoCollection;
 
 #endregion
 
@@ -84,6 +85,8 @@ public partial class Reports_UserControls_CustomerStatementData : BaseUserContro
 
             lstCustomerDTO = ESalesUnityContainer.Container.Resolve<IReportService>().GetConsolidatedCollectionReport(CustomerId, fromDate, toDate);
             IList<BookingDTO> lstBookingDTO = ESalesUnityContainer.Container.Resolve<IBookingService>().GetHoldPendingBooking(CustomerId, fromDate, toDate);
+            IList<PaymentCollectionDTO> lstPaymentCollectionDTO = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetHoldActiveCollectionForPeriodByCustomer(CustomerId, fromDate, toDate);
+            
 
             //If pending booking report contains some data
             if (lstCustomerDTO.Count > 0)
@@ -98,12 +101,21 @@ public partial class Reports_UserControls_CustomerStatementData : BaseUserContro
 
             if (lstBookingDTO.Count > 0)
             {
-                grdHold.DataSource = lstBookingDTO;
+                grdHold.DataSource = lstBookingDTO;//grdHoldPayment
                 grdHold.DataBind();
             }
             else
             {
                 base.ShowBlankRowInGrid<BookingDTO>(grdHold);
+            }
+            if (lstPaymentCollectionDTO.Count > 0)
+            {
+                grdHoldPayment.DataSource = lstBookingDTO;//
+                grdHoldPayment.DataBind();
+            }
+            else
+            {
+                base.ShowBlankRowInGrid<PaymentCollectionDTO>(grdHoldPayment);
             }
         }
         else

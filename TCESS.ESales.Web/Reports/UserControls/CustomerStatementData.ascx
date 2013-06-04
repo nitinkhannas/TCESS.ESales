@@ -165,4 +165,53 @@
             </Custom:GridViewAlwaysShow>
         </td>
     </tr>
+    <tr>
+    <td>
+    <Custom:GridViewAlwaysShow ID="grdHoldPayment" runat="server" AutoGenerateColumns="False"
+                BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Small"
+                AllowPaging="false" HorizontalAlign="Center" Width="100%" CellPadding="5">
+                <Columns>
+                    <asp:TemplateField HeaderText="<%$Resources:Labels, SNo%>">
+                        <ItemTemplate>
+                            <%# Container.DataItemIndex + 1 %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Date">
+                        <ItemTemplate>
+                            <%#Convert.ToDateTime(Eval("PC_CreatedDate")).ToString("dd.MM.yyyy")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="R.No">
+                        <ItemTemplate>
+                            <%#Eval("PC_Id")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="INST.NO">
+                        <ItemTemplate>
+                             <%#Eval("PC_InstrumentNo")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                        <asp:TemplateField HeaderText="BANK">
+                        <ItemTemplate>
+                             <%#Eval("BankName")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Amount">
+                        <ItemTemplate>
+                            <%# Eval("PC_Amount")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <HeaderStyle BackColor="#397dbc" Font-Bold="True" ForeColor="#FFFFFF" Height="20px" />
+                <PagerStyle BackColor="#397dbc" ForeColor="#FFFFFF" HorizontalAlign="Left" />
+                <RowStyle BackColor="White" ForeColor="#003399" Font-Size="Small" Height="20px" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                <SortedAscendingCellStyle BackColor="#EDF6F6" />
+                <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
+                <SortedDescendingCellStyle BackColor="#D6DFDF" />
+                <SortedDescendingHeaderStyle BackColor="#002876" />
+            </Custom:GridViewAlwaysShow>
+    
+    </td>
+    </tr>
 </table>
