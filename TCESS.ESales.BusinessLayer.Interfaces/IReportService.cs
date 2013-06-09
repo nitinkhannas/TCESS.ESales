@@ -232,5 +232,6 @@ namespace TCESS.ESales.BusinessLayer.Interfaces
         IList<ConsolidatedCustomerCollectionReportDTO> GetConsolidatedCustomerCollection(DateTime fromDate, DateTime toDate);
 
         IList<CustomerCollectionSettlementDTO> GetConsolidatedCollectionReport(int customerID, DateTime fromDate, DateTime toDate);
+        decimal GetOpeningBalance(int pCustId, DateTime fromDate, DateTime toDate);
     }
 }

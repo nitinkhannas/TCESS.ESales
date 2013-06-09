@@ -57,6 +57,26 @@
                 ValidationGroup="GenerateGroup" />
         </td>
     </tr>
+    <tr align="left">
+        <td>
+            <asp:Label ID="lblOpeningBalance" runat="server" 
+                Text="Opening Balance" Visible="false" />
+        </td>
+        <td>
+            <asp:Label ID="lblValOpeningBalance" runat="server" 
+                Visible="false" />
+        </td>
+        <td>
+            &nbsp;</td>
+        <td>
+            &nbsp;</td>
+        <td>
+            &nbsp;</td>
+        <td>
+            &nbsp;</td>
+        <td align="right">
+            &nbsp;</td>
+    </tr>
 </table>
 <table width="100%">
     <tr>
@@ -124,7 +144,13 @@
     </tr>
     <tr>
         <td align="center">
-            <Custom:GridViewAlwaysShow ID="grdHold" runat="server" AutoGenerateColumns="False"
+            <asp:Label ID="lblHoldLoading" runat="server" 
+                Text="HOLD FOR LOADING ADVISES ISSUES" Visible="false" />
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <Custom:GridViewAlwaysShow ID="grdHold" Visible="false" runat="server" AutoGenerateColumns="False"
                 BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Small"
                 AllowPaging="false" HorizontalAlign="Center" Width="100%" CellPadding="5">
                 <Columns>
@@ -166,8 +192,14 @@
         </td>
     </tr>
     <tr>
+        <td align="center">
+            <asp:Label ID="lblunClear" runat="server" 
+                Text="UNCLEARED  COLLECTIONS" Visible="false" />
+        </td>
+    </tr>
+    <tr>
     <td>
-    <Custom:GridViewAlwaysShow ID="grdHoldPayment" runat="server" AutoGenerateColumns="False"
+    <Custom:GridViewAlwaysShow ID="grdHoldPayment" Visible="false" runat="server" AutoGenerateColumns="False"
                 BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Small"
                 AllowPaging="false" HorizontalAlign="Center" Width="100%" CellPadding="5">
                 <Columns>

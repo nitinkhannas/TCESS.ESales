@@ -915,7 +915,7 @@ namespace TCESS.ESales.BusinessLayer.Services
             return lstConsolidatedCustomerCollectionReportDTO;
         }
 
-        private decimal GetOpeningBalance(int pCustId, DateTime fromDate, DateTime toDate)
+        public decimal GetOpeningBalance(int pCustId, DateTime fromDate, DateTime toDate)
         {
             decimal BalanceAmt;
             DateTime previousDay = toDate.AddDays(-1);

@@ -65,8 +65,12 @@ public partial class Reports_UserControls_CustomerStatementData : BaseUserContro
             fromDate = Convert.ToDateTime(txtFromDate.Text);
             toDate = Convert.ToDateTime(txtToDate.Text);
         }
-        ////Show pending booking report
-        //Event_LoadReport(selectedDCA, fromDate, toDate);
+        CustomerDTO cust = ESalesUnityContainer.Container.Resolve<ICustomerService>().GetCustomerDetailsByCode(txtCustomerCode.Text.Trim());
+        if (cust.Cust_Id > 0)
+        {
+            ////Show pending booking report
+            Event_LoadReport(cust.Cust_Id, fromDate, toDate);
+        }
     }
 
 
@@ -82,7 +86,7 @@ public partial class Reports_UserControls_CustomerStatementData : BaseUserContro
         if (fromDate != null)
         {
             IList<CustomerCollectionSettlementDTO> lstCustomerDTO = null;
-
+            decimal openingBalance = ESalesUnityContainer.Container.Resolve<IReportService>().GetOpeningBalance(CustomerId, fromDate, toDate);
             lstCustomerDTO = ESalesUnityContainer.Container.Resolve<IReportService>().GetConsolidatedCollectionReport(CustomerId, fromDate, toDate);
             IList<BookingDTO> lstBookingDTO = ESalesUnityContainer.Container.Resolve<IBookingService>().GetHoldPendingBooking(CustomerId, fromDate, toDate);
             IList<PaymentCollectionDTO> lstPaymentCollectionDTO = ESalesUnityContainer.Container.Resolve<IPaymentService>().GetHoldActiveCollectionForPeriodByCustomer(CustomerId, fromDate, toDate);
@@ -93,6 +97,9 @@ public partial class Reports_UserControls_CustomerStatementData : BaseUserContro
             {
                 grdBooking.DataSource = lstCustomerDTO;
                 grdBooking.DataBind();
+                lblOpeningBalance.Visible = true;
+                lblValOpeningBalance.Visible = true;
+                lblValOpeningBalance.Text = openingBalance.ToString();
             }
             else
             {
@@ -101,7 +108,9 @@ public partial class Reports_UserControls_CustomerStatementData : BaseUserContro
 
             if (lstBookingDTO.Count > 0)
             {
-                grdHold.DataSource = lstBookingDTO;//grdHoldPayment
+                grdHold.Visible = true;
+                lblHoldLoading.Visible = true;
+                grdHold.DataSource = lstBookingDTO;
                 grdHold.DataBind();
             }
             else
@@ -110,6 +119,7 @@ public partial class Reports_UserControls_CustomerStatementData : BaseUserContro
             }
             if (lstPaymentCollectionDTO.Count > 0)
             {
+                grdHoldPayment.Visible = true;
                 grdHoldPayment.DataSource = lstBookingDTO;//
                 grdHoldPayment.DataBind();
             }
